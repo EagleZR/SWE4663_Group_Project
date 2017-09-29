@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ProjectManager.jnlp">
+  <information>
+    <title>Project Management System</title>
+    <vendor>Group 1</vendor>
+    <description>A project management tool</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ErrorPopupSystem.jar" size="2938" download="eager" />
+    <jar href="LoggingTool.jar" size="4847" download="eager" />
+    <jar href="PopupStage.jar" size="929" download="eager" />
+    <jar href="ProjectManager.jar" size="85271" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="ksu.fall2017.swe4663.group1.projectmanagementsystem.Main"  name="ProjectManagementSystem" />
+  <update check="background"/>
+</jnlp>

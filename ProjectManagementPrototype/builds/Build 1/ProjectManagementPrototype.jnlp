@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ProjectManagementPrototype.jnlp">
+  <information>
+    <title>Project Management Project Prototype</title>
+    <vendor>Mark Zeagler</vendor>
+    <description>Just a prototype of what we're trying to shoot for</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="PopupStage.jar" size="929" download="eager" />
+    <jar href="ProjectManagementPrototype.jar" size="18135" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="sample.Main"  name="ProjectManagementPrototype" />
+  <update check="background"/>
+</jnlp>

@@ -1,0 +1,85 @@
+Wed Sep 20 01:44:51 EDT 2017: Main: Initializing Project Manager.
+Wed Sep 20 01:44:51 EDT 2017: Main: Loading settings.
+Wed Sep 20 01:44:51 EDT 2017: Main: Configuration file found. Reading configuration.
+Wed Sep 20 01:44:51 EDT 2017: Creating new Config.
+Wed Sep 20 01:44:51 EDT 2017: Config: Reading configuration from file: E:\Users\Mark Zeagler\Documents\GitHub\Java\ProjectManagementPrototype\builds\Build 2\data\config.ini.
+Wed Sep 20 01:44:51 EDT 2017: Config: Setting previous save as: C:\Users\Mark\Documents\GitHub\Java\ProjectManagementPrototype\saves\our project.
+Wed Sep 20 01:44:51 EDT 2017: Config: Setting window width as: 500.
+Wed Sep 20 01:44:51 EDT 2017: Config: Setting window height as 600.
+Wed Sep 20 01:44:51 EDT 2017: Config: Setting buffer as 10.
+Wed Sep 20 01:44:51 EDT 2017: Main: Loading previous save.
+Wed Sep 20 01:44:51 EDT 2017: Project: Loading project from: C:\Users\Mark\Documents\GitHub\Java\ProjectManagementPrototype\saves\our project.
+Wed Sep 20 01:44:51 EDT 2017: Project: File does not exist.
+Wed Sep 20 01:44:51 EDT 2017: Main: Previous save not found. Creating new project.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new Project.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new Team.
+Wed Sep 20 01:44:51 EDT 2017: Team: Notifying distro of change.
+Wed Sep 20 01:44:51 EDT 2017: Main: Initializing ErrorPopupSystem.
+Wed Sep 20 01:44:51 EDT 2017: Main: Creating ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectManagementPane: Creating MenuBar.
+Wed Sep 20 01:44:51 EDT 2017: ProjectManagementPane: Creating GeneralPane in ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new GeneralPane.
+Wed Sep 20 01:44:51 EDT 2017: GeneralPane: Creating DescriptionPane in GeneralPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new FramedPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new DescriptionPane.
+Wed Sep 20 01:44:51 EDT 2017: DescriptionPane: Creating new title label in DescriptionPane.
+Wed Sep 20 01:44:51 EDT 2017: DescriptionPane: Creating new TextArea in DescriptionPane.
+Wed Sep 20 01:44:51 EDT 2017: DescriptionPane: Creating update Button in DescriptionPane.
+Wed Sep 20 01:44:51 EDT 2017: DescriptionPane: Creating reset button in DescriptionPane.
+Wed Sep 20 01:44:51 EDT 2017: DescriptionPane: Creating status label in DescriptionPane.
+Wed Sep 20 01:44:51 EDT 2017: GeneralPane: Creating TeamMembersPane in GeneralPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new FramedPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing a new TeamMembersPane.
+Wed Sep 20 01:44:51 EDT 2017: Team: Adding class ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.TeamMembersPane to distro.
+Wed Sep 20 01:44:51 EDT 2017: TeamMembersPane: Creating title label in TeamMembersPane.
+Wed Sep 20 01:44:51 EDT 2017: TeamMembersPane: Creating PersonButtonScrollPane in TeamMembersPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing a new PersonButtonScrollPane.
+Wed Sep 20 01:44:51 EDT 2017: TeamMembersPane: Creating the "Add Member" Button in the TeamMembersPane.
+Wed Sep 20 01:44:51 EDT 2017: GeneralPane: Creating ProjectOwnerPane in GeneralPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new FramedPane.
+Wed Sep 20 01:44:51 EDT 2017: Creating new ProjectOwnerPane.
+Wed Sep 20 01:44:51 EDT 2017: Team: Adding class ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.ProjectOwnerPane to distro.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new PersonNotOnTeamException.
+Wed Sep 20 01:44:51 EDT 2017: No manager was found. Setting an empty person as the manager in the ProjectOwnerPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new Person with name: .
+Wed Sep 20 01:44:51 EDT 2017: Person:  has been promoted.
+Wed Sep 20 01:44:51 EDT 2017: ProjectOwnerPane: Creating title label in ProjectOwnerPane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectOwnerPane: Creating PersonButtonScrollPane in ProjectOwnerPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing a new PersonButtonScrollPane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectOwnerPane: Updating ProjectOwnerPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new PersonNotOnTeamException.
+Wed Sep 20 01:44:51 EDT 2017: ProjectOwnerPane: Unable to update manager.
+Wed Sep 20 01:44:51 EDT 2017: GeneralPane: Creating RisksPane in GeneralPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new FramedPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new RisksPane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectManagementPane: Creating RequirementsPane in ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new FramedPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new RequirementsPane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectManagementPane: Creating HoursPane in ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new HoursPane.
+Wed Sep 20 01:44:51 EDT 2017: HoursPane: Creating new SelectPersonPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new FramedPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new SelectPersonPane.
+Wed Sep 20 01:44:51 EDT 2017: Team: Adding class ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.hourlog.SelectPersonPane to distro.
+Wed Sep 20 01:44:51 EDT 2017: Constructing a new PersonButtonScrollPane.
+Wed Sep 20 01:44:51 EDT 2017: SelectPersonPane: Adding title label.
+Wed Sep 20 01:44:51 EDT 2017: SelectPersonPane: Adding PersonButtonScrollPane.
+Wed Sep 20 01:44:51 EDT 2017: HoursPane: Creating new WorkedHoursSubmissionPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new FramedPane.
+Wed Sep 20 01:44:51 EDT 2017: Constructing new WorkedHoursSubmissionPane.
+Wed Sep 20 01:44:51 EDT 2017: WorkedHoursSubmissionPane: Creating ScrollPane.
+Wed Sep 20 01:44:51 EDT 2017: WorkedHoursSubmissionPane: Creating content Pane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectManagementPane: Setting GeneralPane as content in ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectManagementPane: Creating tabs in ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectManagementPane: Creating Button tab for GeneralPane in ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectManagementPane: Creating Button tab for RequirementsPane in ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: ProjectManagementPane: Creating Button tab for HoursPane in ProjectManagementPane.
+Wed Sep 20 01:44:51 EDT 2017: Main: Displaying Project Management System window.
+Wed Sep 20 01:45:02 EDT 2017: ProjectManagementPane: Setting HoursPane as content in ProjectManagementPane.
+Wed Sep 20 01:45:07 EDT 2017: ProjectManagementPane: Setting GeneralPane as content in ProjectManagementPane.
+Wed Sep 20 01:45:11 EDT 2017: ProjectManagementPane: Setting RequirementsPane as content in ProjectManagementPane.
+Wed Sep 20 01:45:11 EDT 2017: ProjectManagementPane: Setting HoursPane as content in ProjectManagementPane.
+Wed Sep 20 01:45:13 EDT 2017: Config: Begin closing.
+Wed Sep 20 01:45:13 EDT 2017: Config: Writing settings to file.
+Wed Sep 20 01:45:13 EDT 2017: Program is exiting.

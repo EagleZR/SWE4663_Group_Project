@@ -88,7 +88,7 @@ public class Main extends Application {
 	/**
 	 * Creates a new {@link Team} if possible.
 	 *
-	 * @return
+	 * @return The loaded {@link Project}.
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
@@ -97,6 +97,9 @@ public class Main extends Application {
 		return Project.load( config.previousSave );
 	}
 
+	/**
+	 * Saves the config and closes the logger
+	 */
 	@Override public void stop() {
 		try {
 			config.close();

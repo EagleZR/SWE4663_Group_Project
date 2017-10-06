@@ -221,6 +221,7 @@ pip-log.txt
 #############
 
 */out/*
+*.idea/*
 */.idea/*
 */META-INF/*
 */MANIFEST.MF

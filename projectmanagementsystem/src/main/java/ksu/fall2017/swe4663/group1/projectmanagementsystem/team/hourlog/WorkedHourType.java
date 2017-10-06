@@ -20,31 +20,9 @@ public enum WorkedHourType {
 	PROJECT_MANAGEMENT( "Project Management" );
 
 	String text;
-	double typeHourTotal;
-	boolean hoursHaveChanged;
 
 	WorkedHourType( String text ) {
 		this.text = text;
-	}
-
-	// FIXME Enums are static. Remove this from the enum.
-	protected double getTypeHourTotal() {
-		return this.typeHourTotal;
-	}
-
-	// FIXME Enums are static. Remove this from the enum.
-	protected boolean hasChanged() {
-		return hoursHaveChanged;
-	}
-
-	// FIXME Enums are static. Remove this from the enum.
-	protected void setTypeHourTotal( double value ) {
-		this.typeHourTotal = value;
-	}
-
-	// FIXME Enums are static. Remove this from the enum.
-	protected void setHasChanged( boolean value ) {
-		this.hoursHaveChanged = value;
 	}
 
 	@Override public String toString() {

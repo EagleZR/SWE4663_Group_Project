@@ -94,7 +94,7 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 	}
 
 	void update() {
-		total.setText( "Total: " + project.getTeam().getProjectHourLog().getHours( WorkedHourType.ANY ) );
+		total.setText( "Total: " + project.getTeam().getHours( WorkedHourType.ANY ) );
 		requirements.update();
 		design.update();
 		coding.update();

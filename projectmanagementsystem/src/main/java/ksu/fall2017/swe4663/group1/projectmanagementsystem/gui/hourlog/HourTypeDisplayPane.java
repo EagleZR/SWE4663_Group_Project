@@ -7,19 +7,20 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.FramedPane;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 
 class HourTypeDisplayPane extends FramedPane implements ProjectPane {
 
-	private ProjectHourLog hourLog;
+	private Team team;
 	private WorkedHourType hourType;
 	private ProgressBar progressBar;
 	private Label label;
 
 	HourTypeDisplayPane( WorkedHourType hourType, Project project, Config config ) {
 		LoggingTool.print( "Constructing new HourTypeDisplayPane for " + hourType.toString() + "." );
-		this.hourLog = project.getTeam().getProjectHourLog();
+		this.team = project.getTeam();
 		this.hourType = hourType;
 
 		label = new Label( hourType.toString() );
@@ -42,14 +43,14 @@ class HourTypeDisplayPane extends FramedPane implements ProjectPane {
 	}
 
 	protected void update() {
-		double totalWorked = hourLog.getHours( WorkedHourType.ANY );
-		double typeWorked = hourLog.getHours( this.hourType );
+		double totalWorked = team.getHours( WorkedHourType.ANY );
+		double typeWorked = team.getHours( this.hourType );
 		label.setText( hourType.toString() + ": " + typeWorked + " / " + totalWorked );
 		progressBar.setProgress( ( totalWorked == 0 || typeWorked == 0 ? 0 : typeWorked / totalWorked ) );
 	}
 
 	@Override public void loadNewProject( Project project ) {
-		this.hourLog = project.getTeam().getProjectHourLog();
+		this.team = project.getTeam();
 		update();
 	}
 }

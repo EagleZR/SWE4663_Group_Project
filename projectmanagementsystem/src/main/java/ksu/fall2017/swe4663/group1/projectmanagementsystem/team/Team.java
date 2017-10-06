@@ -3,17 +3,21 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem.team;
 import eaglezr.support.logs.LoggingTool;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.TeamPresenter;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours;
 
 import java.io.Serializable;
+import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * A representation of a project team. The team consists of {@link Person} instances, some of which are flagged as a
  * manager. The team also comes with an associated {@link ProjectHourLog} that records the submitted {@link
- * WorkedHours}s submitted by each of the {@link Person}s on this team.<p>All
- * handled issues and exceptions, as well as general runtime information, are printed using the {@link LoggingTool}.
- * Check the default printer's output to read the logs.</p>
+ * WorkedHours}s submitted by each of the {@link Person}s on this team.<p>All handled issues and exceptions, as well as
+ * general runtime information, are printed using the {@link LoggingTool}. Check the default printer's output to read
+ * the logs.</p>
  */
 public class Team implements Serializable {
 
@@ -21,6 +25,8 @@ public class Team implements Serializable {
 	private LinkedList<Person> teamMembers;
 	private ProjectHourLog projectHourLog;
 	private transient LinkedList<TeamPresenter> distro;
+	private HashMap<Person, Double> personHours;
+	private EnumMap<WorkedHourType, Double> typeHours;
 
 	/**
 	 * Constructs a new {@link Team} from the given list of {@link Person} members. <p>NOTE: This constructor works with
@@ -33,6 +39,16 @@ public class Team implements Serializable {
 		LoggingTool.print( "Constructing new Team." );
 		this.teamMembers = new LinkedList<>();
 		distro = new LinkedList<>();
+		this.typeHours = new EnumMap<>( WorkedHourType.class );
+		// Initialize typeHours
+		for ( WorkedHourType hourType : WorkedHourType.values() ) {
+			this.typeHours.put( hourType, 0.0 );
+		}
+		// Initialize personHours
+		this.personHours = new HashMap<>( teamMembers.length );
+		for ( Person person : this.teamMembers ) {
+			this.personHours.put( person, 0.0 );
+		}
 		addToTeam( teamMembers );
 	}
 
@@ -41,7 +57,7 @@ public class Team implements Serializable {
 	 *
 	 * @return The {@link ProjectHourLog} that belongs to this team.
 	 */
-	public ProjectHourLog getProjectHourLog() {
+	protected ProjectHourLog getProjectHourLog() {
 		if ( projectHourLog == null ) {
 			projectHourLog = new ProjectHourLog();
 		}
@@ -59,6 +75,12 @@ public class Team implements Serializable {
 			LoggingTool.print( "Team: " + person.getName() + " was added to the team." );
 			this.teamMembers.add( person );
 			person.addToTeam( this );
+		}
+		HashMap<Person, Double> newMap = new HashMap<>( this.personHours.size() + teamMembers.length );
+		newMap.putAll( this.personHours );
+		this.personHours = newMap;
+		for ( Person person : teamMembers ) {
+			this.personHours.put( person, 0.0 );
 		}
 		notifyDistro();
 	}
@@ -87,6 +109,52 @@ public class Team implements Serializable {
 			throw new PersonNotOnTeamException( workedHours.getPerson() + " is not on this team." );
 		}
 		getProjectHourLog().registerHours( workedHours );
+		typeHours.put( WorkedHourType.ANY, this.projectHourLog.getHours( WorkedHourType.ANY ) );
+		typeHours.put( workedHours.getType(), this.projectHourLog.getHours( workedHours.getType() ) );
+		personHours.put( workedHours.getPerson(), this.projectHourLog.getHours( workedHours.getPerson() ) );
+	}
+
+	/**
+	 * Returns the number of hours worked by the provided person.
+	 *
+	 * @param person The {@link Person} whose hours will be retrieved.
+	 * @return The total worked hours of the provided {@link Person}.
+	 * @throws PersonNotOnTeamException Thrown if the person is not on the team, and has never been on this team.
+	 */
+	public double getHours( Person person ) throws PersonNotOnTeamException {
+		if ( this.personHours.containsKey( person ) ) {
+			return this.personHours.get( person );
+		} else {
+			throw new PersonNotOnTeamException( "This person, " + person.getName()
+					+ ", is not on the team, nor has submitted hours for the project." );
+		}
+	}
+
+	/**
+	 * Returns the total of the worked hours of the given {@link WorkedHourType}.
+	 *
+	 * @param type The type of {@link WorkedHourType} to be retrieved.
+	 * @return The total worked hours by the given {@link WorkedHourType}.
+	 */
+	public double getHours( WorkedHourType type ) {
+		return this.typeHours.get( type );
+	}
+
+	/**
+	 * Returns the total of the worked hours of the given {@link WorkedHourType} by the given {@link Person}.
+	 *
+	 * @param person The {@link Person} whose hours will be retrieved.
+	 * @param type   The {@link WorkedHourType} of the hours to be retrieved.
+	 * @return The total number of hours submitted by the given {@link Person} of the given {@link WorkedHourType}.
+	 * @throws PersonNotOnTeamException Thrown if the person is not on the team, and has not ever been on the team.
+	 */
+	public double getHours( Person person, WorkedHourType type ) throws PersonNotOnTeamException {
+		if ( this.personHours.containsKey( person ) ) {
+			return this.projectHourLog.getHours( person, type );
+		} else {
+			throw new PersonNotOnTeamException( "This person, " + person.getName()
+					+ ", is not on the team, nor has submitted hours for the project." );
+		}
 	}
 
 	/**

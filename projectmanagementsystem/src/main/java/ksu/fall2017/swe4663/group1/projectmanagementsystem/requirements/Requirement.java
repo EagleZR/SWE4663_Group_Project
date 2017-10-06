@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Requirement implements Serializable {
 	private static final long serialVersionUID = -2391731060123178351L;
 
+	// TODO Needs Functional/Non-functional flag
 	private String description;
 	private String source;
 	private Priority priority;

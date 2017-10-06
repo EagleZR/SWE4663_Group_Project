@@ -62,17 +62,17 @@ public class DebugPane extends Pane implements ProjectPane {
 		// Worked Hours Totals
 		String hours = "Worked Hours: ";
 		hours += "\nTotal:\t";
-		hours += project.getTeam().getProjectHourLog().getHours( WorkedHourType.ANY );
+		hours += project.getTeam().getHours( WorkedHourType.ANY );
 		hours += "\nRequirements:\t";
-		hours += project.getTeam().getProjectHourLog().getHours( WorkedHourType.REQUIREMENTS_ANALYSIS );
+		hours += project.getTeam().getHours( WorkedHourType.REQUIREMENTS_ANALYSIS );
 		hours += "\nDesigning:\t";
-		hours += project.getTeam().getProjectHourLog().getHours( WorkedHourType.DESIGNING );
+		hours += project.getTeam().getHours( WorkedHourType.DESIGNING );
 		hours += "\nCoding:\t";
-		hours += project.getTeam().getProjectHourLog().getHours( WorkedHourType.CODING );
+		hours += project.getTeam().getHours( WorkedHourType.CODING );
 		hours += "\nTesting:\t";
-		hours += project.getTeam().getProjectHourLog().getHours( WorkedHourType.TESTING );
+		hours += project.getTeam().getHours( WorkedHourType.TESTING );
 		hours += "\nManagement:\t";
-		hours += project.getTeam().getProjectHourLog().getHours( WorkedHourType.PROJECT_MANAGEMENT );
+		hours += project.getTeam().getHours( WorkedHourType.PROJECT_MANAGEMENT );
 		workedHours.setText( hours );
 
 		// Risks

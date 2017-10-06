@@ -37,17 +37,14 @@ public class ProjectHourLog implements Serializable {
 	 * @return Returns the sum of worked hours by the given type.
 	 */
 	public double getHours( WorkedHourType workedHourType ) {
-		if ( workedHourType.hasChanged() ) {
-			int count = 0;
-			for ( WorkedHours workedHours : this.workedHours ) {
-				if ( workedHours.getType() == workedHourType || workedHourType == WorkedHourType.ANY ) {
-					count += workedHours.getDuration();
-				}
+		int count = 0;
+		for ( WorkedHours workedHours : this.workedHours ) {
+			if ( workedHours.getType() == workedHourType || workedHourType == WorkedHourType.ANY ) {
+				count += workedHours.getDuration();
 			}
-			workedHourType.setTypeHourTotal( count );
-			workedHourType.setHasChanged( false );
 		}
-		return workedHourType.getTypeHourTotal();
+
+		return count;
 	}
 
 	/**
@@ -67,6 +64,23 @@ public class ProjectHourLog implements Serializable {
 	}
 
 	/**
+	 * Retrieves the {@link WorkedHours} of {@link WorkedHourType} by {@link Person}.
+	 *
+	 * @param person The {@link Person} whose hours will be retrieved.
+	 * @param type   The {@link WorkedHourType} of the hours to be retrieved.
+	 * @return Returns the sum of worked hours by the given {@link Person}.
+	 */
+	public double getHours( Person person, WorkedHourType type ) {
+		int count = 0;
+		for ( WorkedHours workedHour : this.workedHours ) {
+			if ( workedHour.getType() == type && workedHour.getPerson().equals( person ) ) {
+				count += workedHour.getDuration();
+			}
+		}
+		return count;
+	}
+
+	/**
 	 * Registers new {@link WorkedHours} submitted by a {@link Person}.
 	 *
 	 * @param newWorkedHours The new {@link WorkedHours} to add for the {@link Project}.
@@ -78,8 +92,6 @@ public class ProjectHourLog implements Serializable {
 		if ( !contributors.contains( contributor ) ) {
 			contributors.add( contributor );
 		}
-		WorkedHourType.ANY.setHasChanged( true );
-		newWorkedHours.getType().setHasChanged( true );
 	}
 
 	/**

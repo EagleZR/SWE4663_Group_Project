@@ -5,11 +5,13 @@ import eaglezr.support.logs.LoggingTool;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.ProjectManagementPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -52,6 +54,7 @@ public class Main extends Application {
 		primaryStage.setScene( new Scene( pane, config.windowWidth, config.windowHeight ) );
 		primaryStage.setMinWidth( 450 );
 		primaryStage.setMinHeight( 500 );
+		primaryStage.getIcons().add( new Image( "icon/icon.png" ) );
 		LoggingTool.print( "Main: Displaying Project Management System window." );
 		primaryStage.show();
 	}

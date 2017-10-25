@@ -102,7 +102,7 @@ public class Person implements Serializable {
 	}
 
 	/**
-	 * Reports new hours to the {@link Team} to be added to the {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog}.
+	 * Reports new hours to the {@link Team} to be added to the {@link ProjectHourLog}.
 	 *
 	 * @param duration       The duration of the new hours to report.
 	 * @param workedHourType The type of work that was done for those hours.

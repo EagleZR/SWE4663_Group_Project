@@ -1,0 +1,1 @@
+.ico conversion at: https://converticon.com/

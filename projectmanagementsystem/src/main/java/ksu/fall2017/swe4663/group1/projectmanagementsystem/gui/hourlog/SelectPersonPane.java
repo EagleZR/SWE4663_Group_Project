@@ -26,7 +26,7 @@ public class SelectPersonPane extends FramedPane implements TeamPresenter, Proje
 		this.config = config;
 		this.project = project;
 		this.project.getTeam().addToDistro( this );
-		scrollPane = new PersonButtonScrollPane();
+		this.scrollPane = new PersonButtonScrollPane();
 		for ( Person person : project.getTeam().getMembers() ) {
 			addPerson( person );
 		}
@@ -37,66 +37,66 @@ public class SelectPersonPane extends FramedPane implements TeamPresenter, Proje
 		// Title label
 		LoggingTool.print( "SelectPersonPane: Adding title label." );
 		Label label = new Label( "Select a person: " );
-		label.layoutXProperty().setValue( config.buffer );
-		label.layoutYProperty().setValue( config.buffer );
+		label.layoutXProperty().setValue( this.config.buffer );
+		label.layoutYProperty().setValue( this.config.buffer );
 		this.getChildren().add( label );
 
 		// ScrollPane
 		LoggingTool.print( "SelectPersonPane: Adding PersonButtonScrollPane." );
-		scrollPane.prefWidthProperty().bind( this.widthProperty().subtract( config.buffer * 2 ) );
-		scrollPane.prefHeightProperty().bind( this.heightProperty().subtract( config.buffer * 3 ).subtract( label.heightProperty() ) );
-		scrollPane.layoutXProperty().bind( label.layoutXProperty() );
-		scrollPane.layoutYProperty().bind( label.layoutYProperty().add( label.heightProperty() ).add( config.buffer ) );
-		this.getChildren().add( scrollPane );
+		this.scrollPane.prefWidthProperty().bind( this.widthProperty().subtract( this.config.buffer * 2 ) );
+		this.scrollPane.prefHeightProperty().bind( this.heightProperty().subtract( this.config.buffer * 3 ).subtract( label.heightProperty() ) );
+		this.scrollPane.layoutXProperty().bind( label.layoutXProperty() );
+		this.scrollPane.layoutYProperty().bind( label.layoutYProperty().add( label.heightProperty() ).add( this.config.buffer ) );
+		this.getChildren().add( this.scrollPane );
 	}
 
 	public void setSelectResponse( Runnable response ) {
-		reportChange = response;
+		this.reportChange = response;
 	}
 
 	public Person getSelectedPerson() {
-		return selectedPerson;
+		return this.selectedPerson;
 	}
 
 	@Override public void addPerson( Person person ) {
 		LoggingTool.print( "SelectPersonPane: Adding person: " + person.getName() + "." );
-		if ( !scrollPane.containsPerson( person ) ) {
+		if ( !this.scrollPane.containsPerson( person ) ) {
 			PersonButton personButton = new PersonButton( person );
 			personButton.setOnAction( e -> {
-				for ( PersonButton button : scrollPane.getButtons() ) {
+				for ( PersonButton button : this.scrollPane.getButtons() ) {
 					button.setDefaultButton( false );
 				}
-				if ( selectedPerson != null && selectedPerson.equals( person ) ) {
-					selectedPerson = null;
+				if ( this.selectedPerson != null && this.selectedPerson.equals( person ) ) {
+					this.selectedPerson = null;
 				} else {
-					selectedPerson = person;
+					this.selectedPerson = person;
 					personButton.setDefaultButton( true );
 				}
 				// LATER Send message to the EditDetailsPane
-				reportChange.run();
+				this.reportChange.run();
 			} );
-			scrollPane.addButton( personButton );
+			this.scrollPane.addButton( personButton );
 		}
 	}
 
 	@Override public void removePerson( Person person ) {
-		scrollPane.removePerson( person );
+		this.scrollPane.removePerson( person );
 	}
 
 	@Override public void updateTeamChange() {
 		LoggingTool.print( "SelectPersonPane: Updating people." );
 		// Check every member on team has button
-		for ( Person person : project.getTeam().getMembers() ) {
-			if ( !scrollPane.containsPerson( person ) ) {
+		for ( Person person : this.project.getTeam().getMembers() ) {
+			if ( !this.scrollPane.containsPerson( person ) ) {
 				addPerson( person );
 			}
 		}
 
 		// Check every button has member on team
-		LinkedList<PersonButton> buttons = (LinkedList<PersonButton>)scrollPane.getButtons().clone();
+		LinkedList<PersonButton> buttons = (LinkedList<PersonButton>) this.scrollPane.getButtons().clone();
 		for ( PersonButton button : buttons ) {
 			boolean isOnTeam = false;
-			for ( Person person : project.getTeam().getMembers() ) {
+			for ( Person person : this.project.getTeam().getMembers() ) {
 				if ( button.getPerson().equals( person ) ) {
 					isOnTeam = true;
 				}
@@ -104,16 +104,16 @@ public class SelectPersonPane extends FramedPane implements TeamPresenter, Proje
 			if ( !isOnTeam ) {
 				LoggingTool.print( "SelectPersonPane: Found a Button for person" + button.getText()
 						+ " who is no longer on the team." );
-				scrollPane.removeButton( button );
+				this.scrollPane.removeButton( button );
 			}
 		}
 	}
 
 	@Override public void loadNewProject( Project project ) {
 		this.project = project;
-		scrollPane.clear();
+		this.scrollPane.clear();
 		this.project.getTeam().addToDistro( this );
 		updateTeamChange();
-		reportChange.run();
+		this.reportChange.run();
 	}
 }

@@ -65,6 +65,8 @@ public class TEST_HourTypeDisplayPane extends Application {
 
 		Scene scene = new Scene( pane );
 		primaryStage.setScene( scene );
+		primaryStage.setWidth( 500 );
+		primaryStage.setHeight( 200 );
 		primaryStage.show();
 	}
 }

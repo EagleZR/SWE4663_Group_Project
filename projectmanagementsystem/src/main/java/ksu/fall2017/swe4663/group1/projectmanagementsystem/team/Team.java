@@ -36,7 +36,7 @@ public class Team implements Serializable {
 	public Team( Person... teamMembers ) {
 		LoggingTool.print( "Constructing new Team." );
 		this.teamMembers = new LinkedList<>();
-		distro = new LinkedList<>();
+		this.distro = new LinkedList<>();
 		this.typeHours = new EnumMap<>( WorkedHourType.class );
 		// Initialize typeHours
 		for ( WorkedHourType hourType : WorkedHourType.values() ) {
@@ -56,10 +56,10 @@ public class Team implements Serializable {
 	 * @return The {@link ProjectHourLog} that belongs to this team.
 	 */
 	protected ProjectHourLog getProjectHourLog() {
-		if ( projectHourLog == null ) {
-			projectHourLog = new ProjectHourLog();
+		if ( this.projectHourLog == null ) {
+			this.projectHourLog = new ProjectHourLog();
 		}
-		return projectHourLog;
+		return this.projectHourLog;
 	}
 
 	/**
@@ -103,13 +103,13 @@ public class Team implements Serializable {
 	 */
 	void registerHours( WorkedHours workedHours ) throws PersonNotOnTeamException {
 		LoggingTool.print( "Team: Hours submitted from " + workedHours.getPerson().name + "." );
-		if ( !teamMembers.contains( workedHours.getPerson() ) ) {
+		if ( !this.teamMembers.contains( workedHours.getPerson() ) ) {
 			throw new PersonNotOnTeamException( workedHours.getPerson() + " is not on this team." );
 		}
 		getProjectHourLog().registerHours( workedHours );
-		typeHours.put( WorkedHourType.ANY, this.projectHourLog.getHours( WorkedHourType.ANY ) );
-		typeHours.put( workedHours.getType(), this.projectHourLog.getHours( workedHours.getType() ) );
-		personHours.put( workedHours.getPerson(), this.projectHourLog.getHours( workedHours.getPerson() ) );
+		this.typeHours.put( WorkedHourType.ANY, this.projectHourLog.getHours( WorkedHourType.ANY ) );
+		this.typeHours.put( workedHours.getType(), this.projectHourLog.getHours( workedHours.getType() ) );
+		this.personHours.put( workedHours.getPerson(), this.projectHourLog.getHours( workedHours.getPerson() ) );
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class Team implements Serializable {
 	 * @return All of the {@link Person} members on this team.
 	 */
 	public LinkedList<Person> getMembers() {
-		return teamMembers;
+		return this.teamMembers;
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class Team implements Serializable {
 	 * @throws PersonNotOnTeamException Thrown if there is no manager found on the team.
 	 */
 	public Person getManager() throws PersonNotOnTeamException {
-		for ( Person person : teamMembers ) {
+		for ( Person person : this.teamMembers ) {
 			if ( person.isManager() ) {
 				return person;
 			}
@@ -186,7 +186,7 @@ public class Team implements Serializable {
 	 */
 	public LinkedList<Person> getManagers() {
 		LinkedList<Person> managers = new LinkedList<>();
-		for ( Person person : teamMembers ) {
+		for ( Person person : this.teamMembers ) {
 			if ( person.isManager() ) {
 				managers.add( person );
 			}
@@ -224,9 +224,9 @@ public class Team implements Serializable {
 	 */
 	public void addToDistro( TeamPresenter presenter ) {
 		LoggingTool.print( "Team: Adding " + presenter.getClass() + " to distro." );
-		if ( distro == null ) {
+		if ( this.distro == null ) {
 			LoggingTool.print( "Team: Distro was uninitialized. Initializing." );
-			distro = new LinkedList<>();
+			this.distro = new LinkedList<>();
 		}
 		this.distro.add( presenter );
 	}
@@ -238,8 +238,8 @@ public class Team implements Serializable {
 	 */
 	public void notifyDistro() {
 		LoggingTool.print( "Team: Notifying distro of change." );
-		if ( distro.size() > 0 ) {
-			for ( TeamPresenter presenter : distro ) {
+		if ( this.distro.size() > 0 ) {
+			for ( TeamPresenter presenter : this.distro ) {
 				presenter.updateTeamChange();
 			}
 		}
@@ -259,11 +259,11 @@ public class Team implements Serializable {
 		} else {
 			return false;
 		}
-		if ( teamMembers.size() != team.teamMembers.size() ) {
+		if ( this.teamMembers.size() != team.teamMembers.size() ) {
 			return false;
 		} else {
-			for ( int i = 0; i < teamMembers.size(); i++ ) {
-				if ( !teamMembers.contains( team.teamMembers.get( i ) ) ) {
+			for ( int i = 0; i < this.teamMembers.size(); i++ ) {
+				if ( !this.teamMembers.contains( team.teamMembers.get( i ) ) ) {
 					return false;
 				}
 			}

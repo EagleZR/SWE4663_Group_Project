@@ -121,7 +121,7 @@ public class Project implements Serializable {
 	 * @return The {@link Team} for this project.
 	 */
 	public Team getTeam() {
-		return team;
+		return this.team;
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class Project implements Serializable {
 	 * @return The description for this project.
 	 */
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class Project implements Serializable {
 	 * @return The {@link Risk}s for this project.
 	 */
 	public final LinkedList<Risk> getRisks() {
-		return risks;
+		return this.risks;
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class Project implements Serializable {
 	 * @return The {@link RequirementsList} for this project.
 	 */
 	public final RequirementsList getRequirements() {
-		return requirements;
+		return this.requirements;
 	}
 
 	/**

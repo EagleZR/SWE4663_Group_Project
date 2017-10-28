@@ -4,6 +4,8 @@ import eaglezr.support.logs.LoggingTool;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
@@ -13,7 +15,6 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHo
 class HourLogDisplayPane extends FramedPane implements ProjectPane {
 
 	private Project project;
-	//	private HourTypeDisplayPane total;
 	private Label total;
 	private HourTypeDisplayPane requirements;
 	private HourTypeDisplayPane design;
@@ -26,90 +27,105 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 		LoggingTool.print( "Constructing new HourLogDisplayPane." );
 		this.project = project;
 		LoggingTool.print( "HourLogDisplayPane: Creating new Label." );
-		total = new Label();
+		this.total = new Label();
 		LoggingTool.print( "HourLogDisplayPane: Creating new HourTypeDisplayPane." );
-		requirements = new HourTypeDisplayPane( WorkedHourType.REQUIREMENTS_ANALYSIS, project, config );
+		this.requirements = new HourTypeDisplayPane( WorkedHourType.REQUIREMENTS_ANALYSIS, project, config );
 		LoggingTool.print( "HourLogDisplayPane: Creating new HourTypeDisplayPane." );
-		design = new HourTypeDisplayPane( WorkedHourType.DESIGNING, project, config );
+		this.design = new HourTypeDisplayPane( WorkedHourType.DESIGNING, project, config );
 		LoggingTool.print( "HourLogDisplayPane: Creating new HourTypeDisplayPane." );
-		coding = new HourTypeDisplayPane( WorkedHourType.CODING, project, config );
+		this.coding = new HourTypeDisplayPane( WorkedHourType.CODING, project, config );
 		LoggingTool.print( "HourLogDisplayPane: Creating new HourTypeDisplayPane." );
-		testing = new HourTypeDisplayPane( WorkedHourType.TESTING, project, config );
+		this.testing = new HourTypeDisplayPane( WorkedHourType.TESTING, project, config );
 		LoggingTool.print( "HourLogDisplayPane: Creating new HourTypeDisplayPane." );
-		management = new HourTypeDisplayPane( WorkedHourType.PROJECT_MANAGEMENT, project, config );
+		this.management = new HourTypeDisplayPane( WorkedHourType.PROJECT_MANAGEMENT, project, config );
 
-		scrollPane = new ScrollPane();
+		this.scrollPane = new ScrollPane();
 
 		setup( config );
 		update();
 	}
 
 	private void setup( Config config ) {
+		Rectangle rectangle = new Rectangle();
+		rectangle.layoutXProperty().setValue( 0 );
+		rectangle.layoutYProperty().setValue( 0 );
+		rectangle.widthProperty().bind( this.widthProperty() );
+		rectangle.heightProperty().bind( this.heightProperty() );
+		rectangle.setFill( Color.RED );
+		this.getChildren().add( rectangle );
 
-		this.getChildren().addAll( scrollPane );
-		scrollPane.setFitToWidth( true );
-		scrollPane.layoutXProperty().setValue( 2 );
-		scrollPane.layoutYProperty().setValue( 2 );
-		scrollPane.prefWidthProperty().bind( this.widthProperty().subtract( 4 ) );
-		scrollPane.prefHeightProperty().bind( this.heightProperty().subtract( 4 ) );
+		// Scroll Pane
+		this.getChildren().add( this.scrollPane );
+		this.scrollPane.setFitToWidth( true );
+		this.scrollPane.layoutXProperty().setValue( 2 );
+		this.scrollPane.layoutYProperty().setValue( 2 );
+		this.scrollPane.prefWidthProperty().bind( this.widthProperty().subtract( 4 ) );
+		this.scrollPane.prefHeightProperty().bind( this.heightProperty().subtract( 4 ) );
 
-		Pane pane = new Pane();
-		scrollPane.setContent( pane );
+		Pane contentPane = new Pane();
+		this.scrollPane.setContent( contentPane );
+
+		Rectangle rectangle1 = new Rectangle();
+		rectangle1.layoutXProperty().setValue( 0 );
+		rectangle1.layoutYProperty().setValue( 0 );
+		rectangle1.widthProperty().bind( contentPane.widthProperty() );
+		rectangle1.heightProperty().bind( contentPane.heightProperty() );
+		rectangle1.setFill( Color.BLUE );
+		contentPane.getChildren().add( rectangle1 );
 
 		// Total
-		total.layoutXProperty().setValue( config.buffer );
-		total.layoutYProperty().setValue( config.buffer );
-		pane.getChildren().add( total );
+		this.total.layoutXProperty().setValue( config.buffer );
+		this.total.layoutYProperty().setValue( config.buffer );
+		contentPane.getChildren().add( this.total );
 
 		// Requirements
-		requirements.layoutXProperty().setValue( 0 );
-		requirements.layoutYProperty()
-				.bind( total.layoutYProperty().add( total.heightProperty().add( config.buffer ) ) );
-		requirements.prefWidthProperty().bind( pane.widthProperty() );
-		pane.getChildren().add( requirements );
+		this.requirements.layoutXProperty().setValue( 0 );
+		this.requirements.layoutYProperty()
+				.bind( this.total.layoutYProperty().add( this.total.heightProperty().add( config.buffer ) ) );
+		this.requirements.prefWidthProperty().bind( contentPane.widthProperty() );
+		contentPane.getChildren().add( this.requirements );
 
 		// Design
-		design.layoutXProperty().bind( requirements.layoutXProperty() );
-		design.layoutYProperty().bind( requirements.layoutYProperty().add( requirements.heightProperty() ) );
-		design.prefWidthProperty().bind( pane.widthProperty() );
-		pane.getChildren().add( design );
+		this.design.layoutXProperty().bind( this.requirements.layoutXProperty() );
+		this.design.layoutYProperty().bind( this.requirements.layoutYProperty().add( this.requirements.heightProperty() ) );
+		this.design.prefWidthProperty().bind( contentPane.widthProperty() );
+		contentPane.getChildren().add( this.design );
 
 		// Coding
-		coding.layoutXProperty().bind( design.layoutXProperty() );
-		coding.layoutYProperty().bind( design.layoutYProperty().add( design.heightProperty() ) );
-		coding.prefWidthProperty().bind( pane.widthProperty() );
-		pane.getChildren().add( coding );
+		this.coding.layoutXProperty().bind( this.design.layoutXProperty() );
+		this.coding.layoutYProperty().bind( this.design.layoutYProperty().add( this.design.heightProperty() ) );
+		this.coding.prefWidthProperty().bind( contentPane.widthProperty() );
+		contentPane.getChildren().add( this.coding );
 
 		// Testing
-		testing.layoutXProperty().bind( coding.layoutXProperty() );
-		testing.layoutYProperty().bind( coding.layoutYProperty().add( coding.heightProperty() ) );
-		testing.prefWidthProperty().bind( pane.widthProperty() );
-		pane.getChildren().addAll( testing );
+		this.testing.layoutXProperty().bind( this.coding.layoutXProperty() );
+		this.testing.layoutYProperty().bind( this.coding.layoutYProperty().add( this.coding.heightProperty() ) );
+		this.testing.prefWidthProperty().bind( contentPane.widthProperty() );
+		contentPane.getChildren().add( this.testing );
 
 		// Management
-		management.layoutXProperty().bind( testing.layoutXProperty() );
-		management.layoutYProperty().bind( testing.layoutYProperty().add( testing.heightProperty() ) );
-		management.prefWidthProperty().bind( pane.widthProperty() );
-		pane.getChildren().add( management );
+		this.management.layoutXProperty().bind( this.testing.layoutXProperty() );
+		this.management.layoutYProperty().bind( this.testing.layoutYProperty().add( this.testing.heightProperty() ) );
+		this.management.prefWidthProperty().bind( contentPane.widthProperty() );
+		contentPane.getChildren().add( this.management );
 	}
 
 	void update() {
-		total.setText( "Total: " + project.getTeam().getHours( WorkedHourType.ANY ) );
-		requirements.update();
-		design.update();
-		coding.update();
-		testing.update();
-		management.update();
+		this.total.setText( "Total: " + this.project.getTeam().getHours( WorkedHourType.ANY ) );
+		this.requirements.update();
+		this.design.update();
+		this.coding.update();
+		this.testing.update();
+		this.management.update();
 	}
 
 	@Override public void loadNewProject( Project project ) {
 		this.project = project;
-		//		total.loadNewProject( project );
-		requirements.loadNewProject( project );
-		design.loadNewProject( project );
-		coding.loadNewProject( project );
-		testing.loadNewProject( project );
-		management.loadNewProject( project );
-		// Each sub-pane already updates. No need to do it again
+		this.total.setText( "Total: " + project.getTeam().getHours( WorkedHourType.ANY ) );
+		this.requirements.loadNewProject( project );
+		this.design.loadNewProject( project );
+		this.coding.loadNewProject( project );
+		this.testing.loadNewProject( project );
+		this.management.loadNewProject( project );
 	}
 }

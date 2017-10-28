@@ -22,58 +22,58 @@ public class DebugPane extends Pane implements ProjectPane {
 	public DebugPane( Project project ) {
 		this.project = project;
 
-		teamMembers = new Label();
-		teamMembers.layoutXProperty().setValue( 0 );
-		teamMembers.layoutYProperty().setValue( 0 );
-		teamMembers.prefWidthProperty().bind( this.widthProperty().divide( numModules ) );
-		teamMembers.prefHeightProperty().bind( this.heightProperty() );
-		this.getChildren().add( teamMembers );
+		this.teamMembers = new Label();
+		this.teamMembers.layoutXProperty().setValue( 0 );
+		this.teamMembers.layoutYProperty().setValue( 0 );
+		this.teamMembers.prefWidthProperty().bind( this.widthProperty().divide( numModules ) );
+		this.teamMembers.prefHeightProperty().bind( this.heightProperty() );
+		this.getChildren().add( this.teamMembers );
 
-		workedHours = new Label();
-		workedHours.layoutXProperty().bind( teamMembers.layoutXProperty().add( teamMembers.widthProperty() ) );
-		workedHours.layoutYProperty().setValue( 0 );
-		workedHours.prefWidthProperty().bind( this.widthProperty().divide( numModules ) );
-		workedHours.prefHeightProperty().bind( this.heightProperty() );
-		this.getChildren().add( workedHours );
+		this.workedHours = new Label();
+		this.workedHours.layoutXProperty().bind( this.teamMembers.layoutXProperty().add( this.teamMembers.widthProperty() ) );
+		this.workedHours.layoutYProperty().setValue( 0 );
+		this.workedHours.prefWidthProperty().bind( this.widthProperty().divide( numModules ) );
+		this.workedHours.prefHeightProperty().bind( this.heightProperty() );
+		this.getChildren().add( this.workedHours );
 
-		risks = new Label();
-		risks.layoutXProperty().bind( workedHours.layoutXProperty().add( workedHours.widthProperty() ) );
-		risks.layoutYProperty().setValue( 0 );
-		risks.prefWidthProperty().bind( this.widthProperty().divide( numModules ) );
-		risks.prefHeightProperty().bind( this.heightProperty() );
-		this.getChildren().add( risks );
+		this.risks = new Label();
+		this.risks.layoutXProperty().bind( this.workedHours.layoutXProperty().add( this.workedHours.widthProperty() ) );
+		this.risks.layoutYProperty().setValue( 0 );
+		this.risks.prefWidthProperty().bind( this.widthProperty().divide( numModules ) );
+		this.risks.prefHeightProperty().bind( this.heightProperty() );
+		this.getChildren().add( this.risks );
 
-		requirements = new Label();
-		requirements.layoutXProperty().bind( risks.layoutXProperty().add( risks.widthProperty() ) );
-		requirements.layoutYProperty().setValue( 0 );
-		requirements.prefWidthProperty().bind( this.widthProperty().divide( numModules ) );
-		requirements.prefHeightProperty().bind( this.heightProperty() );
-		this.getChildren().add( requirements );
+		this.requirements = new Label();
+		this.requirements.layoutXProperty().bind( this.risks.layoutXProperty().add( this.risks.widthProperty() ) );
+		this.requirements.layoutYProperty().setValue( 0 );
+		this.requirements.prefWidthProperty().bind( this.widthProperty().divide( numModules ) );
+		this.requirements.prefHeightProperty().bind( this.heightProperty() );
+		this.getChildren().add( this.requirements );
 	}
 
 	private void update() {
 		// Team Members' Names
 		String names = "Team Members: ";
-		for ( Person person : project.getTeam().getMembers() ) {
+		for ( Person person : this.project.getTeam().getMembers() ) {
 			names += "\n" + person.getName();
 		}
-		teamMembers.setText( names );
+		this.teamMembers.setText( names );
 
 		// Worked Hours Totals
 		String hours = "Worked Hours: ";
 		hours += "\nTotal:\t";
-		hours += project.getTeam().getHours( WorkedHourType.ANY );
+		hours += this.project.getTeam().getHours( WorkedHourType.ANY );
 		hours += "\nRequirements:\t";
-		hours += project.getTeam().getHours( WorkedHourType.REQUIREMENTS_ANALYSIS );
+		hours += this.project.getTeam().getHours( WorkedHourType.REQUIREMENTS_ANALYSIS );
 		hours += "\nDesigning:\t";
-		hours += project.getTeam().getHours( WorkedHourType.DESIGNING );
+		hours += this.project.getTeam().getHours( WorkedHourType.DESIGNING );
 		hours += "\nCoding:\t";
-		hours += project.getTeam().getHours( WorkedHourType.CODING );
+		hours += this.project.getTeam().getHours( WorkedHourType.CODING );
 		hours += "\nTesting:\t";
-		hours += project.getTeam().getHours( WorkedHourType.TESTING );
+		hours += this.project.getTeam().getHours( WorkedHourType.TESTING );
 		hours += "\nManagement:\t";
-		hours += project.getTeam().getHours( WorkedHourType.PROJECT_MANAGEMENT );
-		workedHours.setText( hours );
+		hours += this.project.getTeam().getHours( WorkedHourType.PROJECT_MANAGEMENT );
+		this.workedHours.setText( hours );
 
 		// Risks
 		String risks = "Risks: ";

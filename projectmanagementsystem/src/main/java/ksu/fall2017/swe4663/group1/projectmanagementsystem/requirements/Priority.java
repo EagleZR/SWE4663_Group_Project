@@ -14,6 +14,6 @@ public enum Priority {
 	}
 
 	public int getWeight() {
-		return weight;
+		return this.weight;
 	}
 }

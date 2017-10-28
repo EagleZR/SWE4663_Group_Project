@@ -30,7 +30,7 @@ public class Risk implements Serializable {
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setDollarAmount( double dollarAmount ) throws InvalidDollarAmountException {
@@ -41,7 +41,7 @@ public class Risk implements Serializable {
 	}
 
 	public double getDollarAmount() {
-		return dollarAmount;
+		return this.dollarAmount;
 	}
 
 	public void setPercentageLikelihood( double percentageLikelihood ) throws InvalidPercentageException {
@@ -55,6 +55,6 @@ public class Risk implements Serializable {
 	}
 
 	public double getPercentageLikelihood() {
-		return percentageLikelihood;
+		return this.percentageLikelihood;
 	}
 }

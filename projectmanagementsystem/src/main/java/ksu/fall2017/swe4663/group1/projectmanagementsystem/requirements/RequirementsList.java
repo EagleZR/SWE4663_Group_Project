@@ -98,7 +98,7 @@ public class RequirementsList extends LinkedList<Requirement> {
 	public LinkedList<Requirement> getUnFulfilled() {
 		LinkedList<Requirement> unFulfilledList = new LinkedList<>();
 		for ( Requirement requirement : this ) {
-			if ( !requirement.isFulfilled() ) {
+			if ( !requirement.isComplete() ) {
 				unFulfilledList.add( requirement );
 			}
 		}
@@ -108,7 +108,7 @@ public class RequirementsList extends LinkedList<Requirement> {
 	public LinkedList<Requirement> getFulfilled() {
 		LinkedList<Requirement> fulfilledList = new LinkedList<>();
 		for ( Requirement requirement : this ) {
-			if ( requirement.isFulfilled() ) {
+			if ( requirement.isComplete() ) {
 				fulfilledList.add( requirement );
 			}
 		}

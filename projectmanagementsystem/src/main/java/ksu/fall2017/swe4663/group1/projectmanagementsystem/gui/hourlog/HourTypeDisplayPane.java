@@ -22,30 +22,31 @@ class HourTypeDisplayPane extends FramedPane implements ProjectPane {
 		this.team = project.getTeam();
 		this.hourType = hourType;
 
-		label = new Label( hourType.toString() );
-		label.layoutXProperty().setValue( config.buffer );
-		label.layoutYProperty().setValue( config.buffer );
-		this.getChildren().add( label );
+		this.label = new Label( hourType.toString() );
+		this.label.layoutXProperty().setValue( config.buffer );
+		this.label.layoutYProperty().setValue( config.buffer );
+		this.getChildren().add( this.label );
 
-		progressBar = new ProgressBar();
-		progressBar.layoutXProperty().bind( label.layoutXProperty() );
-		progressBar.layoutYProperty()
-				.bind( label.layoutYProperty().add( label.heightProperty() ).add( config.buffer ) );
-		progressBar.prefWidthProperty().bind( this.widthProperty().subtract( 20 ) );
-//		progressBar.prefHeightProperty()
-//				.bind( this.heightProperty().subtract( config.buffer * 3 ).subtract( label.heightProperty() ) );
-		progressBar.prefHeightProperty().setValue( 20 );
-		this.getChildren().add( progressBar );
-		this.minHeightProperty().bind( label.heightProperty().add( progressBar.heightProperty() ).add( 30 ) );
+		this.progressBar = new ProgressBar();
+		this.progressBar.layoutXProperty().bind( this.label.layoutXProperty() );
+		this.progressBar.layoutYProperty()
+				.bind( this.label.layoutYProperty().add( this.label.heightProperty() ).add( config.buffer ) );
+		this.progressBar.prefWidthProperty().bind( this.widthProperty().subtract( 20 ) );
+		//		progressBar.prefHeightProperty()
+		//				.bind( this.heightProperty().subtract( config.buffer * 3 ).subtract( label.heightProperty() ) );
+		this.progressBar.prefHeightProperty().setValue( 20 );
+		this.getChildren().add( this.progressBar );
+		this.prefHeightProperty()
+				.bind( this.label.heightProperty().add( this.progressBar.heightProperty() ).add( config.buffer * 3 ) );
 
 		update();
 	}
 
 	protected void update() {
-		double totalWorked = team.getHours( WorkedHourType.ANY );
-		double typeWorked = team.getHours( this.hourType );
-		label.setText( hourType.toString() + ": " + typeWorked + " / " + totalWorked );
-		progressBar.setProgress( ( totalWorked == 0 || typeWorked == 0 ? 0 : typeWorked / totalWorked ) );
+		double totalWorked = this.team.getHours( WorkedHourType.ANY );
+		double typeWorked = this.team.getHours( this.hourType );
+		this.label.setText( this.hourType.toString() + ": " + typeWorked + " / " + totalWorked );
+		this.progressBar.setProgress( ( totalWorked == 0 || typeWorked == 0 ? 0 : typeWorked / totalWorked ) );
 	}
 
 	@Override public void loadNewProject( Project project ) {

@@ -90,8 +90,8 @@ public class ProjectHourLog implements Serializable {
 		LoggingTool.print( "ProjectHourLog: Registering new Hours: " + newWorkedHours.toString() + "." );
 		this.workedHours.add( newWorkedHours );
 		Person contributor = newWorkedHours.getPerson();
-		if ( !contributors.contains( contributor ) ) {
-			contributors.add( contributor );
+		if ( !this.contributors.contains( contributor ) ) {
+			this.contributors.add( contributor );
 		}
 	}
 

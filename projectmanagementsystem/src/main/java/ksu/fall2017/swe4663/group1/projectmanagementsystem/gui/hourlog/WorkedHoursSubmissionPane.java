@@ -18,7 +18,6 @@ public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane
 
 	private Config config;
 	private Person selectedPerson;
-	private Project project;
 	private Label personName;
 	private Label personID;
 	private Label personManager;
@@ -29,21 +28,18 @@ public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane
 	private TextField inputDuration;
 	private Button submitButton;
 
-	public WorkedHoursSubmissionPane( Project project, Config config ) {
+	public WorkedHoursSubmissionPane( Config config ) {
 		LoggingTool.print( "Constructing new WorkedHoursSubmissionPane." );
-		this.project = project;
 		this.config = config;
 
-		personName = new Label( "Person's name: " );
-		personID = new Label( "Person's ID: " );
-		personManager = new Label( "Person is a manager?: " );
-		hourType = new Label( "Please select the type of worked hours: " );
-		selectHourType = new ComboBox<>( FXCollections.observableArrayList( WorkedHourType.values() ) );
-		//		selectHourType.getItems().remove( WorkedHourType.ANY );
-		//		selectHourType.getItems().add( "" );
-		duration = new Label( "Please select the duration of the worked hours:" );
-		inputDuration = new TextField();
-		submitButton = new Button( "Submit" );
+		this.personName = new Label( "Person's name: " );
+		this.personID = new Label( "Person's ID: " );
+		this.personManager = new Label( "Person is a manager?: " );
+		this.hourType = new Label( "Please select the type of worked hours: " );
+		this.selectHourType = new ComboBox<>( FXCollections.observableArrayList( WorkedHourType.values() ) );
+		this.duration = new Label( "Please select the duration of the worked hours:" );
+		this.inputDuration = new TextField();
+		this.submitButton = new Button( "Submit" );
 
 		setup();
 	}
@@ -52,16 +48,15 @@ public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane
 		// Scroll Pane
 		LoggingTool.print( "WorkedHoursSubmissionPane: Creating ScrollPane." );
 		ScrollPane scrollPane = new ScrollPane();
-		this.getChildren().add( scrollPane );
 		scrollPane.setVbarPolicy( ScrollPane.ScrollBarPolicy.ALWAYS );
 		scrollPane.setHbarPolicy( ScrollPane.ScrollBarPolicy.NEVER );
 		scrollPane.layoutXProperty().setValue( 2 );
 		scrollPane.layoutYProperty().setValue( 2 );
 		scrollPane.prefWidthProperty().bind( this.widthProperty().subtract( 4 ) );
 		scrollPane.prefHeightProperty()
-				.bind( this.heightProperty().subtract( config.buffer * 2 ).subtract( submitButton.heightProperty() )
-						.subtract( 4 ) );
-		scrollPane.setFitToWidth( true );
+				.bind( this.submitButton.layoutYProperty().subtract( scrollPane.layoutYProperty() )
+						.subtract( this.config.buffer / 2 ) );
+		this.getChildren().add( scrollPane );
 
 		// Content pane
 		LoggingTool.print( "WorkedHoursSubmissionPane: Creating content Pane." );
@@ -69,118 +64,119 @@ public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane
 		scrollPane.setContent( form );
 
 		// Person Name Label
-		personName.layoutXProperty().setValue( config.buffer );
-		personName.layoutYProperty().setValue( config.buffer );
-		personName.wrapTextProperty().setValue( true );
-		form.getChildren().add( personName );
+		this.personName.layoutXProperty().setValue( this.config.buffer );
+		this.personName.layoutYProperty().setValue( this.config.buffer );
+		this.personName.wrapTextProperty().setValue( true );
+		form.getChildren().add( this.personName );
 
 		// Person ID Label
-		personID.layoutXProperty().bind( personName.layoutXProperty() );
-		personID.layoutYProperty()
-				.bind( personName.layoutYProperty().add( personName.heightProperty() ).add( config.buffer ) );
-		personID.wrapTextProperty().setValue( true );
-		form.getChildren().add( personID );
+		this.personID.layoutXProperty().bind( this.personName.layoutXProperty() );
+		this.personID.layoutYProperty().bind( this.personName.layoutYProperty().add( this.personName.heightProperty() )
+				.add( this.config.buffer ) );
+		this.personID.wrapTextProperty().setValue( true );
+		form.getChildren().add( this.personID );
 
 		// Person Manager Label
-		personManager.layoutXProperty().bind( personName.layoutXProperty() );
-		personManager.layoutYProperty()
-				.bind( personID.layoutYProperty().add( personID.heightProperty() ).add( config.buffer ) );
-		personManager.wrapTextProperty().setValue( true );
-		form.getChildren().add( personManager );
+		this.personManager.layoutXProperty().bind( this.personName.layoutXProperty() );
+		this.personManager.layoutYProperty().bind( this.personID.layoutYProperty().add( this.personID.heightProperty() )
+				.add( this.config.buffer ) );
+		this.personManager.wrapTextProperty().setValue( true );
+		form.getChildren().add( this.personManager );
 
 		// Hour Type Label
-		hourType.layoutXProperty().bind( personName.layoutXProperty() );
-		hourType.layoutYProperty()
-				.bind( personManager.layoutYProperty().add( personManager.heightProperty() ).add( config.buffer ) );
-		hourType.wrapTextProperty().setValue( true );
-		form.getChildren().add( hourType );
+		this.hourType.layoutXProperty().bind( this.personName.layoutXProperty() );
+		this.hourType.layoutYProperty()
+				.bind( this.personManager.layoutYProperty().add( this.personManager.heightProperty() )
+						.add( this.config.buffer ) );
+		this.hourType.wrapTextProperty().setValue( true );
+		form.getChildren().add( this.hourType );
 
 		// Select Hour Type ComboBox
-		selectHourType.layoutXProperty().bind( hourType.layoutXProperty() );
-		selectHourType.layoutYProperty()
-				.bind( hourType.layoutYProperty().add( hourType.heightProperty() ).add( config.buffer ) );
-		form.getChildren().add( selectHourType );
+		this.selectHourType.layoutXProperty().bind( this.hourType.layoutXProperty() );
+		this.selectHourType.layoutYProperty()
+				.bind( this.hourType.layoutYProperty().add( this.hourType.heightProperty() )
+						.add( this.config.buffer ) );
+		form.getChildren().add( this.selectHourType );
 
 		// Duration Label
-		duration.layoutXProperty().bind( selectHourType.layoutXProperty() );
-		duration.layoutYProperty()
-				.bind( selectHourType.layoutYProperty().add( selectHourType.heightProperty() ).add( config.buffer ) );
-		duration.wrapTextProperty().setValue( true );
-		form.getChildren().add( duration );
+		this.duration.layoutXProperty().bind( this.selectHourType.layoutXProperty() );
+		this.duration.layoutYProperty()
+				.bind( this.selectHourType.layoutYProperty().add( this.selectHourType.heightProperty() )
+						.add( this.config.buffer ) );
+		this.duration.wrapTextProperty().setValue( true );
+		form.getChildren().add( this.duration );
 
 		// Input Duration TextField
-		inputDuration.layoutXProperty().bind( duration.layoutXProperty() );
-		inputDuration.layoutYProperty()
-				.bind( duration.layoutYProperty().add( duration.heightProperty() ).add( config.buffer ) );
-		form.getChildren().add( inputDuration );
+		this.inputDuration.layoutXProperty().bind( this.duration.layoutXProperty() );
+		this.inputDuration.layoutYProperty().bind( this.duration.layoutYProperty().add( this.duration.heightProperty() )
+				.add( this.config.buffer ) );
+		form.getChildren().add( this.inputDuration );
 
 		// Submit Button
-		submitButton.layoutXProperty().bind( scrollPane.layoutXProperty().add( config.buffer ) );
-		submitButton.layoutYProperty()
-				.bind( scrollPane.layoutYProperty().add( scrollPane.heightProperty() ).add( config.buffer ) );
-		submitButton.prefWidthProperty().bind( this.widthProperty().subtract( config.buffer * 2 ) );
-		submitButton.setOnAction( e -> {
-			registerHours();
-		} );
-		this.getChildren().add( submitButton );
+		this.submitButton.layoutXProperty().bind( scrollPane.layoutXProperty().add( this.config.buffer ) );
+		this.submitButton.layoutYProperty().bind( this.heightProperty().subtract( this.submitButton.heightProperty() )
+				.subtract( this.config.buffer / 2 ) );
+		this.submitButton.prefWidthProperty().bind( this.widthProperty().subtract( this.config.buffer * 2 ) );
+		this.submitButton.setOnAction( e -> registerHours() );
+		this.getChildren().add( this.submitButton );
 
 		update();
 	}
 
 	private void update() {
 		// Person Name
-		personName.setText( "Person's name: " + ( selectedPerson == null ? "" : selectedPerson.getName() ) );
+		this.personName
+				.setText( "Person's name: " + ( this.selectedPerson == null ? "" : this.selectedPerson.getName() ) );
 
 		// Person ID
-		personID.setText( "Person's ID: " + ( selectedPerson == null ? "" : selectedPerson.getID() ) );
+		this.personID.setText( "Person's ID: " + ( this.selectedPerson == null ? "" : this.selectedPerson.getID() ) );
 
 		// Person Manager
-		personManager.setText( "Person is a manager? " + ( selectedPerson == null ?
+		this.personManager.setText( "Person is a manager? " + ( this.selectedPerson == null ?
 				"" :
-				( selectedPerson.isManager() ? "Yes" : "No" ) ) );
+				( this.selectedPerson.isManager() ? "Yes" : "No" ) ) );
 	}
 
 	public void registerNewSelectedPerson( Person person ) {
-		LoggingTool.print( "WorkedHoursSubmissionPane: Registering newly-selected Person: " + ( selectedPerson == null ?
-				"" :
-				selectedPerson.getName() ) );
+		LoggingTool.print( "WorkedHoursSubmissionPane: Registering newly-selected Person: " + (
+				this.selectedPerson == null ? "" : this.selectedPerson.getName() ) );
 		this.selectedPerson = person;
 		update();
 	}
 
 	protected void registerSubmitAction( Runnable runnable ) {
-		submitButton.setOnAction( e -> {
+		this.submitButton.setOnAction( e -> {
 			registerHours();
 			runnable.run();
 		} );
 	}
 
 	private void registerHours() {
-		if ( selectedPerson == null ) {
+		if ( this.selectedPerson == null ) {
 			ErrorPopupSystem.displayMessage( "Please select a person." );
 		} else {
 			try {
-				double hours = Double.parseDouble( inputDuration.getText() );
+				double hours = Double.parseDouble( this.inputDuration.getText() );
 				if ( hours <= 0 ) {
 					ErrorPopupSystem.displayMessage( "Please submit a number of hours greater than 0." );
 				} else {
-					selectedPerson.reportHours( hours, selectHourType.getValue() );
+					this.selectedPerson.reportHours( hours, this.selectHourType.getValue() );
 				}
 			} catch ( PersonNotOnTeamException e1 ) {
 				ErrorPopupSystem.displayMessage( "There was an issue submitting the hours." );
 			} catch ( InvalidWorkedHourTypeException e1 ) {
 				ErrorPopupSystem
-						.displayMessage( selectedPerson.getName() + " is unable to submit hours of that type." );
+						.displayMessage( this.selectedPerson.getName() + " is unable to submit hours of that type." );
 			} catch ( NumberFormatException e2 ) {
-				ErrorPopupSystem
-						.displayMessage( inputDuration.getText() + " is not a number. Please input a valid number." );
+				ErrorPopupSystem.displayMessage(
+						this.inputDuration.getText() + " is not a number. Please input a valid number." );
 			}
 		}
 	}
 
 	private void reset() {
-		selectHourType.setValue( WorkedHourType.ANY );
-		inputDuration.setText( "" );
+		this.selectHourType.setValue( WorkedHourType.ANY );
+		this.inputDuration.setText( "" );
 		// LATER Send message to SelectPersonPane?
 	}
 

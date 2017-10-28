@@ -66,7 +66,7 @@ public class WorkedHours implements Serializable {
 	 * @return The type of hours that were reported for this period.
 	 */
 	public WorkedHourType getType() {
-		return workedHourType;
+		return this.workedHourType;
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class WorkedHours implements Serializable {
 	 * @return A {@link String} representing the data held by this instance.
 	 */
 	@Override public String toString() {
-		return "Worked Hours: Person: " + person.getName() + ", Worked Hours Type: " + workedHourType + ", Duration: "
-				+ duration;
+		return "Worked Hours: Person: " + this.person.getName() + ", Worked Hours Type: " + this.workedHourType + ", Duration: "
+				+ this.duration;
 	}
 }

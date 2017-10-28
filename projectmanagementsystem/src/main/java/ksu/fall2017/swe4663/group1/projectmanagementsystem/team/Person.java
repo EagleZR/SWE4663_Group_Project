@@ -58,8 +58,8 @@ public class Person implements Serializable {
 	public void changeName( String name ) {
 		LoggingTool.print( "Person: Changing Person's name from " + this.name + " to " + name + "." );
 		this.name = name;
-		if ( team != null ) {
-			team.notifyDistro();
+		if ( this.team != null ) {
+			this.team.notifyDistro();
 		}
 	}
 
@@ -117,14 +117,14 @@ public class Person implements Serializable {
 		if ( this.team == null ) {
 			throw new PersonNotOnTeamException( this.name + " has not yet been added to a team" );
 		}
-		team.registerHours( new WorkedHours( this, duration, workedHourType ) );
+		this.team.registerHours( new WorkedHours( this, duration, workedHourType ) );
 	}
 
 	/**
 	 * Promotes this person to Manager.
 	 */
 	public void promote() {
-		LoggingTool.print( "Person: " + name + " has been promoted." );
+		LoggingTool.print( "Person: " + this.name + " has been promoted." );
 		this.isManager = true;
 	}
 
@@ -132,7 +132,7 @@ public class Person implements Serializable {
 	 * Demotes this person from Manager.
 	 */
 	public void demote() {
-		LoggingTool.print( "Person: " + name + " has been demoted." );
+		LoggingTool.print( "Person: " + this.name + " has been demoted." );
 		this.isManager = false;
 	}
 

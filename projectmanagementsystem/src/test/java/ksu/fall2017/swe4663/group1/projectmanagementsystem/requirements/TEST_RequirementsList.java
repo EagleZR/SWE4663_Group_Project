@@ -10,20 +10,20 @@ public class TEST_RequirementsList {
 
 	private RequirementsList requirements;
 
-	private Requirement req0 = new Requirement( "Req 0", "", Priority.LOW, Status.ACCEPTED_CURRENT, false );
-	private Requirement req1 = new Requirement( "Req 1", "", Priority.HIGH, Status.ACCEPTED_CURRENT, false );
-	private Requirement req2 = new Requirement( "Req 2", "", Priority.LOW, Status.ACCEPTED_POST_RELEASE, false );
-	private Requirement req3 = new Requirement( "Req 3", "", Priority.CRITICAL, Status.ACCEPTED_POST_RELEASE, false );
-	private Requirement req4 = new Requirement( "Req 4", "", Priority.MEDIUM, Status.ACCEPTED_POST_RELEASE, false );
-	private Requirement req5 = new Requirement( "Req 5", "", Priority.HIGH, Status.ACCEPTED_POST_RELEASE, true );
-	private Requirement req6 = new Requirement( "Req 6", "", Priority.CRITICAL, Status.ACCEPTED_POST_RELEASE, true );
-	private Requirement req7 = new Requirement( "Req 7", "", Priority.CRITICAL, Status.ACCEPTED_CURRENT, true );
-	private Requirement req8 = new Requirement( "Req 8", "", Priority.LOW, Status.ACCEPTED_CURRENT, true );
-	private Requirement req9 = new Requirement( "Req 9", "", Priority.LOW, Status.REJECTED, true );
-	private Requirement req10 = new Requirement( "Req 10", "", Priority.MEDIUM, Status.REJECTED, false );
-	private Requirement req11 = new Requirement( "Req 11", "", Priority.MEDIUM, Status.REJECTED, true );
-	private Requirement req12 = new Requirement( "Req 12", "", Priority.MEDIUM, Status.REJECTED, false );
-	private Requirement req13 = new Requirement( "Req 13", "", Priority.MEDIUM, Status.REJECTED, true );
+	private Requirement req0 = new Requirement( "Title 1", "Req 0", "", Priority.LOW, Status.ACCEPTED_CURRENT, false, false );
+	private Requirement req1 = new Requirement( "Title 1", "Req 1", "", Priority.HIGH, Status.ACCEPTED_CURRENT, false, false );
+	private Requirement req2 = new Requirement( "Title 1", "Req 2", "", Priority.LOW, Status.ACCEPTED_POST_RELEASE, false, false );
+	private Requirement req3 = new Requirement( "Title 1", "Req 3", "", Priority.CRITICAL, Status.ACCEPTED_POST_RELEASE, false, false );
+	private Requirement req4 = new Requirement( "Title 1", "Req 4", "", Priority.MEDIUM, Status.ACCEPTED_POST_RELEASE, false, false );
+	private Requirement req5 = new Requirement( "Title 1", "Req 5", "", Priority.HIGH, Status.ACCEPTED_POST_RELEASE, true, true );
+	private Requirement req6 = new Requirement( "Title 1", "Req 6", "", Priority.CRITICAL, Status.ACCEPTED_POST_RELEASE, true, true );
+	private Requirement req7 = new Requirement( "Title 1", "Req 7", "", Priority.CRITICAL, Status.ACCEPTED_CURRENT, true, true );
+	private Requirement req8 = new Requirement( "Title 1", "Req 8", "", Priority.LOW, Status.ACCEPTED_CURRENT, true, true );
+	private Requirement req9 = new Requirement( "Title 1", "Req 9", "", Priority.LOW, Status.REJECTED, true, true );
+	private Requirement req10 = new Requirement( "Title 1", "Req 10", "", Priority.MEDIUM, Status.REJECTED, false, false );
+	private Requirement req11 = new Requirement( "Title 1", "Req 11", "", Priority.MEDIUM, Status.REJECTED, true, true );
+	private Requirement req12 = new Requirement( "Title 1", "Req 12", "", Priority.MEDIUM, Status.REJECTED, false, false );
+	private Requirement req13 = new Requirement( "Title 1", "Req 13", "", Priority.MEDIUM, Status.REJECTED, true, true );
 
 	@Before public void setup() {
 		requirements = new RequirementsList();

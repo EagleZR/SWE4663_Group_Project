@@ -49,13 +49,15 @@ public class Main extends Application {
 		// Display Scene
 		////////////////////////////////////
 		LoggingTool.print( "Main: Creating ProjectManagementPane." );
-		ProjectManagementPane pane = new ProjectManagementPane( primaryStage, config, project );
+		ProjectManagementPane pane = new ProjectManagementPane( primaryStage, this.config, project );
 		primaryStage.setTitle( "Project Management System" );
-		primaryStage.setScene( new Scene( pane, config.windowWidth, config.windowHeight ) );
+		primaryStage.setScene( new Scene( pane, this.config.windowWidth, this.config.windowHeight ) );
 		primaryStage.setMinWidth( 450 );
 		primaryStage.setMinHeight( 500 );
 		primaryStage.getIcons().add( new Image( "icon/icon.png" ) );
 		LoggingTool.print( "Main: Displaying Project Management System window." );
+		primaryStage.setWidth( 500 );
+		primaryStage.setHeight( 600 );
 		primaryStage.show();
 	}
 
@@ -97,7 +99,7 @@ public class Main extends Application {
 	 */
 	private Project initializeProject() throws IOException, ClassNotFoundException {
 		LoggingTool.print( "Main: Loading previous save." );
-		return Project.load( config.previousSave );
+		return Project.load( this.config.previousSave );
 	}
 
 	/**
@@ -105,7 +107,7 @@ public class Main extends Application {
 	 */
 	@Override public void stop() {
 		try {
-			config.close();
+			this.config.close();
 		} catch ( IOException e ) {
 			LoggingTool.print( "Config file could not be closed." );
 		}

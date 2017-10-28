@@ -28,34 +28,34 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 		// Label
 		LoggingTool.print( "DescriptionPane: Creating new title label in DescriptionPane." );
 		Label label = new Label( "Project Description: " );
-		label.layoutXProperty().setValue( config.buffer );
-		label.layoutYProperty().setValue( config.buffer );
+		label.layoutXProperty().setValue( this.config.buffer );
+		label.layoutYProperty().setValue( this.config.buffer );
 		this.getChildren().add( label );
 
 		// Text Area
 		LoggingTool.print( "DescriptionPane: Creating new TextArea in DescriptionPane." );
-		textArea = new TextArea( project.getDescription() );
-		textArea.prefWidthProperty().bind( this.widthProperty().subtract( config.buffer * 2 ) );
-		textArea.layoutXProperty().bind( label.layoutXProperty() );
-		textArea.layoutYProperty().bind( label.layoutYProperty().add( label.heightProperty() ).add( config.buffer ) );
-		textArea.wrapTextProperty().setValue( true );
-		textArea.setOnKeyTyped( e -> {
+		this.textArea = new TextArea( this.project.getDescription() );
+		this.textArea.prefWidthProperty().bind( this.widthProperty().subtract( this.config.buffer * 2 ) );
+		this.textArea.layoutXProperty().bind( label.layoutXProperty() );
+		this.textArea.layoutYProperty().bind( label.layoutYProperty().add( label.heightProperty() ).add( this.config.buffer ) );
+		this.textArea.wrapTextProperty().setValue( true );
+		this.textArea.setOnKeyTyped( e -> {
 			showStatusChanged();
 		} );
-		this.getChildren().add( textArea );
+		this.getChildren().add( this.textArea );
 
 		// Update Button
 		LoggingTool.print( "DescriptionPane: Creating update Button in DescriptionPane." );
 		Button update = new Button( "Update" );
 		update.setOnAction( e -> {
 			LoggingTool.print( "DescriptionPane: Updating the description in DescriptionPane." );
-			this.project.setDescription( textArea.getText() );
+			this.project.setDescription( this.textArea.getText() );
 			showStatusCurrent();
 		} );
 		update.layoutXProperty()
-				.bind( textArea.layoutXProperty().add( textArea.widthProperty() ).subtract( update.widthProperty() ) );
+				.bind( this.textArea.layoutXProperty().add( this.textArea.widthProperty() ).subtract( update.widthProperty() ) );
 		update.layoutYProperty()
-				.bind( this.heightProperty().subtract( config.buffer ).subtract( update.heightProperty() ) );
+				.bind( this.heightProperty().subtract( this.config.buffer ).subtract( update.heightProperty() ) );
 		this.getChildren().add( update );
 
 		// Reset Button
@@ -63,42 +63,42 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 		Button reset = new Button( "Reset" );
 		reset.setOnAction( e -> {
 			LoggingTool.print( "DescriptionPane: Resetting description in DescriptionPane." );
-			textArea.setText( this.project.getDescription() );
+			this.textArea.setText( this.project.getDescription() );
 			showStatusCurrent();
 		} );
-		reset.layoutXProperty().bind( update.layoutXProperty().subtract( reset.widthProperty().add( config.buffer ) ) );
+		reset.layoutXProperty().bind( update.layoutXProperty().subtract( reset.widthProperty().add( this.config.buffer ) ) );
 		reset.layoutYProperty().bind( update.layoutYProperty() );
 		this.getChildren().add( reset );
 
-		textArea.prefHeightProperty()
-				.bind( update.layoutYProperty().subtract( textArea.layoutYProperty().add( config.buffer ) ) );
+		this.textArea.prefHeightProperty()
+				.bind( update.layoutYProperty().subtract( this.textArea.layoutYProperty().add( this.config.buffer ) ) );
 
 		// Status Label
 		LoggingTool.print( "DescriptionPane: Creating status label in DescriptionPane." );
-		statusLabel = new Label( "Status: Current" );
-		statusLabel.layoutXProperty().bind( textArea.layoutXProperty() );
-		statusLabel.layoutYProperty().bind( update.layoutYProperty() );
-		statusLabel.setTextFill( Color.GREEN );
+		this.statusLabel = new Label( "Status: Current" );
+		this.statusLabel.layoutXProperty().bind( this.textArea.layoutXProperty() );
+		this.statusLabel.layoutYProperty().bind( update.layoutYProperty() );
+		this.statusLabel.setTextFill( Color.GREEN );
 
-		this.getChildren().add( statusLabel );
+		this.getChildren().add( this.statusLabel );
 	}
 
 	private void showStatusChanged() {
 		LoggingTool.print( "DescriptionPane: Updating status label in DescriptionPane to show \"Status: Changed\"." );
-		statusLabel.setText( "Status: Changed" );
-		statusLabel.setTextFill( Color.RED );
+		this.statusLabel.setText( "Status: Changed" );
+		this.statusLabel.setTextFill( Color.RED );
 	}
 
 	private void showStatusCurrent() {
 		LoggingTool.print( "DescriptionPane: Updating status label in DescriptionPane to show \"Status: Current\"." );
-		statusLabel.setText( "Status: Current" );
-		statusLabel.setTextFill( Color.GREEN );
+		this.statusLabel.setText( "Status: Current" );
+		this.statusLabel.setTextFill( Color.GREEN );
 	}
 
 	public void loadNewProject( Project project ) {
 		LoggingTool.print( "DescriptionPane: Loading new project." );
 		this.project = project;
-		textArea.setText( project.getDescription() );
+		this.textArea.setText( project.getDescription() );
 		showStatusCurrent();
 	}
 

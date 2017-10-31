@@ -6,6 +6,7 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHo
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -111,13 +112,13 @@ public class Person implements Serializable {
 	 *                                        {@link WorkedHourType}{@code .ANY} is used by anyone, or if {@link
 	 *                                        WorkedHourType}{@code .PROJECT_MANAGEMENT} is used by a non-Manager.</p>
 	 */
-	public void reportHours( double duration, WorkedHourType workedHourType )
+	public void reportHours( double duration, WorkedHourType workedHourType, LocalDate reportingDate )
 			throws PersonNotOnTeamException, InvalidWorkedHourTypeException {
 		LoggingTool.print( "Person: Reporting hours." );
 		if ( this.team == null ) {
 			throw new PersonNotOnTeamException( this.name + " has not yet been added to a team" );
 		}
-		this.team.registerHours( new WorkedHours( this, duration, workedHourType ) );
+		this.team.registerHours( new WorkedHours( this, duration, workedHourType, reportingDate ) );
 	}
 
 	/**

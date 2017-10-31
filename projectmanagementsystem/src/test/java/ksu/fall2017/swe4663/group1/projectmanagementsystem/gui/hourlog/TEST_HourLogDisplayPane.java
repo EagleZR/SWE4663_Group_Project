@@ -15,6 +15,8 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.PersonNotOnTeamE
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidWorkedHourTypeException;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 
+import java.time.LocalDate;
+
 public class TEST_HourLogDisplayPane extends Application {
 	@Override public void start( Stage primaryStage ) throws Exception {
 		Pane pane = new Pane();
@@ -51,7 +53,7 @@ public class TEST_HourLogDisplayPane extends Application {
 		button.setOnAction( e -> {
 			try {
 				project.getTeam().getMembers().get( 0 ).reportHours( Integer.parseInt( duration.getText() ),
-						(WorkedHourType) selectHourType.getValue() );
+						(WorkedHourType) selectHourType.getValue(), LocalDate.now() );
 			} catch ( PersonNotOnTeamException e1 ) {
 				e1.printStackTrace();
 			} catch ( InvalidWorkedHourTypeException e1 ) {
@@ -61,7 +63,8 @@ public class TEST_HourLogDisplayPane extends Application {
 		} );
 		pane.getChildren().add( button );
 
-		hourLogDisplayPane.prefHeightProperty().bind( pane.heightProperty().subtract( selectHourType.heightProperty() ).subtract( 10 ) );
+		hourLogDisplayPane.prefHeightProperty()
+				.bind( pane.heightProperty().subtract( selectHourType.heightProperty() ).subtract( 10 ) );
 
 		Scene scene = new Scene( pane );
 		primaryStage.setScene( scene );

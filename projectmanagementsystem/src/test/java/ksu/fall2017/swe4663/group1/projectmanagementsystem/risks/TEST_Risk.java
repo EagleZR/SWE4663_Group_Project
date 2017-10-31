@@ -28,32 +28,36 @@ public class TEST_Risk {
 		assertEquals( 0.34, risk.getPercentageLikelihood(), 0.001 );
 	}
 
-	@Test(expected = InvalidPercentageException.class) public void testInvalidPercentageConstructor1()
+	// Test percentage > 100% Constructor
+	@Test( expected = InvalidPercentageException.class ) public void testInvalidPercentageConstructor1()
 			throws InvalidPercentageException, InvalidDollarAmountException {
 		risk = new Risk( "", 23, 1.2 );
 	}
 
-	@Test(expected = InvalidPercentageException.class) public void testInvalidPercentageConstructor2()
+	// Test percentage < 0% Constructor
+	@Test( expected = InvalidPercentageException.class ) public void testInvalidPercentageConstructor2()
 			throws InvalidPercentageException, InvalidDollarAmountException {
-		risk = new Risk( "", 23, 1.2 );
+		risk = new Risk( "", 23, -1.2 );
 	}
 
-	@Test(expected = InvalidPercentageException.class) public void testInvalidPercentageSetter1()
+	// Test percentage > 100% method
+	@Test( expected = InvalidPercentageException.class ) public void testInvalidPercentageSetter1()
 			throws InvalidPercentageException {
 		risk.setPercentageLikelihood( 3.4 );
 	}
 
-	@Test(expected = InvalidPercentageException.class) public void testInvalidPercentageSetter2()
+	// Test percentage < 0% method
+	@Test( expected = InvalidPercentageException.class ) public void testInvalidPercentageSetter2()
 			throws InvalidPercentageException {
 		risk.setPercentageLikelihood( -3.4 );
 	}
 
-	@Test(expected = InvalidDollarAmountException.class) public void testInvalidDollarAmountConstructor()
+	@Test( expected = InvalidDollarAmountException.class ) public void testInvalidDollarAmountConstructor()
 			throws InvalidPercentageException, InvalidDollarAmountException {
 		risk = new Risk( "", -23, .2 );
 	}
 
-	@Test(expected = InvalidDollarAmountException.class) public void testInvalidDollarAmountSetter()
+	@Test( expected = InvalidDollarAmountException.class ) public void testInvalidDollarAmountSetter()
 			throws InvalidDollarAmountException {
 		risk.setDollarAmount( -3 );
 	}

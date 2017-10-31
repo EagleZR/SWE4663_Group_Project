@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 /**
- * Class meant save, load, and represent the configuration specifics for the {@link
+ * Class that saves, loads, and represents the configuration specifics for the {@link
  * ksu.fall2017.swe4663.group1.projectmanagementsystem}.
  */
 public class Config implements Closeable {
@@ -47,6 +47,12 @@ public class Config implements Closeable {
 		this.loadConfig( configFile );
 	}
 
+	/**
+	 * Loads a configuration from a given file.
+	 *
+	 * @param configFile The file from which to load the configuration.
+	 * @throws FileNotFoundException Thrown if the {@link File} is not found.
+	 */
 	private void loadConfig( File configFile ) throws FileNotFoundException {
 		LoggingTool.print( "Config: Reading configuration from file: " + configFile.getAbsolutePath() + "." );
 		if ( !configFile.exists() ) {

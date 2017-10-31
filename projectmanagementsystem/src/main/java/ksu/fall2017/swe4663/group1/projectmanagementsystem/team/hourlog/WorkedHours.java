@@ -5,6 +5,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.ProjectHourLog;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 /**
  * The class used for storing information about hours submitted to the {@link ProjectHourLog}.<p>All handled issues and
@@ -17,6 +20,7 @@ public class WorkedHours implements Serializable {
 	private Person person;
 	private double duration;
 	private WorkedHourType workedHourType;
+	private LocalDate reportedDate;
 
 	/**
 	 * Constructs a new {@link WorkedHours} using the given {@link Person}, duration, and {@link WorkedHourType}.
@@ -27,7 +31,7 @@ public class WorkedHours implements Serializable {
 	 * @throws InvalidWorkedHourTypeException Thrown if the {@link WorkedHourType} used was ANY, or if the {@link
 	 *                                        Person} submitting is not a Manager, and used PROJECT_MANAGEMENT.
 	 */
-	public WorkedHours( Person person, double duration, WorkedHourType workedHourType )
+	public WorkedHours( Person person, double duration, WorkedHourType workedHourType, LocalDate reportedDate )
 			throws InvalidWorkedHourTypeException {
 		LoggingTool.print( "Constructing new WorkedHours." );
 		if ( workedHourType == WorkedHourType.ANY ) {
@@ -40,6 +44,7 @@ public class WorkedHours implements Serializable {
 		this.person = person;
 		this.duration = duration;
 		this.workedHourType = workedHourType;
+		this.reportedDate = reportedDate;
 	}
 
 	/**
@@ -70,6 +75,36 @@ public class WorkedHours implements Serializable {
 	}
 
 	/**
+	 * The {@link LocalDate} that represents the date for which these hours were reported.
+	 *
+	 * @return The {@link LocalDate} when the hours recorded by this class were worked.
+	 */
+	public LocalDate getReportedDate() {
+		return reportedDate;
+	}
+
+	public static boolean hoursConflict( WorkedHours hours1, WorkedHours hours2, SubmissionInterval interval ) {
+		if ( hours1.getPerson().equals( hours2.getPerson() ) ) {
+			LocalDate date1 = hours1.getReportedDate();
+			LocalDate date2 = hours2.getReportedDate();
+			LoggingTool.print( "WorkedHours: Comparing " + date1.getYear() + "-" + date1.getMonth()
+					.getDisplayName( TextStyle.FULL, Locale.getDefault() ) + "-" + date1.getDayOfMonth() + " to "
+					+ date2.getYear() + "-" + date2.getMonth().getDisplayName( TextStyle.FULL, Locale.getDefault() )
+					+ "-" + date2.getDayOfMonth() );
+			if ( interval == SubmissionInterval.DAILY && date1.equals( date2 ) ) {
+				LoggingTool.print( "WorkedHours: The two dates are within each others interval." );
+				return true;
+			} else if ( interval == SubmissionInterval.WEEKLY && date1.getYear() == date2.getYear()
+					&& Math.abs( date1.getDayOfYear() - date2.getDayOfYear() ) < 7 ) {
+				LoggingTool.print( "WorkedHours: The two dates are within each others interval." );
+				return true;
+			}
+			LoggingTool.print( "WorkedHours: The two dates are not within each others interval." );
+		}
+		return false;
+	}
+
+	/**
 	 * Determines if the two {@link Object}s are equal.
 	 *
 	 * @param other The other {@link Object} to be compared against.
@@ -89,7 +124,7 @@ public class WorkedHours implements Serializable {
 	 * @return A {@link String} representing the data held by this instance.
 	 */
 	@Override public String toString() {
-		return "Worked Hours: Person: " + this.person.getName() + ", Worked Hours Type: " + this.workedHourType + ", Duration: "
-				+ this.duration;
+		return "Worked Hours: Person: " + this.person.getName() + ", Worked Hours Type: " + this.workedHourType
+				+ ", Duration: " + this.duration;
 	}
 }

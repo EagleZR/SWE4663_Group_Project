@@ -46,13 +46,13 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 	}
 
 	private void setup( Config config ) {
-		Rectangle rectangle = new Rectangle();
-		rectangle.layoutXProperty().setValue( 0 );
-		rectangle.layoutYProperty().setValue( 0 );
-		rectangle.widthProperty().bind( this.widthProperty() );
-		rectangle.heightProperty().bind( this.heightProperty() );
-		rectangle.setFill( Color.RED );
-		this.getChildren().add( rectangle );
+		//		Rectangle rectangle = new Rectangle();
+		//		rectangle.layoutXProperty().setValue( 0 );
+		//		rectangle.layoutYProperty().setValue( 0 );
+		//		rectangle.widthProperty().bind( this.widthProperty() );
+		//		rectangle.heightProperty().bind( this.heightProperty() );
+		//		rectangle.setFill( Color.RED );
+		//		this.getChildren().add( rectangle );
 
 		// Scroll Pane
 		this.getChildren().add( this.scrollPane );
@@ -65,13 +65,13 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 		Pane contentPane = new Pane();
 		this.scrollPane.setContent( contentPane );
 
-		Rectangle rectangle1 = new Rectangle();
-		rectangle1.layoutXProperty().setValue( 0 );
-		rectangle1.layoutYProperty().setValue( 0 );
-		rectangle1.widthProperty().bind( contentPane.widthProperty() );
-		rectangle1.heightProperty().bind( contentPane.heightProperty() );
-		rectangle1.setFill( Color.BLUE );
-		contentPane.getChildren().add( rectangle1 );
+		//		Rectangle rectangle1 = new Rectangle();
+		//		rectangle1.layoutXProperty().setValue( 0 );
+		//		rectangle1.layoutYProperty().setValue( 0 );
+		//		rectangle1.widthProperty().bind( contentPane.widthProperty() );
+		//		rectangle1.heightProperty().bind( contentPane.heightProperty() );
+		//		rectangle1.setFill( Color.BLUE );
+		//		contentPane.getChildren().add( rectangle1 );
 
 		// Total
 		this.total.layoutXProperty().setValue( config.buffer );
@@ -87,7 +87,8 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 
 		// Design
 		this.design.layoutXProperty().bind( this.requirements.layoutXProperty() );
-		this.design.layoutYProperty().bind( this.requirements.layoutYProperty().add( this.requirements.heightProperty() ) );
+		this.design.layoutYProperty()
+				.bind( this.requirements.layoutYProperty().add( this.requirements.heightProperty() ) );
 		this.design.prefWidthProperty().bind( contentPane.widthProperty() );
 		contentPane.getChildren().add( this.design );
 
@@ -108,6 +109,10 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 		this.management.layoutYProperty().bind( this.testing.layoutYProperty().add( this.testing.heightProperty() ) );
 		this.management.prefWidthProperty().bind( contentPane.widthProperty() );
 		contentPane.getChildren().add( this.management );
+
+		contentPane.prefHeightProperty().bind( this.total.heightProperty().add( this.requirements.heightProperty() )
+				.add( this.design.heightProperty() ).add( this.coding.heightProperty() )
+				.add( this.testing.heightProperty() ).add( this.management.heightProperty() ).add( config.buffer ) );
 	}
 
 	void update() {

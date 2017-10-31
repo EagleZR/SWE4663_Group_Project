@@ -14,6 +14,8 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.PersonNotOnTeamE
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidWorkedHourTypeException;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 
+import java.time.LocalDate;
+
 public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane {
 
 	private Config config;
@@ -160,7 +162,7 @@ public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane
 				if ( hours <= 0 ) {
 					ErrorPopupSystem.displayMessage( "Please submit a number of hours greater than 0." );
 				} else {
-					this.selectedPerson.reportHours( hours, this.selectHourType.getValue() );
+					this.selectedPerson.reportHours( hours, this.selectHourType.getValue(), LocalDate.now() );
 				}
 			} catch ( PersonNotOnTeamException e1 ) {
 				ErrorPopupSystem.displayMessage( "There was an issue submitting the hours." );

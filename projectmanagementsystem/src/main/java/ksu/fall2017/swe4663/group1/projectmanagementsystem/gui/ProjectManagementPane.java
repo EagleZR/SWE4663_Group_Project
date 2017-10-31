@@ -3,6 +3,7 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui;
 import eaglezr.support.errorsystem.ErrorPopupSystem;
 import eaglezr.support.logs.LoggingTool;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -20,6 +21,11 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.requirements.Requ
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Displays and modifies a {@link Project}. It is capable of creating new projects, saving the current project, and
+ * loading a previous project.  <p>NOTE: This pane is meant to be set as the primary pane in the primary {@link Stage}.
+ * Usage otherwise will result in awkward appearance.</p>
+ */
 public class ProjectManagementPane extends BorderPane implements ProjectPane {
 
 	private Stage primaryStage;
@@ -30,16 +36,25 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 	private RequirementsPane requirementsPane;
 	private Label statusLabel;
 
-	public ProjectManagementPane( Stage primaryStage, Config config, Project project ) {
+	/**
+	 * Constructs a {@link ProjectManagementPane}, which consists of a {@link GeneralPane}, a {@link HourLogPane}, and a
+	 * {@link RequirementsPane}, as well as the {@link MenuBar} at the top and the status {@link Label} at the bottom.
+	 * <p>NOTE: This pane is meant to be set as the primary pane in the {@link Scene} of the primary {@link Stage}.</p>
+	 *
+	 * @param stage   The {@link Stage} in which this pane is displayed.
+	 * @param config  The {@link Config} which dictates the functionality and appearance of this pane.
+	 * @param project The {@link Project} which will be displayed and modified by this pane.
+	 */
+	public ProjectManagementPane( Stage stage, Config config, Project project ) {
 		LoggingTool.print( "Constructing new ProjectManagementPane." );
 		this.project = project;
 		this.config = config;
-		this.primaryStage = primaryStage;
+		this.primaryStage = stage;
 		this.statusLabel = new Label( "Status: " );
 
 		// Initialize primary panes
 		BorderPane contentPane = new BorderPane();
-		this.setTop( getMenuBar() );
+		this.setTop( getNewMenuBar() );
 		this.setCenter( contentPane );
 		this.setBottom( this.statusLabel );
 
@@ -102,24 +117,31 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 		// Initialize content panes
 		////////////////////////////////////
 		LoggingTool.print( "ProjectManagementPane: Creating GeneralPane in ProjectManagementPane." );
-		this.generalPane = new GeneralPane( primaryStage, project, config );
+		this.generalPane = new GeneralPane( stage, project, config );
 		this.generalPane.prefWidthProperty().bind( contentPane.widthProperty() );
-		this.generalPane.prefHeightProperty().bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );
+		this.generalPane.prefHeightProperty()
+				.bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );
 		LoggingTool.print( "ProjectManagementPane: Creating RequirementPane in ProjectManagementPane." );
-		this.requirementsPane = new RequirementsPane( project, config, primaryStage );
+		this.requirementsPane = new RequirementsPane( project, config, stage );
 		this.requirementsPane.prefWidthProperty().bind( contentPane.widthProperty() );
 		this.requirementsPane.prefHeightProperty()
 				.bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );
 		LoggingTool.print( "ProjectManagementPane: Creating HourLogPane in ProjectManagementPane." );
 		this.hourLogPane = new HourLogPane( project, config );
 		this.hourLogPane.prefWidthProperty().bind( contentPane.widthProperty() );
-		this.hourLogPane.prefHeightProperty().bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );
+		this.hourLogPane.prefHeightProperty()
+				.bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );
 		LoggingTool.print( "ProjectManagementPane: Setting GeneralPane as content in ProjectManagementPane." );
 		contentPane.setCenter( this.generalPane );
 		this.generalPane.prefWidthProperty().bind( contentPane.widthProperty() );
 	}
 
-	private MenuBar getMenuBar() {
+	/**
+	 * Builds and returns the {@link MenuBar} for this pane.
+	 *
+	 * @return The new {@link MenuBar} for thi pane.
+	 */
+	private MenuBar getNewMenuBar() {
 		LoggingTool.print( "ProjectManagementPane: Creating MenuBar." );
 		MenuBar menuBar = new MenuBar();
 
@@ -139,7 +161,8 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 			if ( !this.config.previousSave.exists() ) {
 				saveAs.fire();
 			} else {
-				LoggingTool.print( "ProjectManagementPane: Saving to " + this.config.previousSave.getAbsolutePath() + "." );
+				LoggingTool.print( "ProjectManagementPane: Saving to " + this.config.previousSave.getAbsolutePath()
+						+ "." );
 				try {
 					Project.save( this.project, this.config.previousSave );
 				} catch ( IOException e1 ) {
@@ -186,6 +209,17 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 			LoggingTool.print( "ProjectManagementPane: Load button pressed." );
 			FileChooser chooser = new FileChooser();
 			chooser.setTitle( "Please select where to save the file." );
+			if ( !this.config.savesDirectory.exists() ) {
+				LoggingTool.print( "ProkectManagementPane: The directory " + this.config.savesDirectory.getName()
+						+ " does not exist." );
+				if ( this.config.savesDirectory.mkdir() ) {
+					LoggingTool.print( "ProkectManagementPane: The directory " + this.config.savesDirectory.getName()
+							+ " was successfully created." );
+				} else {
+					LoggingTool.print( "ProkectManagementPane: The directory " + this.config.savesDirectory.getName()
+							+ " could not be created." );
+				}
+			}
 			chooser.setInitialDirectory( this.config.savesDirectory );
 			chooser.setSelectedExtensionFilter( new FileChooser.ExtensionFilter( "Project Save File", ".save" ) );
 			chooser.setInitialFileName( this.config.previousSave.getName() );
@@ -202,6 +236,7 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 				this.config.previousSave = chosenFile;
 
 				try {
+					// Load into new project to ensure successful load before converting class variable
 					Project project = Project.load( this.config.previousSave );
 					this.project = project;
 					loadNewProject( this.project );
@@ -253,6 +288,11 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 		return menuBar;
 	}
 
+	/**
+	 * Loads a new {@link Project} into this pane and its sub-panes.
+	 *
+	 * @param project The new {@link Project} to display.
+	 */
 	@Override public void loadNewProject( Project project ) {
 		this.generalPane.loadNewProject( project );
 		this.hourLogPane.loadNewProject( project );

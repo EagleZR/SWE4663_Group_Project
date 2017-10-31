@@ -4,6 +4,11 @@ import eaglezr.support.logs.LoggingTool;
 import javafx.scene.control.Button;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 
+/**
+ * A {@link Button} that is built for a specific {@link Person} and displays that Person's name in the Button's label.
+ * <p>NOTE: There is no action specified for when the {@link PersonButton} is pushed, and should be specified when
+ * creating it.</p>
+ */
 public class PersonButton extends Button {
 
 	private Person person;
@@ -19,16 +24,17 @@ public class PersonButton extends Button {
 	}
 
 	public void setPerson( Person person ) {
-		LoggingTool
-				.print( "PersonButton: Setting new Person named " + person.getName() + " in PersonButton with previous person named "
-						+ ( this.person == null ? "<null>" : this.person.getName() ) + "." );
+		LoggingTool.print( "PersonButton: Setting new Person named " + person.getName()
+				+ " in PersonButton with previous person named " + ( this.person == null ?
+				"<null>" :
+				this.person.getName() ) + "." );
 		this.person = person;
 		super.setText( this.person.getName() );
 	}
 
 	public void changeName( String name ) {
-		LoggingTool.print( "PersonButton: Changing the person's name in PersonButton from " + this.person.getName() + " to " + name
-				+ "." );
+		LoggingTool.print( "PersonButton: Changing the person's name in PersonButton from " + this.person.getName()
+				+ " to " + name + "." );
 		this.person.changeName( name );
 		super.setText( name );
 	}

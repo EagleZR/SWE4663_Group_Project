@@ -2,10 +2,12 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem.team;
 
 import eaglezr.support.logs.LoggingTool;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.SubmissionInterval;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -17,6 +19,7 @@ public class ProjectHourLog implements Serializable {
 	private static final long serialVersionUID = -7863698898951761080L;
 	private LinkedList<WorkedHours> workedHours;
 	private LinkedList<Person> contributors;
+	private SubmissionInterval submissionInterval;
 
 	/**
 	 * Constructs a new {@link ProjectHourLog} using the given {@link WorkedHours}.<p>NOTE: This constructor works with
@@ -88,9 +91,24 @@ public class ProjectHourLog implements Serializable {
 	 */
 	public void registerHours( WorkedHours newWorkedHours ) {
 		LoggingTool.print( "ProjectHourLog: Registering new Hours: " + newWorkedHours.toString() + "." );
+
+		// Check if submitter has already submitted for this period
+		Person submitter = newWorkedHours.getPerson();
+		for ( WorkedHours hours : this.workedHours ) {
+			if ( WorkedHours.hoursConflict( newWorkedHours, hours, this.submissionInterval ) ) {
+				LoggingTool
+						.print( "ProjectHourLog: The registered hours conflicted with already-submitted hours based on the current submission interval. The conflicting hours are: "
+								+ hours.toString() );
+				// TODO Throw exception
+			}
+		}
+
+		// Add hours
 		this.workedHours.add( newWorkedHours );
 		Person contributor = newWorkedHours.getPerson();
-		if ( !this.contributors.contains( contributor ) ) {
+		if ( !this.contributors.contains( contributor ) )
+
+		{
 			this.contributors.add( contributor );
 		}
 	}

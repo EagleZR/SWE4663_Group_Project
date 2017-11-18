@@ -11,7 +11,6 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.ProjectManagement
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -20,6 +19,10 @@ public class Main extends Application {
 	private File configFile;
 	private Config config;
 
+	/**
+	 * Included to work with JavaFX in IntelliJ
+	 * @param args Completely ignored. Do what you want with these, it won't make a difference.
+	 */
 	public static void main( String[] args ) {
 		launch( args );
 	}
@@ -56,8 +59,8 @@ public class Main extends Application {
 		primaryStage.setMinHeight( 500 );
 		primaryStage.getIcons().add( new Image( "icon/icon.png" ) );
 		LoggingTool.print( "Main: Displaying Project Management System window." );
-		primaryStage.setWidth( 500 );
-		primaryStage.setHeight( 600 );
+		primaryStage.setWidth( this.config.windowWidth );
+		primaryStage.setHeight( this.config.windowHeight );
 		primaryStage.show();
 	}
 
@@ -79,13 +82,21 @@ public class Main extends Application {
 	/**
 	 * Initializes a new config file with default settings.
 	 *
-	 * @throws IOException
+	 * @throws IOException Thrown if there were any exceptions while creating the new config file or its directory.
 	 */
 	private void initializeNewConfigFile() throws IOException {
 		File newConfigFile = new File( "data/config.ini" );
 		LoggingTool.print( "Main: Creating new configuration file at " + newConfigFile.getAbsolutePath() + "." );
-		newConfigFile.getParentFile().mkdirs();
-		newConfigFile.createNewFile();
+		if ( newConfigFile.getParentFile().mkdirs() ) {
+			LoggingTool.print( "Main: Created new directory for the config file." );
+		} else {
+			LoggingTool.print( "Main: The directory for the config file already exists." );
+		}
+		if ( newConfigFile.createNewFile() ) {
+			LoggingTool.print( "Main: New config file successfully created." );
+		} else {
+			LoggingTool.print( "Main: Could not create the new config file." );
+		}
 		LoggingTool.print( "Main: Setting default configuration." );
 		this.config = new Config( newConfigFile );
 	}
@@ -94,8 +105,9 @@ public class Main extends Application {
 	 * Creates a new {@link Team} if possible.
 	 *
 	 * @return The loaded {@link Project}.
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException            Thrown if there is an issue loading the project from the file.
+	 * @throws ClassNotFoundException Thrown if there was an issue converting the the save file into the {@link Project}
+	 *                                class.
 	 */
 	private Project initializeProject() throws IOException, ClassNotFoundException {
 		LoggingTool.print( "Main: Loading previous save." );

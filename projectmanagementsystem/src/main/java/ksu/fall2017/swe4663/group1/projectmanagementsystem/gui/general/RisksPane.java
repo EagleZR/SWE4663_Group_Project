@@ -22,7 +22,7 @@ public class RisksPane extends FramedPane implements ProjectPane {
 	private LinkedList<RiskPane> riskPanes;
 	private Pane contentPane;
 
-	public RisksPane( Project project, Stage stage, Config config ) {
+	protected RisksPane( Project project, Stage stage, Config config ) {
 		LoggingTool.print( "Constructing new RisksPane." );
 		this.project = project;
 		this.stage = stage;
@@ -65,7 +65,7 @@ public class RisksPane extends FramedPane implements ProjectPane {
 		this.getChildren().add( scrollPane );
 	}
 
-	public void update() {
+	protected void update() {
 		// Flush and re-add in descending order
 		// Simpler way of keeping things ordered when the values affecting the order can be directly edited
 		this.contentPane.getChildren().clear();
@@ -106,17 +106,17 @@ public class RisksPane extends FramedPane implements ProjectPane {
 		}
 	}
 
-	public void addRisk( RiskPane risk ) {
+	protected void addRisk( RiskPane risk ) {
 		this.riskPanes.add( risk );
 		update();
 	}
 
-	public void removeRisk( RiskPane risk ) {
+	protected void removeRisk( RiskPane risk ) {
 		this.riskPanes.remove( risk );
 		update();
 	}
 
-	public void loadNewProject( Project project ) {
+	@Override public void loadNewProject( Project project ) {
 		LoggingTool.print( "RisksPane: Loading new project." );
 		this.project = project;
 		update();

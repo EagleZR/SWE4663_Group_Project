@@ -67,7 +67,7 @@ public class RiskPane extends FramedPane {
 		this.descriptionArea.setText( this.risk.getDescription() );
 	}
 
-	public Risk getRisk() {
+	protected Risk getRisk() {
 		return this.risk;
 	}
 

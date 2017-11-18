@@ -39,7 +39,7 @@ public class RiskDetailsPane extends Pane {
 		setup( config );
 	}
 
-	public static void showAddPane( RisksPane risksPane, Stage stage, Config config ) {
+	protected static void showAddPane( RisksPane risksPane, Stage stage, Config config ) {
 		RiskDetailsPane detailsPane = new RiskDetailsPane( config );
 		detailsPane.commitButton.setOnAction( e -> {
 			try {
@@ -55,7 +55,7 @@ public class RiskDetailsPane extends Pane {
 		showPane( detailsPane, stage );
 	}
 
-	public static void showEditPane( RiskPane riskPane, RisksPane risksPane, Stage stage, Config config ) {
+	protected static void showEditPane( RiskPane riskPane, RisksPane risksPane, Stage stage, Config config ) {
 		Risk risk = riskPane.getRisk();
 		RiskDetailsPane detailsPane = new RiskDetailsPane( risk, config );
 

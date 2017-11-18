@@ -58,8 +58,9 @@ public class RequirementDetailsPane extends FramedPane {
 	 * @param requirementsPane The {@link RequirementsListPane} which displays the {@link RequirementsList} that the new
 	 *                         {@link Requirement} will be added to.
 	 * @param stage            The {@link Stage} over which this window will be displayed.
+	 * @param config           This defines some of the physical properties and behavior of this pane.
 	 */
-	public static void showAddPane( RequirementsListPane requirementsPane, Stage stage, Config config ) {
+	protected static void showAddPane( RequirementsListPane requirementsPane, Stage stage, Config config ) {
 		RequirementDetailsPane detailsPane = new RequirementDetailsPane( config );
 		detailsPane.commitButton.setOnAction( e -> {
 			Requirement newRequirement = new Requirement( detailsPane.titleField.getText(),
@@ -77,10 +78,12 @@ public class RequirementDetailsPane extends FramedPane {
 	 * Displays a new Requirements Details Pane over the given {@link Stage}. This pane is used to edit the {@link
 	 * Requirement} displayed by the given {@link RequirementPane}.
 	 *
-	 * @param requirementPane The {@link RequirementPane} whose {@link Requirement} will be edited.
-	 * @param stage           The {@link Stage} over which this window will be displayed.
+	 * @param requirementPane  The {@link RequirementPane} whose {@link Requirement} will be edited.
+	 * @param requirementsPane
+	 * @param stage            The {@link Stage} over which this window will be displayed.
+	 * @param config
 	 */
-	public static void showEditPane( RequirementPane requirementPane, RequirementsListPane requirementsPane,
+	protected static void showEditPane( RequirementPane requirementPane, RequirementsListPane requirementsPane,
 			Stage stage, Config config ) {
 		RequirementDetailsPane detailsPane = new RequirementDetailsPane( requirementPane.getRequirement(), config );
 		detailsPane.commitButton.setOnAction( e -> {

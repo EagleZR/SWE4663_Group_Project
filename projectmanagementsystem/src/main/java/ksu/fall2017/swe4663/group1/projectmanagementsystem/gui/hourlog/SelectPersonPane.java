@@ -5,10 +5,10 @@ import javafx.scene.control.Label;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.TeamPresenter;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.FramedPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.PersonButton;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.PersonButtonScrollPane;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.TeamPresenter;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 
 import java.util.LinkedList;
@@ -44,9 +44,11 @@ public class SelectPersonPane extends FramedPane implements TeamPresenter, Proje
 		// ScrollPane
 		LoggingTool.print( "SelectPersonPane: Adding PersonButtonScrollPane." );
 		this.scrollPane.prefWidthProperty().bind( this.widthProperty().subtract( this.config.buffer * 2 ) );
-		this.scrollPane.prefHeightProperty().bind( this.heightProperty().subtract( this.config.buffer * 3 ).subtract( label.heightProperty() ) );
+		this.scrollPane.prefHeightProperty()
+				.bind( this.heightProperty().subtract( this.config.buffer * 3 ).subtract( label.heightProperty() ) );
 		this.scrollPane.layoutXProperty().bind( label.layoutXProperty() );
-		this.scrollPane.layoutYProperty().bind( label.layoutYProperty().add( label.heightProperty() ).add( this.config.buffer ) );
+		this.scrollPane.layoutYProperty()
+				.bind( label.layoutYProperty().add( label.heightProperty() ).add( this.config.buffer ) );
 		this.getChildren().add( this.scrollPane );
 	}
 
@@ -93,7 +95,8 @@ public class SelectPersonPane extends FramedPane implements TeamPresenter, Proje
 		}
 
 		// Check every button has member on team
-		LinkedList<PersonButton> buttons = (LinkedList<PersonButton>) this.scrollPane.getButtons().clone();
+		LinkedList<PersonButton> buttons = (LinkedList<PersonButton>) this.scrollPane.getButtons()
+				.clone(); // LATER Why clone?
 		for ( PersonButton button : buttons ) {
 			boolean isOnTeam = false;
 			for ( Person person : this.project.getTeam().getMembers() ) {
@@ -115,5 +118,6 @@ public class SelectPersonPane extends FramedPane implements TeamPresenter, Proje
 		this.project.getTeam().addToDistro( this );
 		updateTeamChange();
 		this.reportChange.run();
+		LoggingTool.print( "SelectPersonPane: Loaded new project." );
 	}
 }

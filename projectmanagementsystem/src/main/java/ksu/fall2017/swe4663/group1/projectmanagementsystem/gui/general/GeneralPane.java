@@ -8,6 +8,10 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.PersonNotOnTeamException;
 
+/**
+ * A pane that displays a {@link DescriptionPane}, a {@link ManagerPane}, a {@link TeamMembersPane}, and a {@link
+ * RisksPane} for a given {@link Project}.
+ */
 public class GeneralPane extends Pane implements ProjectPane {
 
 	private DescriptionPane descriptionPane;
@@ -15,6 +19,11 @@ public class GeneralPane extends Pane implements ProjectPane {
 	private ManagerPane managerPane;
 	private RisksPane risksPane;
 
+	/**
+	 * @param primaryStage The stage over which pop-ups will be displayed.
+	 * @param project      The project currently being viewed/edited.
+	 * @param config       This defines some of the physical properties and behavior of this pane.
+	 */
 	public GeneralPane( Stage primaryStage, Project project, Config config ) {
 		LoggingTool.print( "Constructing new GeneralPane." );
 

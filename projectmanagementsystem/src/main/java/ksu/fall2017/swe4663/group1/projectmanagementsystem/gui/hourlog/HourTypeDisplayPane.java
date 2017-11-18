@@ -52,5 +52,6 @@ class HourTypeDisplayPane extends FramedPane implements ProjectPane {
 	@Override public void loadNewProject( Project project ) {
 		this.team = project.getTeam();
 		update();
+		LoggingTool.print( "HourTypeDisplayPane: Loaded new project." );
 	}
 }

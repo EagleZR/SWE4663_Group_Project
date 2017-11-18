@@ -60,6 +60,7 @@ public class HourLogPane extends Pane implements ProjectPane {
 		this.selectPersonPane.loadNewProject( project );
 		this.submissionPane.loadNewProject( project );
 		this.hourLogDisplayPane.loadNewProject( project );
+		LoggingTool.print( "HourLogPane: Loaded new project." );
 	}
 
 }

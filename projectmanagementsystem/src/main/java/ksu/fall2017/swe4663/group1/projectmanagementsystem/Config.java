@@ -14,12 +14,13 @@ import java.util.Scanner;
  */
 public class Config implements Closeable {
 
-	private File configFile = new File( "data/config.ini" );
 	public File previousSave;
 	public File savesDirectory = new File( "saves" );
+	public String saveFileExtension = "save";
 	public int windowWidth = 500;
 	public int windowHeight = 600;
 	public int buffer = 10;
+	private File configFile = new File( "data/config.ini" );
 
 	/**
 	 * Constructs a new Config from the default location. By default, it is "data/config.ini" in the project folder. If
@@ -81,10 +82,8 @@ public class Config implements Closeable {
 	 * @param settingLine The line to be read.
 	 */
 	private void parseSettingLine( String settingLine ) {
-		if ( settingLine.length() > 0 ) {
-			if ( settingLine.charAt( 0 ) == '#' ) {
-				// Do nothing
-			} else if ( settingLine.contains( "save_file_location" ) ) {
+		if ( settingLine.length() > 0 && settingLine.charAt( 0 ) != '#' ) {
+			if ( settingLine.contains( "save_file_location" ) ) {
 				this.previousSave = new File( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
 				LoggingTool.print( "Config: Setting previous save as: " + this.previousSave.getAbsolutePath() + "." );
 			} else if ( settingLine.contains( "window_width" ) ) {
@@ -98,6 +97,10 @@ public class Config implements Closeable {
 				LoggingTool.print( "Config: Setting buffer as " + this.buffer + "." );
 			} else if ( settingLine.contains( "save_folder_location" ) ) {
 				this.savesDirectory = new File( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
+				LoggingTool.print( "Config Setting saves directory as " + this.savesDirectory.getPath() + "." );
+			} else if ( settingLine.contains( "save_file_extension" ) ) {
+				this.savesDirectory = new File( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
+				LoggingTool.print( "Config: Setting saves file extension as \"." + this.saveFileExtension + "\"." );
 			}
 		}
 	}
@@ -134,6 +137,9 @@ public class Config implements Closeable {
 		// Print saves folder location
 		out.println( "# Location of saves folder\n" + "save_folder_location " + this.savesDirectory.getPath() );
 
+		// Print save file extension
+		out.println( "# Save File Extension\n" + "save_file_extension " + this.saveFileExtension );
+
 		//////////////////
 		// Window Configuration
 		//////////////////
@@ -158,5 +164,6 @@ public class Config implements Closeable {
 	@Override public void close() throws FileNotFoundException {
 		LoggingTool.print( "Config: Begin closing." );
 		this.writeSettings();
+		LoggingTool.print( "Config: Finished writing settings. Will close." );
 	}
 }

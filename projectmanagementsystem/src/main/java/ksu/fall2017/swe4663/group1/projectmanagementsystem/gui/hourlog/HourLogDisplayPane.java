@@ -4,8 +4,6 @@ import eaglezr.support.logs.LoggingTool;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
@@ -132,5 +130,6 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 		this.coding.loadNewProject( project );
 		this.testing.loadNewProject( project );
 		this.management.loadNewProject( project );
+		LoggingTool.print( "HourLogDisplayPane: Loaded new project." );
 	}
 }

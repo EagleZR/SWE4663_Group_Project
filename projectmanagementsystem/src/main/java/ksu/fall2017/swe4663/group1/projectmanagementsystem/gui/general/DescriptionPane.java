@@ -10,6 +10,10 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.FramedPane;
 
+/**
+ * This class is for a description pane in the {@link ksu.fall2017.swe4663.group1.projectmanagementsystem}. This pane
+ * holds the project description, which can be edited and saved.
+ */
 public class DescriptionPane extends FramedPane implements ProjectPane {
 
 	private Project project;
@@ -17,13 +21,22 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 	private Label statusLabel;
 	private Config config;
 
-	public DescriptionPane( Project project, Config config ) {
+	/**
+	 * This constructs a new instance of the {@link DescriptionPane} from the given {@link Project} and {@link Config}.
+	 *
+	 * @param project The project currently being viewed/edited.
+	 * @param config  This defines some of the physical properties and behavior of this pane.
+	 */
+	protected DescriptionPane( Project project, Config config ) {
 		LoggingTool.print( "Constructing new DescriptionPane." );
 		this.project = project;
 		this.config = config;
 		setup();
 	}
 
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 */
 	private void setup() {
 		// Label
 		LoggingTool.print( "DescriptionPane: Creating new title label in DescriptionPane." );
@@ -37,7 +50,8 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 		this.textArea = new TextArea( this.project.getDescription() );
 		this.textArea.prefWidthProperty().bind( this.widthProperty().subtract( this.config.buffer * 2 ) );
 		this.textArea.layoutXProperty().bind( label.layoutXProperty() );
-		this.textArea.layoutYProperty().bind( label.layoutYProperty().add( label.heightProperty() ).add( this.config.buffer ) );
+		this.textArea.layoutYProperty()
+				.bind( label.layoutYProperty().add( label.heightProperty() ).add( this.config.buffer ) );
 		this.textArea.wrapTextProperty().setValue( true );
 		this.textArea.setOnKeyTyped( e -> {
 			showStatusChanged();
@@ -52,8 +66,8 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 			this.project.setDescription( this.textArea.getText() );
 			showStatusCurrent();
 		} );
-		update.layoutXProperty()
-				.bind( this.textArea.layoutXProperty().add( this.textArea.widthProperty() ).subtract( update.widthProperty() ) );
+		update.layoutXProperty().bind( this.textArea.layoutXProperty().add( this.textArea.widthProperty() )
+				.subtract( update.widthProperty() ) );
 		update.layoutYProperty()
 				.bind( this.heightProperty().subtract( this.config.buffer ).subtract( update.heightProperty() ) );
 		this.getChildren().add( update );
@@ -66,7 +80,8 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 			this.textArea.setText( this.project.getDescription() );
 			showStatusCurrent();
 		} );
-		reset.layoutXProperty().bind( update.layoutXProperty().subtract( reset.widthProperty().add( this.config.buffer ) ) );
+		reset.layoutXProperty()
+				.bind( update.layoutXProperty().subtract( reset.widthProperty().add( this.config.buffer ) ) );
 		reset.layoutYProperty().bind( update.layoutYProperty() );
 		this.getChildren().add( reset );
 
@@ -83,12 +98,18 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 		this.getChildren().add( this.statusLabel );
 	}
 
+	/**
+	 * This displays text on whether or not the description has been edited.
+	 */
 	private void showStatusChanged() {
 		LoggingTool.print( "DescriptionPane: Updating status label in DescriptionPane to show \"Status: Changed\"." );
 		this.statusLabel.setText( "Status: Changed" );
 		this.statusLabel.setTextFill( Color.RED );
 	}
 
+	/**
+	 * Shows that the status displayed is the status that is saved.
+	 */
 	private void showStatusCurrent() {
 		LoggingTool.print( "DescriptionPane: Updating status label in DescriptionPane to show \"Status: Current\"." );
 		this.statusLabel.setText( "Status: Current" );

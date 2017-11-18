@@ -28,7 +28,7 @@ public class ManagerPane extends FramedPane implements TeamPresenter, ProjectPan
 	private Stage primaryStage;
 	private Config config;
 
-	public ManagerPane( Project project, Stage primaryStage, Config config ) throws PersonNotOnTeamException {
+	protected ManagerPane( Project project, Stage primaryStage, Config config ) throws PersonNotOnTeamException {
 		LoggingTool.print( "Creating new ManagerPane." );
 		this.project = project;
 		this.project.getTeam().addToDistro( this );

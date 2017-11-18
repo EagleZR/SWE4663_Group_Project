@@ -16,6 +16,11 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHo
 
 import java.time.LocalDate;
 
+/**
+ * Creates a {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours} using the selected
+ * {@link Person} (via the {@code registerNewSelectedPerson(Person person) method} and the details specified in the
+ * fields of this pane.
+ */
 public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane {
 
 	private Config config;
@@ -30,7 +35,13 @@ public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane
 	private TextField inputDuration;
 	private Button submitButton;
 
-	public WorkedHoursSubmissionPane( Config config ) {
+	/**
+	 * Creates a pane for interaction with the {@link Person#reportHours(double, WorkedHourType, LocalDate)} method. The
+	 * {@link Person} is determined via the {@link #registerNewSelectedPerson(Person)} method.
+	 *
+	 * @param config The {@link Config} file that dictates the configuration of this pane.
+	 */
+	protected WorkedHoursSubmissionPane( Config config ) {
 		LoggingTool.print( "Constructing new WorkedHoursSubmissionPane." );
 		this.config = config;
 
@@ -139,14 +150,14 @@ public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane
 				( this.selectedPerson.isManager() ? "Yes" : "No" ) ) );
 	}
 
-	public void registerNewSelectedPerson( Person person ) {
+	void registerNewSelectedPerson( Person person ) {
 		LoggingTool.print( "WorkedHoursSubmissionPane: Registering newly-selected Person: " + (
 				this.selectedPerson == null ? "" : this.selectedPerson.getName() ) );
 		this.selectedPerson = person;
 		update();
 	}
 
-	protected void registerSubmitAction( Runnable runnable ) {
+	void registerSubmitAction( Runnable runnable ) {
 		this.submitButton.setOnAction( e -> {
 			registerHours();
 			runnable.run();
@@ -184,5 +195,6 @@ public class WorkedHoursSubmissionPane extends FramedPane implements ProjectPane
 
 	@Override public void loadNewProject( Project project ) {
 		reset();
+		LoggingTool.print( "WorkedHoursSubmissionPane: Loaded new project." );
 	}
 }

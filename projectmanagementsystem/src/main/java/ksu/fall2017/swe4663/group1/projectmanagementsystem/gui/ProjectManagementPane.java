@@ -297,5 +297,6 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 		this.generalPane.loadNewProject( project );
 		this.hourLogPane.loadNewProject( project );
 		this.requirementsPane.loadNewProject( project );
+		LoggingTool.print( "ProjectManagementPane: Loaded new project." );
 	}
 }

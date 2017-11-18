@@ -7,7 +7,7 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem;
 public interface ProjectPane {
 
 	/**
-	 * Changes the {@link Project} stored by this instance.
+	 * Changes the {@link Project} stored, displayed, and edited by this instance.
 	 *
 	 * @param project The new {@link Project} to display.
 	 */

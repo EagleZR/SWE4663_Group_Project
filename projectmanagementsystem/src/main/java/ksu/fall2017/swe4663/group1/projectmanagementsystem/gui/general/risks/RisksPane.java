@@ -1,4 +1,4 @@
-package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general;
+package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.risks;
 
 import eaglezr.support.logs.LoggingTool;
 import javafx.scene.control.Button;
@@ -14,6 +14,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.risks.Risk;
 
 import java.util.LinkedList;
 
+/**
+ * A pane which displays all of the {@link Risk}s of a {@link Project} through {@link RiskPane}s.
+ */
 public class RisksPane extends FramedPane implements ProjectPane {
 
 	private Project project;
@@ -22,7 +25,14 @@ public class RisksPane extends FramedPane implements ProjectPane {
 	private LinkedList<RiskPane> riskPanes;
 	private Pane contentPane;
 
-	protected RisksPane( Project project, Stage stage, Config config ) {
+	/**
+	 * Constructs a {@link RisksPane} using the {@link Risk}s of the given {@link Project}.
+	 *
+	 * @param project The project currently being viewed/edited.
+	 * @param stage   The stage over which pop-ups will be displayed.
+	 * @param config  This defines some of the physical properties and behavior of this pane.
+	 */
+	public RisksPane( Project project, Stage stage, Config config ) {
 		LoggingTool.print( "Constructing new RisksPane." );
 		this.project = project;
 		this.stage = stage;
@@ -32,6 +42,12 @@ public class RisksPane extends FramedPane implements ProjectPane {
 		update();
 	}
 
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 *
+	 * @param stage  The stage over which pop-ups will be displayed.
+	 * @param config This defines some of the physical properties and behavior of this pane.
+	 */
 	private void setup( Stage stage, Config config ) {
 		// Risk Label
 		Label riskLabel = new Label( "Risks: " );
@@ -65,6 +81,9 @@ public class RisksPane extends FramedPane implements ProjectPane {
 		this.getChildren().add( scrollPane );
 	}
 
+	/**
+	 * This updates each field to display their current value.
+	 */
 	protected void update() {
 		// Flush and re-add in descending order
 		// Simpler way of keeping things ordered when the values affecting the order can be directly edited
@@ -106,13 +125,25 @@ public class RisksPane extends FramedPane implements ProjectPane {
 		}
 	}
 
+	/**
+	 * Adds the given {@link RiskPane} to the displayed list.
+	 *
+	 * @param risk The new {@link RiskPane} to be displayed.
+	 */
 	protected void addRisk( RiskPane risk ) {
 		this.riskPanes.add( risk );
+		this.project.getRisks().add( risk.getRisk() );
 		update();
 	}
 
+	/**
+	 * Removes the indicated {@link RiskPane} from the list.
+	 *
+	 * @param risk The {@link RiskPane} to be removed.
+	 */
 	protected void removeRisk( RiskPane risk ) {
 		this.riskPanes.remove( risk );
+		this.project.getRisks().remove( risk.getRisk() );
 		update();
 	}
 

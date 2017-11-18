@@ -16,9 +16,13 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.PersonButton;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.PersonButtonScrollPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.PersonNotOnTeamException;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team;
 
 import java.util.LinkedList;
 
+/**
+ * This pane displays and edits the managers of the given {@link Team} within the {@link Project}.
+ */
 public class ManagerPane extends FramedPane implements TeamPresenter, ProjectPane {
 
 	private Project project;
@@ -28,6 +32,15 @@ public class ManagerPane extends FramedPane implements TeamPresenter, ProjectPan
 	private Stage primaryStage;
 	private Config config;
 
+	/**
+	 * Constructs a new {@link ManagerPane} from the given parameters.
+	 *
+	 * @param project      The project currently being viewed/edited.
+	 * @param primaryStage The stage over which pop-ups will be displayed.
+	 * @param config       This defines some of the physical properties and behavior of this pane.
+	 * @throws PersonNotOnTeamException Thrown if there is some issue where the current {@link Team} does not have a
+	 *                                  manager. In most cases (i.e. new teams), this can be disregarded.
+	 */
 	protected ManagerPane( Project project, Stage primaryStage, Config config ) throws PersonNotOnTeamException {
 		LoggingTool.print( "Creating new ManagerPane." );
 		this.project = project;
@@ -50,6 +63,9 @@ public class ManagerPane extends FramedPane implements TeamPresenter, ProjectPan
 		update();
 	}
 
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 */
 	private void setup() {
 		// Draw Label
 		LoggingTool.print( "ManagerPane: Creating title label in ManagerPane." );
@@ -71,6 +87,9 @@ public class ManagerPane extends FramedPane implements TeamPresenter, ProjectPan
 		this.getChildren().add( this.scrollPane );
 	}
 
+	/**
+	 * This updates each field to display their current value.
+	 */
 	private void update() {
 		LoggingTool.print( "ManagerPane: Updating ManagerPane." );
 		try {

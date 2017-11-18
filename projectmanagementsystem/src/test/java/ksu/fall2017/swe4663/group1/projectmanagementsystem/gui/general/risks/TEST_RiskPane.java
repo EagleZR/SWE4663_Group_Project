@@ -1,10 +1,12 @@
-package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general;
+package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.risks;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.risks.RiskPane;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.risks.RisksPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.risks.Risk;
 
 public class TEST_RiskPane extends Application {

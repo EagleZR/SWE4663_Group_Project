@@ -6,12 +6,21 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
 
+/**
+ * Displays the {@link HourLogDisplayPane}, the {@link SelectPersonPane}, and the {@link WorkedHoursSubmissionPane}.
+ */
 public class HourLogPane extends Pane implements ProjectPane {
 
 	private SelectPersonPane selectPersonPane;
 	private WorkedHoursSubmissionPane submissionPane;
 	private HourLogDisplayPane hourLogDisplayPane;
 
+	/**
+	 * Constructs a new {@link HourLogPane} using the given {@link Project}.
+	 *
+	 * @param project The project currently being viewed/edited.
+	 * @param config  This defines some of the physical properties and behavior of this pane.
+	 */
 	public HourLogPane( Project project, Config config ) {
 		LoggingTool.print( "Constructing new HourLogPane." );
 		// Select Person Pane
@@ -56,7 +65,7 @@ public class HourLogPane extends Pane implements ProjectPane {
 		} );
 	}
 
-	public void loadNewProject( Project project ) {
+	@Override public void loadNewProject( Project project ) {
 		this.selectPersonPane.loadNewProject( project );
 		this.submissionPane.loadNewProject( project );
 		this.hourLogDisplayPane.loadNewProject( project );

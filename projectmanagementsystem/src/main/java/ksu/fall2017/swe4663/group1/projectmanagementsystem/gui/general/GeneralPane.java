@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.risks.RisksPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.PersonNotOnTeamException;
 
 /**
@@ -20,6 +21,8 @@ public class GeneralPane extends Pane implements ProjectPane {
 	private RisksPane risksPane;
 
 	/**
+	 * Creates a new {@link GeneralPane} using the given parameters.
+	 *
 	 * @param primaryStage The stage over which pop-ups will be displayed.
 	 * @param project      The project currently being viewed/edited.
 	 * @param config       This defines some of the physical properties and behavior of this pane.

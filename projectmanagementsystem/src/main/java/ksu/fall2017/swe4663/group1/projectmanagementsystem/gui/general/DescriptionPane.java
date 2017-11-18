@@ -19,7 +19,6 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 	private Project project;
 	private TextArea textArea;
 	private Label statusLabel;
-	private Config config;
 
 	/**
 	 * This constructs a new instance of the {@link DescriptionPane} from the given {@link Project} and {@link Config}.
@@ -30,32 +29,31 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 	protected DescriptionPane( Project project, Config config ) {
 		LoggingTool.print( "Constructing new DescriptionPane." );
 		this.project = project;
-		this.config = config;
-		setup();
+		setup( config );
 	}
 
 	/**
 	 * This sets up the pane and places each of the components in their correct positions.
+	 *
+	 * @param config This defines some of the physical properties and behavior of this pane.
 	 */
-	private void setup() {
+	private void setup( Config config ) {
 		// Label
 		LoggingTool.print( "DescriptionPane: Creating new title label in DescriptionPane." );
 		Label label = new Label( "Project Description: " );
-		label.layoutXProperty().setValue( this.config.buffer );
-		label.layoutYProperty().setValue( this.config.buffer );
+		label.layoutXProperty().setValue( config.buffer );
+		label.layoutYProperty().setValue( config.buffer );
 		this.getChildren().add( label );
 
 		// Text Area
 		LoggingTool.print( "DescriptionPane: Creating new TextArea in DescriptionPane." );
 		this.textArea = new TextArea( this.project.getDescription() );
-		this.textArea.prefWidthProperty().bind( this.widthProperty().subtract( this.config.buffer * 2 ) );
+		this.textArea.prefWidthProperty().bind( this.widthProperty().subtract( config.buffer * 2 ) );
 		this.textArea.layoutXProperty().bind( label.layoutXProperty() );
 		this.textArea.layoutYProperty()
-				.bind( label.layoutYProperty().add( label.heightProperty() ).add( this.config.buffer ) );
+				.bind( label.layoutYProperty().add( label.heightProperty() ).add( config.buffer ) );
 		this.textArea.wrapTextProperty().setValue( true );
-		this.textArea.setOnKeyTyped( e -> {
-			showStatusChanged();
-		} );
+		this.textArea.setOnKeyTyped( e -> showStatusChanged() );
 		this.getChildren().add( this.textArea );
 
 		// Update Button
@@ -69,7 +67,7 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 		update.layoutXProperty().bind( this.textArea.layoutXProperty().add( this.textArea.widthProperty() )
 				.subtract( update.widthProperty() ) );
 		update.layoutYProperty()
-				.bind( this.heightProperty().subtract( this.config.buffer ).subtract( update.heightProperty() ) );
+				.bind( this.heightProperty().subtract( config.buffer ).subtract( update.heightProperty() ) );
 		this.getChildren().add( update );
 
 		// Reset Button
@@ -80,13 +78,12 @@ public class DescriptionPane extends FramedPane implements ProjectPane {
 			this.textArea.setText( this.project.getDescription() );
 			showStatusCurrent();
 		} );
-		reset.layoutXProperty()
-				.bind( update.layoutXProperty().subtract( reset.widthProperty().add( this.config.buffer ) ) );
+		reset.layoutXProperty().bind( update.layoutXProperty().subtract( reset.widthProperty().add( config.buffer ) ) );
 		reset.layoutYProperty().bind( update.layoutYProperty() );
 		this.getChildren().add( reset );
 
 		this.textArea.prefHeightProperty()
-				.bind( update.layoutYProperty().subtract( this.textArea.layoutYProperty().add( this.config.buffer ) ) );
+				.bind( update.layoutYProperty().subtract( this.textArea.layoutYProperty().add( config.buffer ) ) );
 
 		// Status Label
 		LoggingTool.print( "DescriptionPane: Creating status label in DescriptionPane." );

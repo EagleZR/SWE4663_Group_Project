@@ -10,6 +10,10 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.FramedPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 
+/**
+ * Displays the current {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog} for the
+ * current {@link Project} using {@link HourTypeDisplayPane}s for each {@link WorkedHourType}.
+ */
 class HourLogDisplayPane extends FramedPane implements ProjectPane {
 
 	private Project project;
@@ -21,7 +25,13 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 	private HourTypeDisplayPane management;
 	private ScrollPane scrollPane;
 
-	HourLogDisplayPane( Project project, Config config ) {
+	/**
+	 * Constructs a new {@link HourLogDisplayPane} from the given {@link Project}.
+	 *
+	 * @param project The project currently being viewed/edited.
+	 * @param config  This defines some of the physical properties and behavior of this pane.
+	 */
+	protected HourLogDisplayPane( Project project, Config config ) {
 		LoggingTool.print( "Constructing new HourLogDisplayPane." );
 		this.project = project;
 		LoggingTool.print( "HourLogDisplayPane: Creating new Label." );
@@ -43,6 +53,11 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 		update();
 	}
 
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 *
+	 * @param config This defines some of the physical properties and behavior of this pane.
+	 */
 	private void setup( Config config ) {
 		//		Rectangle rectangle = new Rectangle();
 		//		rectangle.layoutXProperty().setValue( 0 );
@@ -113,6 +128,9 @@ class HourLogDisplayPane extends FramedPane implements ProjectPane {
 				.add( this.testing.heightProperty() ).add( this.management.heightProperty() ).add( config.buffer ) );
 	}
 
+	/**
+	 * This updates each field to display their current value.
+	 */
 	void update() {
 		this.total.setText( "Total: " + this.project.getTeam().getHours( WorkedHourType.ANY ) );
 		this.requirements.update();

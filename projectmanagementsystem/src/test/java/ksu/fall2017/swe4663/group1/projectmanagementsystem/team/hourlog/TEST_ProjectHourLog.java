@@ -1,6 +1,10 @@
-package ksu.fall2017.swe4663.group1.projectmanagementsystem.team;
+package ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog;
 
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.PersonNotOnTeamException;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidWorkedHourTypeException;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 import org.junit.Before;
 import org.junit.Test;

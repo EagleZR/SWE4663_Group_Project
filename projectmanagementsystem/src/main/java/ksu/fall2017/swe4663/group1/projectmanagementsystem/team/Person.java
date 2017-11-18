@@ -2,6 +2,7 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem.team;
 
 import eaglezr.support.logs.LoggingTool;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidWorkedHourTypeException;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours;
 

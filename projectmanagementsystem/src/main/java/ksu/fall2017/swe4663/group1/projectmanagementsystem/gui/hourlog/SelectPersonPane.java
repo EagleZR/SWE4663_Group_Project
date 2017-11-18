@@ -13,50 +13,74 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 
 import java.util.LinkedList;
 
+/**
+ * Displays all of the {@link Person} members of the {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team}
+ * from the given {@link Project}.
+ */
 public class SelectPersonPane extends FramedPane implements TeamPresenter, ProjectPane {
 
-	private Config config;
 	private Project project;
 	private Person selectedPerson;
 	private PersonButtonScrollPane scrollPane;
 	private Runnable reportChange;
 
-	public SelectPersonPane( Project project, Config config ) {
+	/**
+	 * Constructs a new {@link SelectPersonPane} from a given {@link Project}.
+	 *
+	 * @param project The project currently being viewed/edited.
+	 * @param config  This defines some of the physical properties and behavior of this pane.
+	 */
+	protected SelectPersonPane( Project project, Config config ) {
 		LoggingTool.print( "Constructing new SelectPersonPane." );
-		this.config = config;
 		this.project = project;
 		this.project.getTeam().addToDistro( this );
 		this.scrollPane = new PersonButtonScrollPane();
 		for ( Person person : project.getTeam().getMembers() ) {
 			addPerson( person );
 		}
-		setup();
+		setup( config );
 	}
 
-	private void setup() {
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 *
+	 * @param config This defines some of the physical properties and behavior of this pane.
+	 */
+	private void setup( Config config ) {
 		// Title label
 		LoggingTool.print( "SelectPersonPane: Adding title label." );
 		Label label = new Label( "Select a person: " );
-		label.layoutXProperty().setValue( this.config.buffer );
-		label.layoutYProperty().setValue( this.config.buffer );
+		label.layoutXProperty().setValue( config.buffer );
+		label.layoutYProperty().setValue( config.buffer );
 		this.getChildren().add( label );
 
 		// ScrollPane
 		LoggingTool.print( "SelectPersonPane: Adding PersonButtonScrollPane." );
-		this.scrollPane.prefWidthProperty().bind( this.widthProperty().subtract( this.config.buffer * 2 ) );
+		this.scrollPane.prefWidthProperty().bind( this.widthProperty().subtract( config.buffer * 2 ) );
 		this.scrollPane.prefHeightProperty()
-				.bind( this.heightProperty().subtract( this.config.buffer * 3 ).subtract( label.heightProperty() ) );
+				.bind( this.heightProperty().subtract( config.buffer * 3 ).subtract( label.heightProperty() ) );
 		this.scrollPane.layoutXProperty().bind( label.layoutXProperty() );
 		this.scrollPane.layoutYProperty()
-				.bind( label.layoutYProperty().add( label.heightProperty() ).add( this.config.buffer ) );
+				.bind( label.layoutYProperty().add( label.heightProperty() ).add( config.buffer ) );
 		this.getChildren().add( this.scrollPane );
 	}
 
-	public void setSelectResponse( Runnable response ) {
+	/**
+	 * Sets the action to be performed each time a new {@link PersonButton} is selected.
+	 *
+	 * @param response The {@link Runnable} response to be executed each time a new {@link PersonButton} is selected.
+	 */
+	protected void setSelectResponse( Runnable response ) {
+		LoggingTool.print( "SelectPersonPane: Setting new action for execution upon PersonButton selection." );
 		this.reportChange = response;
 	}
 
-	public Person getSelectedPerson() {
+	/**
+	 * Retrieves the currently-selected {@link PersonButton}.
+	 *
+	 * @return The currently-selected {@link PersonButton}. If no one is selected, it will return {@link null}.
+	 */
+	protected Person getSelectedPerson() {
 		return this.selectedPerson;
 	}
 
@@ -95,8 +119,7 @@ public class SelectPersonPane extends FramedPane implements TeamPresenter, Proje
 		}
 
 		// Check every button has member on team
-		LinkedList<PersonButton> buttons = (LinkedList<PersonButton>) this.scrollPane.getButtons()
-				.clone(); // LATER Why clone?
+		LinkedList<PersonButton> buttons = this.scrollPane.getButtons(); // LATER Test if it still works...
 		for ( PersonButton button : buttons ) {
 			boolean isOnTeam = false;
 			for ( Person person : this.project.getTeam().getMembers() ) {

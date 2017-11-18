@@ -18,9 +18,13 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.FramedPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.PersonButton;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.PersonButtonScrollPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team;
 
 import java.util.LinkedList;
 
+/**
+ * A pane to display the {@link Person}s who are team members of the {@link Project}'s {@link Team}.
+ */
 class TeamMembersPane extends FramedPane implements TeamPresenter, ProjectPane {
 
 	private Stage primaryStage;
@@ -29,7 +33,14 @@ class TeamMembersPane extends FramedPane implements TeamPresenter, ProjectPane {
 	private Config config;
 	private Button addButton;
 
-	TeamMembersPane( Stage primaryStage, Project project, Config config ) {
+	/**
+	 * Constructs a new {@link TeamMembersPane} from the given {@link Project}.
+	 *
+	 * @param primaryStage The stage over which pop-ups will be displayed.
+	 * @param project      The project currently being viewed/edited.
+	 * @param config       This defines some of the physical properties and behavior of this pane.
+	 */
+	protected TeamMembersPane( Stage primaryStage, Project project, Config config ) {
 		LoggingTool.print( "Constructing a new TeamMembersPane." );
 		this.primaryStage = primaryStage;
 		this.project = project;
@@ -41,6 +52,9 @@ class TeamMembersPane extends FramedPane implements TeamPresenter, ProjectPane {
 		}
 	}
 
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 */
 	private void setup() {
 		// Label
 		LoggingTool.print( "TeamMembersPane: Creating title label in TeamMembersPane." );
@@ -78,6 +92,11 @@ class TeamMembersPane extends FramedPane implements TeamPresenter, ProjectPane {
 		newMemberButton.setOnAction( i -> editMember( newMemberButton ) );
 	}
 
+	/**
+	 * Edits the {@link Person} stored in the given {@link PersonButton}.
+	 *
+	 * @param personButton The {@link PersonButton} which holds the {@link Person} to be edited.
+	 */
 	private void editMember( PersonButton personButton ) {
 		LoggingTool
 				.print( "TeamMembersPane: Editing " + personButton.getPerson().getName() + " in the TeamMembersPane." );
@@ -175,10 +194,18 @@ class TeamMembersPane extends FramedPane implements TeamPresenter, ProjectPane {
 		this.project.getTeam().addToDistro( this );
 	}
 
+	/**
+	 * A class too handle the actions necessary for adding a {@link Person} to the {@link Team}.
+	 */
 	private class AddHandler implements EventHandler<ActionEvent> {
 
 		private Project project;
 
+		/**
+		 * Constructs the {@link AddHandler} using the given {@link Project}.
+		 *
+		 * @param project The project currently being viewed/edited.
+		 */
 		private AddHandler( Project project ) {
 			this.project = project;
 		}

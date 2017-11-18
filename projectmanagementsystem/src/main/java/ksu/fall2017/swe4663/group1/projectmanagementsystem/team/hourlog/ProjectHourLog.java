@@ -1,13 +1,10 @@
-package ksu.fall2017.swe4663.group1.projectmanagementsystem.team;
+package ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog;
 
 import eaglezr.support.logs.LoggingTool;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.SubmissionInterval;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -27,7 +24,7 @@ public class ProjectHourLog implements Serializable {
 	 *
 	 * @param workedHours The list of {@link WorkedHours} to build the new {@link ProjectHourLog} using.
 	 */
-	protected ProjectHourLog( WorkedHours... workedHours ) {
+	public ProjectHourLog( WorkedHours... workedHours ) {
 		LoggingTool.print( "Constructing new ProjectHourLog." );
 		this.workedHours = new LinkedList<>( Arrays.asList( workedHours ) );
 		this.contributors = new LinkedList<>();

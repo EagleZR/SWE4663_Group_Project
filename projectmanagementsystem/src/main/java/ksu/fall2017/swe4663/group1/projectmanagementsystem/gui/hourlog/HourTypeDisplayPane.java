@@ -10,6 +10,10 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.FramedPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 
+/**
+ * Displays the sum of {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours} that have
+ * been submitted of a {@link WorkedHourType}.
+ */
 class HourTypeDisplayPane extends FramedPane implements ProjectPane {
 
 	private Team team;
@@ -17,7 +21,14 @@ class HourTypeDisplayPane extends FramedPane implements ProjectPane {
 	private ProgressBar progressBar;
 	private Label label;
 
-	HourTypeDisplayPane( WorkedHourType hourType, Project project, Config config ) {
+	/**
+	 * Constructs a new {@link HourTypeDisplayPane} from the given {@link Project} and {@link WorkedHourType}.
+	 *
+	 * @param hourType The {@link WorkedHourType} that this pane will display.
+	 * @param project  The project currently being viewed/edited.
+	 * @param config   This defines some of the physical properties and behavior of this pane.
+	 */
+	protected HourTypeDisplayPane( WorkedHourType hourType, Project project, Config config ) {
 		LoggingTool.print( "Constructing new HourTypeDisplayPane for " + hourType.toString() + "." );
 		this.team = project.getTeam();
 		this.hourType = hourType;
@@ -42,6 +53,9 @@ class HourTypeDisplayPane extends FramedPane implements ProjectPane {
 		update();
 	}
 
+	/**
+	 * This updates each field to display their current value.
+	 */
 	protected void update() {
 		double totalWorked = this.team.getHours( WorkedHourType.ANY );
 		double typeWorked = this.team.getHours( this.hourType );

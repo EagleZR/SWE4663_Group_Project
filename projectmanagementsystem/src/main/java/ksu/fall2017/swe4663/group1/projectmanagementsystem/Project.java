@@ -6,7 +6,7 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements.Requirem
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.risks.Risk;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.ProjectHourLog;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog;
 
 import java.io.*;
 import java.util.LinkedList;

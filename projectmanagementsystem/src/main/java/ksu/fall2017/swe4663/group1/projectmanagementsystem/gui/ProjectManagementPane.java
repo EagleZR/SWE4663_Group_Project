@@ -125,7 +125,7 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 		this.generalPane.prefHeightProperty()
 				.bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );
 		LoggingTool.print( "ProjectManagementPane: Creating RequirementPane in ProjectManagementPane." );
-		this.requirementsPane = new RequirementsPane( project, config, stage );
+		this.requirementsPane = new RequirementsPane( project, stage, config );
 		this.requirementsPane.prefWidthProperty().bind( contentPane.widthProperty() );
 		this.requirementsPane.prefHeightProperty()
 				.bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );

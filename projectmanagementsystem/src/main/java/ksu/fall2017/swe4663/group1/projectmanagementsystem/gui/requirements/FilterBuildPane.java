@@ -1,6 +1,7 @@
 package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.requirements;
 
 import eaglezr.support.errorsystem.ErrorPopupSystem;
+import eaglezr.support.logs.LoggingTool;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -13,7 +14,7 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements.Status;
 import java.util.function.Consumer;
 
 /**
- * Constructs a pane that creates a {@link RequirementFilter} based on information in local fields.
+ * A pane that allows the creation of a {@link RequirementFilter} based on information in editable fields.
  *
  * @author Mark Zeagler
  * @version 1.0
@@ -32,6 +33,7 @@ public class FilterBuildPane extends FramedPane {
 	 * @param config This defines some of the physical properties and behavior of this pane.
 	 */
 	public FilterBuildPane( Config config ) {
+		LoggingTool.print( "Constructing new FilterBuildPane." );
 		this.config = config;
 		setup();
 	}
@@ -152,6 +154,7 @@ public class FilterBuildPane extends FramedPane {
 			throw new IndexOutOfBoundsException(
 					"Invalid Filter Type Selection." ); // LATER Use a more appropriate exception.
 		}
+		LoggingTool.print( "FilterBuildPane: Created new filter comparator: \"" + comparator.toString() + "\"." );
 		return comparator;
 	}
 
@@ -205,7 +208,7 @@ public class FilterBuildPane extends FramedPane {
 	}
 
 	/**
-	 * A pane that lets the user input a {@link String} for the construction of a new filter.
+	 * A pane to build a filter comparator from an inputted {@link String} value.
 	 */
 	private class StringFilterPane extends Pane {
 
@@ -229,11 +232,10 @@ public class FilterBuildPane extends FramedPane {
 			this.textField.prefWidthProperty().bind( this.widthProperty().subtract( config.buffer * 2 ) );
 			this.getChildren().add( this.textField );
 		}
-
 	}
 
 	/**
-	 *
+	 * A pane to build a filter comparator from a selected {@link Priority}.
 	 */
 	private class PriorityFilterPane extends Pane {
 
@@ -257,6 +259,9 @@ public class FilterBuildPane extends FramedPane {
 		}
 	}
 
+	/**
+	 * A pane to build a filter comparator from a selected {@link Status}.
+	 */
 	private class StatusFilterPane extends Pane {
 		private ComboBox<Status> statusComboBox;
 
@@ -268,6 +273,9 @@ public class FilterBuildPane extends FramedPane {
 		}
 	}
 
+	/**
+	 * A pane to build a filter comparator from a selected boolean value.
+	 */
 	private class BooleanFilterPane extends Pane {
 
 		CheckBox checkBox;
@@ -281,6 +289,9 @@ public class FilterBuildPane extends FramedPane {
 		}
 	}
 
+	/**
+	 * A pane to build a filter comparator from an inputted number.
+	 */
 	private class IDFilterPane extends Pane {
 
 		TextField textField;
@@ -297,8 +308,11 @@ public class FilterBuildPane extends FramedPane {
 		}
 	}
 
+	/**
+	 * An exception to be thrown when the filter-build form is incomplete.
+	 */
 	private class IncompleteFormException extends Exception {
-		public IncompleteFormException( String message ) {
+		private IncompleteFormException( String message ) {
 			super( message );
 		}
 	}

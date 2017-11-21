@@ -9,6 +9,12 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.FramedPane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements.Requirement;
 
+/**
+ * A pane to display and edit a single {@link Requirement}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
+ */
 public class RequirementPane extends FramedPane {
 
 	private Requirement requirement;
@@ -25,21 +31,34 @@ public class RequirementPane extends FramedPane {
 	private Label isCompleteLabel;
 	private Label isFunctionalLabel;
 
-	protected RequirementPane( Requirement requirement, RequirementsListPane parentPane, Config config,
-			Stage primaryStage ) {
+	/**
+	 * Constructs a pane to display the given {@link Requirement}.
+	 *
+	 * @param requirement  The requirement to be displayed by this pane.
+	 * @param parentPane   The pane in which this pane will be displayed.
+	 * @param primaryStage The stage over which pop-ups will be displayed.
+	 * @param config       This defines some of the physical properties and behavior of this pane.
+	 */
+	protected RequirementPane( Requirement requirement, RequirementsListPane parentPane, Stage primaryStage,
+			Config config ) {
 		LoggingTool.print( "Constructing new RequirementPane." );
 		this.requirement = requirement;
 		this.parentPane = parentPane;
 		this.config = config;
 
 		// Setup Mouse Pressed Event
-		this.setOnMousePressed(
-				e -> RequirementDetailsPane.showEditPane( this, this.parentPane, primaryStage, config ) );
+		this.setOnMousePressed( e -> {
+			LoggingTool.print( "RequirementPane: Showing details pop-up." );
+			RequirementDetailsPane.showEditPane( this, this.parentPane, primaryStage, config );
+		} );
 
 		setup();
 		update();
 	}
 
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 */
 	private void setup() {
 		// Title
 		this.titleLabel = new Label();
@@ -112,6 +131,9 @@ public class RequirementPane extends FramedPane {
 		this.getChildren().add( this.descriptionArea );
 	}
 
+	/**
+	 * This updates each field to display their current value.
+	 */
 	public void update() {
 		// TODO Add isFunctional
 		this.titleLabel.setText( "Title: " + this.requirement.getTitle() );
@@ -124,6 +146,11 @@ public class RequirementPane extends FramedPane {
 		this.descriptionArea.setText( this.requirement.getDescription() );
 	}
 
+	/**
+	 * Retrieves the {@link Requirement} associated with this pane.
+	 *
+	 * @return The requirement held by this pane.
+	 */
 	public Requirement getRequirement() {
 		return this.requirement;
 	}

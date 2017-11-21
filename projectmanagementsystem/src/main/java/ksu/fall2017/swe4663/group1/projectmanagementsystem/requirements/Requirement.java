@@ -2,6 +2,12 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements;
 
 import java.io.Serializable;
 
+/**
+ * A class to represent the requirements associated with a development project.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
+ */
 public class Requirement implements Serializable {
 	private static final long serialVersionUID = -2391731060123178351L;
 

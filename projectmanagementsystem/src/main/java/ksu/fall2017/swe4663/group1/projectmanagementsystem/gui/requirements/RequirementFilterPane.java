@@ -2,6 +2,7 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.requirements;
 
 import eaglezr.javafx.stages.PopupStage;
 import eaglezr.support.errorsystem.ErrorPopupSystem;
+import eaglezr.support.logs.LoggingTool;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -12,6 +13,13 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.FramedPane;
 
 import java.util.function.Consumer;
 
+/**
+ * Displays all of the comparators modifying the associated {@link RequirementFilter} via a {@link
+ * ComparatorButtonScrollPane}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
+ */
 public class RequirementFilterPane extends FramedPane
 		implements Consumer<RequirementFilter.RequirementComparator>, ProjectPane {
 
@@ -19,9 +27,18 @@ public class RequirementFilterPane extends FramedPane
 	private Runnable apply;
 	private Stage stage;
 	private Config config;
-	private FilterButtonScrollPane pane;
+	private ComparatorButtonScrollPane pane;
 
+	/**
+	 * Creates a pane from the given {@link RequirementFilter} and {@link Runnable}.
+	 *
+	 * @param filter The filter to display and modify with this pane.
+	 * @param apply  The action to perform when the 'Apply' button contained within this pane is pressed.
+	 * @param stage  The stage over which pop-ups will be displayed.
+	 * @param config This defines some of the physical properties and behavior of this pane.
+	 */
 	RequirementFilterPane( RequirementFilter filter, Runnable apply, Stage stage, Config config ) {
+		LoggingTool.print( "Constructing new RequirementFilterPane." );
 		this.filter = filter;
 		this.apply = apply;
 		this.stage = stage;
@@ -29,6 +46,9 @@ public class RequirementFilterPane extends FramedPane
 		setup();
 	}
 
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 */
 	private void setup() {
 		// Close Button
 		Button closeButton = new Button( "Close" );
@@ -93,7 +113,7 @@ public class RequirementFilterPane extends FramedPane
 		this.getChildren().add( clearFilters );
 
 		// ScrollPane
-		this.pane = new FilterButtonScrollPane( this.filter );
+		this.pane = new ComparatorButtonScrollPane( this.filter );
 		this.pane.layoutXProperty().setValue( this.config.buffer );
 		this.pane.layoutYProperty().setValue( this.config.buffer );
 		this.pane.prefWidthProperty().bind( this.widthProperty().subtract( this.config.buffer * 2 ) );
@@ -102,10 +122,18 @@ public class RequirementFilterPane extends FramedPane
 		this.getChildren().add( this.pane );
 	}
 
+	/**
+	 * This updates each field to display their current value.
+	 */
 	void update() {
 		this.pane.update();
 	}
 
+	/**
+	 * Adds the given comparator to the {@link RequirementFilter}.
+	 *
+	 * @param comparator The comparator to add to the {@link RequirementFilter}.
+	 */
 	@Override public void accept( RequirementFilter.RequirementComparator comparator ) {
 		try {
 			this.pane.addComparator( comparator );
@@ -115,6 +143,7 @@ public class RequirementFilterPane extends FramedPane
 	}
 
 	@Override public void loadNewProject( Project project ) {
-
+		this.filter.resetFilter();
+		LoggingTool.print( "RequirementFilterPane: Loaded new project." );
 	}
 }

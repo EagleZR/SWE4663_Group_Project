@@ -7,13 +7,21 @@ import javafx.scene.layout.Pane;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 
 import java.util.LinkedList;
-import java.util.List;
 
+/**
+ * A pane to hold a set of {@link PersonButton}s, ensuring that each {@link Person} has one button, and only one.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
+ */
 public class PersonButtonScrollPane extends ScrollPane {
 
 	private Pane buttonPane;
 	private LinkedList<PersonButton> buttons;
 
+	/**
+	 * Constructs an empty pane.
+	 */
 	public PersonButtonScrollPane() {
 		LoggingTool.print( "Constructing a new PersonButtonScrollPane." );
 		this.setHbarPolicy( ScrollPane.ScrollBarPolicy.NEVER );
@@ -24,6 +32,11 @@ public class PersonButtonScrollPane extends ScrollPane {
 		this.buttons = new LinkedList<>();
 	}
 
+	/**
+	 * Adds the given {@link PersonButton} to the pane.
+	 *
+	 * @param button The button to be added.
+	 */
 	public void addButton( PersonButton button ) {
 		LoggingTool.print( "PersonButtonScrollPane: Adding Button with text: " + button.getText() );
 		button.prefWidthProperty().bind( this.buttonPane.widthProperty() );
@@ -38,6 +51,11 @@ public class PersonButtonScrollPane extends ScrollPane {
 		this.buttonPane.getChildren().add( button );
 	}
 
+	/**
+	 * Removes the given {@link PersonButton} from the pane.
+	 *
+	 * @param button The button to be removed.
+	 */
 	public void removeButton( PersonButton button ) {
 		LoggingTool.print( "PersonButtonScrollPane: Removing Button with text: " + ( button == null ?
 				"<null>" :
@@ -59,6 +77,11 @@ public class PersonButtonScrollPane extends ScrollPane {
 		this.buttons.remove( button );
 	}
 
+	/**
+	 * Retrieves the {@link PersonButton}s contained by this pane.
+	 *
+	 * @return The buttons contained by this pane.
+	 */
 	public LinkedList<PersonButton> getButtons() {
 		return this.buttons;
 	}
@@ -68,12 +91,23 @@ public class PersonButtonScrollPane extends ScrollPane {
 		addButton( button );
 	}
 
+	/**
+	 * Removes the {@link PersonButton} associated with the given {@link Person} form the pane.
+	 *
+	 * @param person The person whose {@link PersonButton} will be removed.
+	 */
 	public void removePerson( Person person ) {
 		if ( containsPerson( person ) ) {
 			removeButton( getPersonButton( person ) );
 		}
 	}
 
+	/**
+	 * Checks if any of the {@link PersonButton}s in this pane are associated with the given {@link Person}.
+	 *
+	 * @param person The person to search for in this pane.
+	 * @return Returns {@code true} if the person is displayed by this pane, {@code} false if it is not.
+	 */
 	public boolean containsPerson( Person person ) {
 		for ( PersonButton button : this.buttons ) {
 			if ( button.getPerson().equals( person ) ) {
@@ -90,6 +124,13 @@ public class PersonButtonScrollPane extends ScrollPane {
 		return false;
 	}
 
+	/**
+	 * Retrieves the {@link PersonButton} associated with the given {@link Person}.
+	 *
+	 * @param person The person whose {@link PersonButton} is to be retrieved.
+	 * @return The {@link PersonButton} associated with the given {@link Person} if it exists, {@code null} if it does
+	 * not.
+	 */
 	public PersonButton getPersonButton( Person person ) {
 		for ( PersonButton button : this.buttons ) {
 			if ( button.getPerson().equals( person ) ) {
@@ -99,7 +140,11 @@ public class PersonButtonScrollPane extends ScrollPane {
 		return null;
 	}
 
+	/**
+	 * Removes all {@link PersonButton}s.
+	 */
 	public void clear() {
+		LoggingTool.print( "PersonButtonScrollPane: Clearing." );
 		this.buttonPane.getChildren().clear();
 		this.buttons.clear();
 	}

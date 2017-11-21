@@ -9,6 +9,10 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHo
 
 // TODO Set an animation (?) so this updates regularly.
 // TODO Make this so it displays in a separate window (On separate thread?)
+
+/**
+ * A pane to display all of the project's data in a simple format for debugging assistance.
+ */
 public class DebugPane extends Pane implements ProjectPane {
 
 	private static int numModules = 4;
@@ -30,7 +34,8 @@ public class DebugPane extends Pane implements ProjectPane {
 		this.getChildren().add( this.teamMembers );
 
 		this.workedHours = new Label();
-		this.workedHours.layoutXProperty().bind( this.teamMembers.layoutXProperty().add( this.teamMembers.widthProperty() ) );
+		this.workedHours.layoutXProperty()
+				.bind( this.teamMembers.layoutXProperty().add( this.teamMembers.widthProperty() ) );
 		this.workedHours.layoutYProperty().setValue( 0 );
 		this.workedHours.prefWidthProperty().bind( this.widthProperty().divide( numModules ) );
 		this.workedHours.prefHeightProperty().bind( this.heightProperty() );
@@ -51,6 +56,9 @@ public class DebugPane extends Pane implements ProjectPane {
 		this.getChildren().add( this.requirements );
 	}
 
+	/**
+	 * This updates each field to display their current value.
+	 */
 	private void update() {
 		// Team Members' Names
 		String names = "Team Members: ";

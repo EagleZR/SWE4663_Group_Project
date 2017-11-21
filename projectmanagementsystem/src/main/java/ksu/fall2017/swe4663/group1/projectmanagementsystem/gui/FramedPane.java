@@ -5,8 +5,18 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
+/**
+ * A pane which places a simple framed border just inside the outer edges of the pane, just for appearances. Otherwise
+ * behaves no differently than a regular {@link Pane}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
+ */
 public abstract class FramedPane extends Pane {
 
+	/**
+	 * Constructs a framed pane with the simple frame.
+	 */
 	public FramedPane() {
 		LoggingTool.print( "Constructing new FramedPane." );
 		// Draw Frame
@@ -30,6 +40,11 @@ public abstract class FramedPane extends Pane {
 		this.getChildren().addAll( topLine, rightLine, leftLine, bottomLine );
 	}
 
+	/**
+	 * Constructs a framed pane with an additional label in the center of the pane.
+	 *
+	 * @param message The text that will go inside of the label.
+	 */
 	public FramedPane( String message ) {
 		this();
 		Label label = new Label( message );

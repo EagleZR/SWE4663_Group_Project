@@ -1,6 +1,7 @@
 package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.requirements;
 
 import eaglezr.javafx.stages.PopupStage;
+import eaglezr.support.logs.LoggingTool;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,6 +13,12 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements.Requirem
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements.RequirementsList;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements.Status;
 
+/**
+ * A pane that displays information about a {@link Requirement} for either construction or editing.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
+ */
 public class RequirementDetailsPane extends FramedPane {
 
 	private Requirement requirement;
@@ -31,20 +38,22 @@ public class RequirementDetailsPane extends FramedPane {
 	private TextArea descriptionArea;
 
 	/**
-	 * Constructor used by the "Add Requirement" button in the RequirementsListPane
+	 * Constructor used by the "Add Requirement" button in the RequirementsListPane.
 	 */
 	private RequirementDetailsPane( Config config ) {
+		LoggingTool.print( "Constructing new RequirementsDetailsPane for creating a new Requirement." );
 		this.role = Role.ADD;
 		this.config = config;
 		setup();
 	}
 
 	/**
-	 * Constructor used by the "Edit Requirement" action in the RequirementPane
+	 * Constructor used by the "Edit Requirement" action in the RequirementPane.
 	 *
 	 * @param requirement The {@link Requirement} to be edited.
 	 */
 	private RequirementDetailsPane( Requirement requirement, Config config ) {
+		LoggingTool.print( "Constructing new RequirementsDetailsPane for editing a Requirement." );
 		this.role = Role.EDIT;
 		this.requirement = requirement;
 		this.config = config;
@@ -79,9 +88,10 @@ public class RequirementDetailsPane extends FramedPane {
 	 * Requirement} displayed by the given {@link RequirementPane}.
 	 *
 	 * @param requirementPane  The {@link RequirementPane} whose {@link Requirement} will be edited.
-	 * @param requirementsPane
+	 * @param requirementsPane The pane which holds the {@link RequirementsPane} whose {@link Requirement} is being
+	 *                         edited.
 	 * @param stage            The {@link Stage} over which this window will be displayed.
-	 * @param config
+	 * @param config           This defines some of the physical properties and behavior of this pane.
 	 */
 	protected static void showEditPane( RequirementPane requirementPane, RequirementsListPane requirementsPane,
 			Stage stage, Config config ) {
@@ -105,17 +115,26 @@ public class RequirementDetailsPane extends FramedPane {
 		showPane( detailsPane, stage );
 	}
 
+	/**
+	 * Displays the already-constructed pane.
+	 *
+	 * @param detailsPane The pane to be displayed.
+	 * @param stage       The stage over which to display the pane.
+	 */
 	private static void showPane( RequirementDetailsPane detailsPane, Stage stage ) {
 		Scene scene = new Scene( detailsPane );
 		PopupStage popupStage = new PopupStage( scene, stage );
 		detailsPane.cancelButton.setOnAction( e -> popupStage.close() );
-		popupStage.setTitle( detailsPane.role.getText() );
+		popupStage.setTitle( detailsPane.role.toString() );
 		popupStage.setWidth( 300 );
 		popupStage.setHeight( 400 );
 		popupStage.setResizable( false );
 		popupStage.show();
 	}
 
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 */
 	private void setup() {
 		// Update\Add Button
 		this.commitButton = new Button( ( this.role == Role.EDIT ? "Edit" : "Add" ) );
@@ -265,6 +284,9 @@ public class RequirementDetailsPane extends FramedPane {
 		this.descriptionArea.setWrapText( true );
 	}
 
+	/**
+	 * An enumeration to determine which role the instances of the parent class are fulfilling.
+	 */
 	private enum Role {
 		ADD( "Add Requirement" ), EDIT( "Edit Requirement" );
 
@@ -274,7 +296,7 @@ public class RequirementDetailsPane extends FramedPane {
 			this.displayText = displayText;
 		}
 
-		public String getText() {
+		@Override public String toString() {
 			return this.displayText;
 		}
 	}

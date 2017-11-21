@@ -16,25 +16,31 @@ public class PersonButton extends Button {
 
 	private Person person;
 
+	/**
+	 * Constructs a new button for the given {@link Person}.
+	 *
+	 * @param person The person to be displayed and contained by this button.
+	 */
 	public PersonButton( Person person ) {
 		super( person.getName() );
 		LoggingTool.print( "Constructing new PersonButton for Person named " + person.getName() + "." );
 		this.person = person;
 	}
 
+	/**
+	 * Retrieves the {@link Person} associated with this button.
+	 *
+	 * @return The {@link Person} associated with this button.
+	 */
 	public Person getPerson() {
 		return this.person;
 	}
 
-	public void setPerson( Person person ) {
-		LoggingTool.print( "PersonButton: Setting new Person named " + person.getName()
-				+ " in PersonButton with previous person named " + ( this.person == null ?
-				"<null>" :
-				this.person.getName() ) + "." );
-		this.person = person;
-		super.setText( this.person.getName() );
-	}
-
+	/**
+	 * Changes the name of the {@link Person} associated with this button.
+	 *
+	 * @param name The new name to be given to the {@link Person}.
+	 */
 	public void changeName( String name ) {
 		LoggingTool.print( "PersonButton: Changing the person's name in PersonButton from " + this.person.getName()
 				+ " to " + name + "." );

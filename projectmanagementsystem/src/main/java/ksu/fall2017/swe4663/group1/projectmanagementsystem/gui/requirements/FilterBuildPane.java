@@ -12,20 +12,33 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements.Status;
 
 import java.util.function.Consumer;
 
+/**
+ * Constructs a pane that creates a {@link RequirementFilter} based on information in local fields.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
+ */
 public class FilterBuildPane extends FramedPane {
 
 	private Config config;
 	private Pane displayPane;
 	private ComboBox<RequirementFilter.ComparatorType> filterType;
 	private Button addButton;
-	private Button closeButton;
 	private Stage stage;
 
+	/**
+	 * Constructs a new {@code FilterBuildPane}.
+	 *
+	 * @param config This defines some of the physical properties and behavior of this pane.
+	 */
 	public FilterBuildPane( Config config ) {
 		this.config = config;
 		setup();
 	}
 
+	/**
+	 * This sets up the pane and places each of the components in their correct positions.
+	 */
 	private void setup() {
 		// Select Filter label
 		Label label = new Label( "Select Filter Type: " );
@@ -72,17 +85,25 @@ public class FilterBuildPane extends FramedPane {
 		this.getChildren().add( this.addButton );
 
 		// Close button
-		this.closeButton = new Button( "Close" );
-		this.closeButton.layoutXProperty().bind( this.widthProperty().subtract( this.closeButton.widthProperty() )
-				.subtract( this.config.buffer ) );
-		this.closeButton.layoutYProperty().bind( this.heightProperty().subtract( this.closeButton.heightProperty() )
-				.subtract( this.config.buffer ) );
-		this.closeButton.setOnAction( e -> {
+		Button closeButton = new Button( "Close" );
+		closeButton.layoutXProperty()
+				.bind( this.widthProperty().subtract( closeButton.widthProperty() ).subtract( this.config.buffer ) );
+		closeButton.layoutYProperty()
+				.bind( this.heightProperty().subtract( closeButton.heightProperty() ).subtract( this.config.buffer ) );
+		closeButton.setOnAction( e -> {
 			this.stage.close();
 		} );
-		this.getChildren().add( this.closeButton );
+		this.getChildren().add( closeButton );
 	}
 
+	/**
+	 * Creates and retrieves a new {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.requirements.RequirementFilter.RequirementComparator}
+	 * from the information in the local fields.
+	 *
+	 * @return A newly-constructed {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.requirements.RequirementFilter.RequirementComparator}.
+	 * @throws IndexOutOfBoundsException Thrown if the drop-down does not have a valid value selected.
+	 * @throws IncompleteFormException   Thrown if the form has not been completed.
+	 */
 	private RequirementFilter.RequirementComparator getComparator()
 			throws IndexOutOfBoundsException, IncompleteFormException {
 		RequirementFilter.RequirementComparator comparator;
@@ -134,6 +155,11 @@ public class FilterBuildPane extends FramedPane {
 		return comparator;
 	}
 
+	/**
+	 * Sets the display pane for the form.
+	 *
+	 * @param pane The pane to display.
+	 */
 	private void setDisplayPane( Pane pane ) {
 		this.getChildren().remove( this.displayPane );
 		this.displayPane = pane;
@@ -145,7 +171,16 @@ public class FilterBuildPane extends FramedPane {
 		this.getChildren().add( pane );
 	}
 
-	public void setConsumer( Consumer<RequirementFilter.RequirementComparator> consumer ) {
+	/**
+	 * Retrieves the function that will consume the {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.requirements.RequirementFilter.RequirementComparator}
+	 * once it has been constructed.
+	 *
+	 * @param consumer A {@link Consumer} (or lambda) which takes appropriate actions on the {@link
+	 *                 ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.requirements.RequirementFilter.RequirementComparator}
+	 *                 once it has been completed. If another class needs to do something with the comparator once it
+	 *                 has been completed, use this to pass it over.
+	 */
+	protected void setConsumer( Consumer<RequirementFilter.RequirementComparator> consumer ) {
 		this.addButton.setOnAction( e -> {
 			try {
 				consumer.accept( getComparator() );
@@ -160,10 +195,18 @@ public class FilterBuildPane extends FramedPane {
 		} );
 	}
 
+	/**
+	 * Sets the stage for this instance
+	 *
+	 * @param stage The stage over which pop-ups will be displayed.
+	 */
 	public void setStage( Stage stage ) {
 		this.stage = stage;
 	}
 
+	/**
+	 * A pane that lets the user input a {@link String} for the construction of a new filter.
+	 */
 	private class StringFilterPane extends Pane {
 
 		private ComboBox<RequirementFilter.StringMatch> matchType;
@@ -189,6 +232,9 @@ public class FilterBuildPane extends FramedPane {
 
 	}
 
+	/**
+	 *
+	 */
 	private class PriorityFilterPane extends Pane {
 
 		private ComboBox<RequirementFilter.PriorityMatch> priorityMatchComboBox;

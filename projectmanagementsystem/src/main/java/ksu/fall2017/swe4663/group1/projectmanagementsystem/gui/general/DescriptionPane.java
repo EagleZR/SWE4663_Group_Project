@@ -13,6 +13,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.FramedPane;
 /**
  * This class is for a description pane in the {@link ksu.fall2017.swe4663.group1.projectmanagementsystem}. This pane
  * holds the project description, which can be edited and saved.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class DescriptionPane extends FramedPane implements ProjectPane {
 

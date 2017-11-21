@@ -1,10 +1,7 @@
 package ksu.fall2017.swe4663.group1.projectmanagementsystem.team;
 
 import eaglezr.support.logs.LoggingTool;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidWorkedHourTypeException;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,6 +12,9 @@ import java.util.Random;
  * A class for representing the people that will make up a {@link Team}. All instances will come with a unique ID.
  * <p>All handled issues and exceptions, as well as general runtime information, are printed using the {@link
  * LoggingTool}. Check the default printer's output to read the logs.</p>
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class Person implements Serializable {
 
@@ -114,7 +114,7 @@ public class Person implements Serializable {
 	 *                                        WorkedHourType}{@code .PROJECT_MANAGEMENT} is used by a non-Manager.</p>
 	 */
 	public void reportHours( double duration, WorkedHourType workedHourType, LocalDate reportingDate )
-			throws PersonNotOnTeamException, InvalidWorkedHourTypeException {
+			throws PersonNotOnTeamException, InvalidWorkedHourTypeException, InvalidSubmissionException {
 		LoggingTool.print( "Person: Reporting hours." );
 		if ( this.team == null ) {
 			throw new PersonNotOnTeamException( this.name + " has not yet been added to a team" );

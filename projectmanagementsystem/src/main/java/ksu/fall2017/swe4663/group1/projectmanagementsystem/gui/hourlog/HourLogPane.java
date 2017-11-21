@@ -2,12 +2,16 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.hourlog;
 
 import eaglezr.support.logs.LoggingTool;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.ProjectPane;
 
 /**
  * Displays the {@link HourLogDisplayPane}, the {@link SelectPersonPane}, and the {@link WorkedHoursSubmissionPane}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class HourLogPane extends Pane implements ProjectPane {
 
@@ -21,7 +25,7 @@ public class HourLogPane extends Pane implements ProjectPane {
 	 * @param project The project currently being viewed/edited.
 	 * @param config  This defines some of the physical properties and behavior of this pane.
 	 */
-	public HourLogPane( Project project, Config config ) {
+	public HourLogPane( Project project, Stage stage, Config config ) {
 		LoggingTool.print( "Constructing new HourLogPane." );
 		// Select Person Pane
 		LoggingTool.print( "HourLogPane: Creating new SelectPersonPane." );
@@ -34,7 +38,7 @@ public class HourLogPane extends Pane implements ProjectPane {
 
 		// Fill In Details Pane
 		LoggingTool.print( "HourLogPane: Creating new WorkedHoursSubmissionPane." );
-		this.submissionPane = new WorkedHoursSubmissionPane( config );
+		this.submissionPane = new WorkedHoursSubmissionPane( project, stage, config );
 		this.submissionPane.layoutXProperty()
 				.bind( this.selectPersonPane.layoutXProperty().add( this.selectPersonPane.widthProperty() ) );
 		this.submissionPane.layoutYProperty().bind( this.selectPersonPane.layoutYProperty() );

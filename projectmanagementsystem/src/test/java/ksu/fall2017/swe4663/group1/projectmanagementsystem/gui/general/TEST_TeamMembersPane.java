@@ -8,7 +8,7 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 
 public class TEST_TeamMembersPane extends Application {
 	@Override public void start( Stage primaryStage ) throws Exception {
-		TeamMembersPane teamMembersPane = new TeamMembersPane( primaryStage, new Project(), new Config() );
+		TeamMembersPane teamMembersPane = new TeamMembersPane( new Project(), primaryStage, new Config() );
 		Scene scene = new Scene( teamMembersPane );
 		primaryStage.setScene( scene );
 		primaryStage.show();

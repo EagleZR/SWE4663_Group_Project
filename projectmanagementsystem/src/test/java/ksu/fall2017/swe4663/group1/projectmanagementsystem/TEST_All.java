@@ -3,7 +3,7 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements.TEST_Requirement;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.requirements.TEST_RequirementsList;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.TEST_WorkedHours;
-import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.TEST_ProjectHourLog;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.TEST_ProjectHourLog;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.risks.TEST_Risk;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.TEST_Person;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.TEST_Team;

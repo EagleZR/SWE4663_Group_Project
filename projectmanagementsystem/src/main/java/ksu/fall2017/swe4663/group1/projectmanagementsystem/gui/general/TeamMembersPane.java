@@ -24,25 +24,28 @@ import java.util.LinkedList;
 
 /**
  * A pane to display the {@link Person}s who are team members of the {@link Project}'s {@link Team}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 class TeamMembersPane extends FramedPane implements TeamPresenter, ProjectPane {
 
-	private Stage primaryStage;
+	private Stage stage;
 	private Project project;
 	private PersonButtonScrollPane scrollPane;
 	private Config config;
 	private Button addButton;
 
 	/**
-	 * Constructs a new {@link TeamMembersPane} from the given {@link Project}.
+	 * Constructs a new pane from the given {@link Project}.
 	 *
-	 * @param primaryStage The stage over which pop-ups will be displayed.
-	 * @param project      The project currently being viewed/edited.
-	 * @param config       This defines some of the physical properties and behavior of this pane.
+	 * @param project The project currently being viewed/edited.
+	 * @param stage   The stage over which pop-ups will be displayed.
+	 * @param config  This defines some of the physical properties and behavior of this pane.
 	 */
-	protected TeamMembersPane( Stage primaryStage, Project project, Config config ) {
+	protected TeamMembersPane( Project project, Stage stage, Config config ) {
 		LoggingTool.print( "Constructing a new TeamMembersPane." );
-		this.primaryStage = primaryStage;
+		this.stage = stage;
 		this.project = project;
 		this.config = config;
 		this.project.getTeam().addToDistro( this );
@@ -102,7 +105,7 @@ class TeamMembersPane extends FramedPane implements TeamPresenter, ProjectPane {
 				.print( "TeamMembersPane: Editing " + personButton.getPerson().getName() + " in the TeamMembersPane." );
 		Pane pane = new Pane();
 		Scene scene = new Scene( pane, 280, 70 );
-		PopupStage popupStage = new PopupStage( scene, this.primaryStage );
+		PopupStage popupStage = new PopupStage( scene, this.stage );
 		popupStage.setTitle( "Edit: " + personButton.getPerson().getName() );
 
 		// Label
@@ -202,7 +205,7 @@ class TeamMembersPane extends FramedPane implements TeamPresenter, ProjectPane {
 		private Project project;
 
 		/**
-		 * Constructs the {@link AddHandler} using the given {@link Project}.
+		 * Constructs the event handler using the given {@link Project}.
 		 *
 		 * @param project The project currently being viewed/edited.
 		 */
@@ -213,7 +216,7 @@ class TeamMembersPane extends FramedPane implements TeamPresenter, ProjectPane {
 		@Override public void handle( ActionEvent event ) {
 			Pane pane = new Pane();
 			Scene scene = new Scene( pane, 280, 70 );
-			PopupStage popupStage = new PopupStage( scene, TeamMembersPane.this.primaryStage );
+			PopupStage popupStage = new PopupStage( scene, TeamMembersPane.this.stage );
 			popupStage.setTitle( "Add new member" );
 
 			// Label

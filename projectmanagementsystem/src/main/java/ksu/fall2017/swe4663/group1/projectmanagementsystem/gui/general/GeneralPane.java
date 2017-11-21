@@ -12,6 +12,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.PersonNotOnTeamE
 /**
  * A pane that displays a {@link DescriptionPane}, a {@link ManagerPane}, a {@link TeamMembersPane}, and a {@link
  * RisksPane} for a given {@link Project}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class GeneralPane extends Pane implements ProjectPane {
 
@@ -23,11 +26,11 @@ public class GeneralPane extends Pane implements ProjectPane {
 	/**
 	 * Creates a new {@link GeneralPane} using the given parameters.
 	 *
-	 * @param primaryStage The stage over which pop-ups will be displayed.
-	 * @param project      The project currently being viewed/edited.
-	 * @param config       This defines some of the physical properties and behavior of this pane.
+	 * @param project The project currently being viewed/edited.
+	 * @param stage   The stage over which pop-ups will be displayed.
+	 * @param config  This defines some of the physical properties and behavior of this pane.
 	 */
-	public GeneralPane( Stage primaryStage, Project project, Config config ) {
+	public GeneralPane( Project project, Stage stage, Config config ) {
 		LoggingTool.print( "Constructing new GeneralPane." );
 
 		// Description Pane
@@ -41,7 +44,7 @@ public class GeneralPane extends Pane implements ProjectPane {
 
 		// Team Members Pane
 		LoggingTool.print( "GeneralPane: Creating TeamMembersPane in GeneralPane." );
-		this.teamMembersPane = new TeamMembersPane( primaryStage, project, config );
+		this.teamMembersPane = new TeamMembersPane( project, stage, config );
 		this.teamMembersPane.prefWidthProperty().bind( this.widthProperty().divide( 2 ) );
 		this.teamMembersPane.prefHeightProperty().bind( this.heightProperty().divide( 2 ) );
 		this.teamMembersPane.layoutXProperty().bind( this.descriptionPane.layoutXProperty() );
@@ -53,7 +56,7 @@ public class GeneralPane extends Pane implements ProjectPane {
 		LoggingTool.print( "GeneralPane: Creating ManagerPane in GeneralPane." );
 		this.managerPane = null;
 		try {
-			this.managerPane = new ManagerPane( project, primaryStage, config );
+			this.managerPane = new ManagerPane( project, stage, config );
 		} catch ( PersonNotOnTeamException e ) {
 			e.printStackTrace();
 		}
@@ -66,7 +69,7 @@ public class GeneralPane extends Pane implements ProjectPane {
 
 		// Risks Pane
 		LoggingTool.print( "GeneralPane: Creating RisksPane in GeneralPane." );
-		this.risksPane = new RisksPane( project, primaryStage, config );
+		this.risksPane = new RisksPane( project, stage, config );
 		this.risksPane.prefWidthProperty().bind( this.widthProperty().divide( 2 ) );
 		this.risksPane.prefHeightProperty().bind( this.heightProperty().divide( 2 ) );
 		this.risksPane.layoutXProperty()

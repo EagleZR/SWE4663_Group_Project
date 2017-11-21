@@ -7,6 +7,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHo
  * Exception meant to be thrown when a {@link Person} is not on a team and attempts to use a team-specific function,
  * when a {@link Team} is looking for a Manager and cannot find one, or when {@link WorkedHours} are sent to a {@link
  * Team} to be reported, and the working {@link Person} is not on the team.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class PersonNotOnTeamException extends Exception {
 

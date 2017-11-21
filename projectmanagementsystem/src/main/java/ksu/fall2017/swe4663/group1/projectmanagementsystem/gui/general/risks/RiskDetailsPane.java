@@ -17,6 +17,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.risks.Risk;
 
 /**
  * This pane allows for the construction and editing of a {@link RiskPane}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class RiskDetailsPane extends Pane {
 

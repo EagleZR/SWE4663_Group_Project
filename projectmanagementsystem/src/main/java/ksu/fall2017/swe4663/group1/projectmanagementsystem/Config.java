@@ -11,6 +11,9 @@ import java.util.Scanner;
 /**
  * Class that saves, loads, and represents the configuration specifics for the {@link
  * ksu.fall2017.swe4663.group1.projectmanagementsystem}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class Config implements Closeable {
 

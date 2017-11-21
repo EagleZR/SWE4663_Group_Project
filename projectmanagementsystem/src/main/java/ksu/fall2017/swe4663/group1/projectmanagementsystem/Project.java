@@ -18,6 +18,9 @@ import java.util.LinkedList;
  * {@code save(Project project, File file)} and {@code load(String fileName)} or {@code load(File file)}.</p><p>All
  * handled issues and exceptions, as well as general runtime information, are printed using the {@link LoggingTool}.
  * Check the default printer's output to read the logs.</p>
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class Project implements Serializable {
 

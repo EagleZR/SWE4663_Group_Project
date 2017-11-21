@@ -1,5 +1,6 @@
 package ksu.fall2017.swe4663.group1.projectmanagementsystem.team;
 
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidSubmissionException;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidWorkedHourTypeException;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 import org.junit.Test;
@@ -72,7 +73,7 @@ public class TEST_Person {
 	}
 
 	@Test( expected = PersonNotOnTeamException.class ) public void TEST_submitWhileNotOnTeam()
-			throws InvalidWorkedHourTypeException, PersonNotOnTeamException {
+			throws InvalidWorkedHourTypeException, PersonNotOnTeamException, InvalidSubmissionException {
 		Person bob = new Person( "Bob" );
 		bob.reportHours( 13, WorkedHourType.CODING, LocalDate.now() );
 	}

@@ -8,6 +8,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
  * WorkedHours}.<p>Notably thrown when any {@link Person} attempts to construct a {@link WorkedHours} using {@link
  * WorkedHourType}{@code .ANY}, or when a non-Manager {@link Person} attempts to create a {@link WorkedHours} using
  * {@link WorkedHourType}.{@code PROJECT_MANAGEMENT}.</p>
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class InvalidWorkedHourTypeException extends Exception {
 

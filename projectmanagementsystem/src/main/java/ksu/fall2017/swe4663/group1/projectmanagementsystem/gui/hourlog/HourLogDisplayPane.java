@@ -13,6 +13,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHo
 /**
  * Displays the current {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog} for the
  * current {@link Project} using {@link HourTypeDisplayPane}s for each {@link WorkedHourType}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 class HourLogDisplayPane extends FramedPane implements ProjectPane {
 

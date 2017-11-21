@@ -8,6 +8,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
  * A {@link Button} that is built for a specific {@link Person} and displays that Person's name in the Button's label.
  * <p>NOTE: There is no action specified for when the {@link PersonButton} is pushed, and should be specified when
  * creating it.</p>
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class PersonButton extends Button {
 

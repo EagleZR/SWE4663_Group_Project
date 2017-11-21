@@ -9,6 +9,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.risks.Risk;
 
 /**
  * Displays the information about a single {@link Risk} in the {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.Project}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class RiskPane extends FramedPane {
 

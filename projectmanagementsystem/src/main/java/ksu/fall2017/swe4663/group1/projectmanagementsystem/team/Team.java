@@ -2,6 +2,7 @@ package ksu.fall2017.swe4663.group1.projectmanagementsystem.team;
 
 import eaglezr.support.logs.LoggingTool;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.TeamPresenter;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidSubmissionException;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.ProjectHourLog;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours;
@@ -17,6 +18,9 @@ import java.util.LinkedList;
  * WorkedHours}s submitted by each of the {@link Person}s on this team.<p>All handled issues and exceptions, as well as
  * general runtime information, are printed using the {@link LoggingTool}. Check the default printer's output to read
  * the logs.</p>
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class Team implements Serializable {
 
@@ -102,7 +106,7 @@ public class Team implements Serializable {
 	 * @throws PersonNotOnTeamException If the {@link Person} who completed the {@link WorkedHours} is not on this
 	 *                                  team.
 	 */
-	void registerHours( WorkedHours workedHours ) throws PersonNotOnTeamException {
+	void registerHours( WorkedHours workedHours ) throws PersonNotOnTeamException, InvalidSubmissionException {
 		LoggingTool.print( "Team: Hours submitted from " + workedHours.getPerson().name + "." );
 		if ( !this.teamMembers.contains( workedHours.getPerson() ) ) {
 			throw new PersonNotOnTeamException( workedHours.getPerson() + " is not on this team." );

@@ -12,6 +12,7 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.Config;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.PersonNotOnTeamException;
+import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidSubmissionException;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.InvalidWorkedHourTypeException;
 import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHourType;
 
@@ -58,6 +59,8 @@ public class TEST_HourTypeDisplayPane extends Application {
 			} catch ( PersonNotOnTeamException e1 ) {
 				e1.printStackTrace();
 			} catch ( InvalidWorkedHourTypeException e1 ) {
+				e1.printStackTrace();
+			} catch ( InvalidSubmissionException e1 ) {
 				e1.printStackTrace();
 			}
 			displayPane.update();

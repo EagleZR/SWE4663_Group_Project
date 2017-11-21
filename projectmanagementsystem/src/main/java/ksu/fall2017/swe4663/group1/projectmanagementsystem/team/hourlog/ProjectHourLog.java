@@ -10,6 +10,9 @@ import java.util.LinkedList;
 
 /**
  * A tool used to organize and provide access to the various {@link WorkedHours} submitted for a {@link Project}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class ProjectHourLog implements Serializable {
 
@@ -86,17 +89,15 @@ public class ProjectHourLog implements Serializable {
 	 *
 	 * @param newWorkedHours The new {@link WorkedHours} to add for the {@link Project}.
 	 */
-	public void registerHours( WorkedHours newWorkedHours ) {
+	public void registerHours( WorkedHours newWorkedHours ) throws InvalidSubmissionException {
 		LoggingTool.print( "ProjectHourLog: Registering new Hours: " + newWorkedHours.toString() + "." );
 
 		// Check if submitter has already submitted for this period
-		Person submitter = newWorkedHours.getPerson();
 		for ( WorkedHours hours : this.workedHours ) {
 			if ( WorkedHours.hoursConflict( newWorkedHours, hours, this.submissionInterval ) ) {
-				LoggingTool
-						.print( "ProjectHourLog: The registered hours conflicted with already-submitted hours based on the current submission interval. The conflicting hours are: "
+				throw new InvalidSubmissionException(
+						"ProjectHourLog: The registered hours conflicted with already-submitted hours based on the current submission interval. The conflicting hours are: "
 								+ hours.toString() );
-				// TODO Throw exception
 			}
 		}
 
@@ -111,11 +112,24 @@ public class ProjectHourLog implements Serializable {
 	}
 
 	/**
+	 * Retrieves the {@link SubmissionInterval} for this log.
+	 *
+	 * @return The {@link SubmissionInterval}, or null if there is not one set yet.
+	 */
+	public SubmissionInterval getSubmissionInterval() {
+		return this.submissionInterval;
+	}
+
+	public void setSubmissionInterval( SubmissionInterval submissionInterval ) {
+		this.submissionInterval = submissionInterval;
+	}
+
+	/**
 	 * Determines if the two {@link Object}s are equal.
 	 *
 	 * @param other The other {@link Object} to be compared against.
-	 * @return {@code true} if the other {@link ProjectHourLog} is equal to this one, {@code false} if the two {@link
-	 * ProjectHourLog}s are not equal, or if the other {@link Object} is not a {@link ProjectHourLog}.
+	 * @return {@code true} if the other {@code ProjectHourLog} is equal to this one, {@code false} if the two {@code
+	 * ProjectHourLog}s are not equal, or if the other {@link Object} is not a {@code ProjectHourLog}.
 	 */
 	@Override public boolean equals( Object other ) {
 		ProjectHourLog otherHourLog;

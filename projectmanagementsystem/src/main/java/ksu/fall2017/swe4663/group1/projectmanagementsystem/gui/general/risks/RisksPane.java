@@ -16,6 +16,9 @@ import java.util.LinkedList;
 
 /**
  * A pane which displays all of the {@link Risk}s of a {@link Project} through {@link RiskPane}s.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class RisksPane extends FramedPane implements ProjectPane {
 

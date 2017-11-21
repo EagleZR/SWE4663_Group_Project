@@ -5,6 +5,9 @@ import java.util.LinkedList;
 
 /**
  * A derivative of the {@link LinkedList} class, specially made for {@link Requirement}s.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class RequirementsList extends LinkedList<Requirement> {
 

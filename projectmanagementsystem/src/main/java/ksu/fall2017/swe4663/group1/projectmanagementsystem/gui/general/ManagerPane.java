@@ -22,6 +22,9 @@ import java.util.LinkedList;
 
 /**
  * This pane displays and edits the managers of the given {@link Team} within the {@link Project}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class ManagerPane extends FramedPane implements TeamPresenter, ProjectPane {
 
@@ -29,23 +32,23 @@ public class ManagerPane extends FramedPane implements TeamPresenter, ProjectPan
 	private Person manager;
 	private Label label;
 	private PersonButtonScrollPane scrollPane;
-	private Stage primaryStage;
+	private Stage stage;
 	private Config config;
 
 	/**
 	 * Constructs a new {@link ManagerPane} from the given parameters.
 	 *
-	 * @param project      The project currently being viewed/edited.
-	 * @param primaryStage The stage over which pop-ups will be displayed.
-	 * @param config       This defines some of the physical properties and behavior of this pane.
+	 * @param project The project currently being viewed/edited.
+	 * @param stage   The stage over which pop-ups will be displayed.
+	 * @param config  This defines some of the physical properties and behavior of this pane.
 	 * @throws PersonNotOnTeamException Thrown if there is some issue where the current {@link Team} does not have a
 	 *                                  manager. In most cases (i.e. new teams), this can be disregarded.
 	 */
-	protected ManagerPane( Project project, Stage primaryStage, Config config ) throws PersonNotOnTeamException {
+	protected ManagerPane( Project project, Stage stage, Config config ) throws PersonNotOnTeamException {
 		LoggingTool.print( "Creating new ManagerPane." );
 		this.project = project;
 		this.project.getTeam().addToDistro( this );
-		this.primaryStage = primaryStage;
+		this.stage = stage;
 		this.config = config;
 		try {
 			LoggingTool.print( "Setting " + project.getTeam().getManager() + " as the manager in the ManagerPane." );
@@ -111,7 +114,7 @@ public class ManagerPane extends FramedPane implements TeamPresenter, ProjectPan
 		personButton.setOnAction( e -> {
 			Pane pane = new Pane();
 			Scene scene = new Scene( pane, 280, 70 );
-			PopupStage popupStage = new PopupStage( scene, this.primaryStage );
+			PopupStage popupStage = new PopupStage( scene, this.stage );
 			popupStage.setTitle( "Set as manager?" );
 
 			Label label = new Label( "Set " + person.getName() + " as the manager?" );

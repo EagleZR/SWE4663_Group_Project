@@ -16,6 +16,9 @@ import java.util.LinkedList;
 /**
  * Displays all of the {@link Person} members of the {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team}
  * from the given {@link Project}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class SelectPersonPane extends FramedPane implements TeamPresenter, ProjectPane {
 

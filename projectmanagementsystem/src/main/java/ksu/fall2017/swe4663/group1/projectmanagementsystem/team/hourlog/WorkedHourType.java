@@ -5,6 +5,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
 
 /**
  * An enum used to represent the different types of {@link WorkedHours} for a {@link Project}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public enum WorkedHourType {
 

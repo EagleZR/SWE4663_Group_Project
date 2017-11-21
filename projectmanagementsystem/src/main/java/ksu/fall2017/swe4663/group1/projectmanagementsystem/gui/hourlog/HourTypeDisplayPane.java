@@ -13,6 +13,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHo
 /**
  * Displays the sum of {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.team.hourlog.WorkedHours} that have
  * been submitted of a {@link WorkedHourType}.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 class HourTypeDisplayPane extends FramedPane implements ProjectPane {
 

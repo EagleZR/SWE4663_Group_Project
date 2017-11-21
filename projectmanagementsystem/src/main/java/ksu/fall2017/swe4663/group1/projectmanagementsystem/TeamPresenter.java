@@ -6,6 +6,9 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person;
  * Denotes a {@link javafx.scene.layout.Pane} or other entity that displays information about a {@link
  * ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team}. This interface defines functions that should be used
  * to update the displayed {@link ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Team} when it changes.
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public interface TeamPresenter {
 

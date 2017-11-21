@@ -25,6 +25,9 @@ import java.io.IOException;
  * Displays and modifies a {@link Project}. It is capable of creating new projects, saving the current project, and
  * loading a previous project.  <p>NOTE: This pane is meant to be set as the primary pane in the primary {@link Stage}.
  * Usage otherwise will result in awkward appearance.</p>
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class ProjectManagementPane extends BorderPane implements ProjectPane {
 
@@ -117,7 +120,7 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 		// Initialize content panes
 		////////////////////////////////////
 		LoggingTool.print( "ProjectManagementPane: Creating GeneralPane in ProjectManagementPane." );
-		this.generalPane = new GeneralPane( stage, project, config );
+		this.generalPane = new GeneralPane( project, stage, config );
 		this.generalPane.prefWidthProperty().bind( contentPane.widthProperty() );
 		this.generalPane.prefHeightProperty()
 				.bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );
@@ -127,7 +130,7 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 		this.requirementsPane.prefHeightProperty()
 				.bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );
 		LoggingTool.print( "ProjectManagementPane: Creating HourLogPane in ProjectManagementPane." );
-		this.hourLogPane = new HourLogPane( project, config );
+		this.hourLogPane = new HourLogPane( project, stage, config );
 		this.hourLogPane.prefWidthProperty().bind( contentPane.widthProperty() );
 		this.hourLogPane.prefHeightProperty()
 				.bind( contentPane.heightProperty().subtract( tabsPane.heightProperty() ) );
@@ -266,6 +269,13 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 		settings.setOnAction( e -> {
 			LoggingTool.print( "ProjectManagementPane: Settings button pressed." );
 			// TODO Display settings stage
+
+			// Saves Directory
+
+			// Hour Log Interval
+
+			// Logging on/off
+
 		} );
 		options.getItems().addAll( settings );
 

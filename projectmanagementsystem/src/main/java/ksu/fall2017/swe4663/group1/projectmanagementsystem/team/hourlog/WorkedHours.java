@@ -12,6 +12,9 @@ import java.util.Locale;
  * The class used for storing information about hours submitted to the {@link ProjectHourLog}.<p>All handled issues and
  * exceptions, as well as general runtime information, are printed using the {@link LoggingTool}. Check the default
  * printer's output to read the logs.</p>
+ *
+ * @author Mark Zeagler
+ * @version 1.0
  */
 public class WorkedHours implements Serializable {
 

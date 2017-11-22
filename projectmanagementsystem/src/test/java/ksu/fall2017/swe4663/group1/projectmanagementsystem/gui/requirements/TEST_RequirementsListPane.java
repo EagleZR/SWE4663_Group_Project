@@ -18,7 +18,7 @@ public class TEST_RequirementsListPane extends Application {
 		project.getRequirements()
 				.add( new Requirement( "This is a second title", "This is a requirement 2", "LastName, FirstName",
 						Priority.LOW, Status.REJECTED, false, false ) );
-		RequirementsListPane pane = new RequirementsListPane( project, new Config(), primaryStage );
+		RequirementsListPane pane = new RequirementsListPane( project, primaryStage, new Config() );
 
 		Scene scene = new Scene( pane );
 		primaryStage.setScene( scene );

@@ -10,18 +10,37 @@ import java.util.Scanner;
 
 /**
  * Class that saves, loads, and represents the configuration specifics for the {@link
- * ksu.fall2017.swe4663.group1.projectmanagementsystem}.
+ * ksu.fall2017.swe4663.group1.projectmanagementsystem}. This data are to define the behavior and appearance of the
+ * application which uses it, allowing them to be saved to and loaded from a file.
  *
  * @author Mark Zeagler
  * @version 1.0
  */
 public class Config implements Closeable {
 
+	/**
+	 * The file location of the previous save.
+	 */
 	public File previousSave;
+	/**
+	 * The directory where saves files are located by default.
+	 */
 	public File savesDirectory = new File( "saves" );
+	/**
+	 * The save file extension used when saving.
+	 */
 	public String saveFileExtension = "save";
+	/**
+	 * The default window width of the application.
+	 */
 	public int windowWidth = 500;
+	/**
+	 * The default window height of the application.
+	 */
 	public int windowHeight = 600;
+	/**
+	 * The standard buffer space between UI items in the application.
+	 */
 	public int buffer = 10;
 	private File configFile = new File( "data/config.ini" );
 
@@ -87,8 +106,16 @@ public class Config implements Closeable {
 	private void parseSettingLine( String settingLine ) {
 		if ( settingLine.length() > 0 && settingLine.charAt( 0 ) != '#' ) {
 			if ( settingLine.contains( "save_file_location" ) ) {
-				this.previousSave = new File( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
-				LoggingTool.print( "Config: Setting previous save as: " + this.previousSave.getAbsolutePath() + "." );
+				File file = new File( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
+				if ( file.exists() ) {
+					this.previousSave = file;
+					LoggingTool
+							.print( "Config: Setting previous save as: " + this.previousSave.getAbsolutePath() + "." );
+				} else {
+					LoggingTool
+							.print( "Config: The previous save from the config file did not exist. Setting to default." );
+				}
+
 			} else if ( settingLine.contains( "window_width" ) ) {
 				this.windowWidth = Integer.parseInt( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
 				LoggingTool.print( "Config: Setting window width as: " + this.windowWidth + "." );
@@ -99,8 +126,14 @@ public class Config implements Closeable {
 				this.buffer = Integer.parseInt( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
 				LoggingTool.print( "Config: Setting buffer as " + this.buffer + "." );
 			} else if ( settingLine.contains( "save_folder_location" ) ) {
-				this.savesDirectory = new File( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
-				LoggingTool.print( "Config Setting saves directory as " + this.savesDirectory.getPath() + "." );
+				File file = new File( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
+				if ( file.exists() ) {
+					this.savesDirectory = file;
+					LoggingTool.print( "Config Setting saves directory as " + this.savesDirectory.getPath() + "." );
+				} else {
+					LoggingTool
+							.print( "Config: The saves directory from the config file did not exist. Setting to default." );
+				}
 			} else if ( settingLine.contains( "save_file_extension" ) ) {
 				this.savesDirectory = new File( settingLine.substring( settingLine.indexOf( " " ) + 1 ) );
 				LoggingTool.print( "Config: Setting saves file extension as \"." + this.saveFileExtension + "\"." );

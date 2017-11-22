@@ -9,7 +9,7 @@ import ksu.fall2017.swe4663.group1.projectmanagementsystem.Project;
 public class TEST_RequirementsPane extends Application {
 	@Override public void start( Stage primaryStage ) throws Exception {
 		Project project = new Project();
-		RequirementsPane pane = new RequirementsPane( project, new Config(), primaryStage );
+		RequirementsPane pane = new RequirementsPane( project, primaryStage, new Config() );
 
 		Scene scene = new Scene( pane );
 		primaryStage.setScene( scene );

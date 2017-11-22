@@ -81,7 +81,7 @@ public class SelectPersonPane extends FramedPane implements TeamPresenter, Proje
 	/**
 	 * Retrieves the currently-selected {@link PersonButton}.
 	 *
-	 * @return The currently-selected {@link PersonButton}. If no one is selected, it will return {@link null}.
+	 * @return The currently-selected {@link PersonButton}. If no one is selected, it will return {@code null}.
 	 */
 	protected Person getSelectedPerson() {
 		return this.selectedPerson;

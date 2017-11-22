@@ -30,6 +30,9 @@ public class WorkedHours implements Serializable {
 	 * @param person         The person who worked the hours being submitted.
 	 * @param duration       The amount of time reported by this submitted hours.
 	 * @param workedHourType The type of work that was done for this reporting period.
+	 * @param reportedDate   The date which marks the beginning of this reporting period (i.e. current day for {@link
+	 *                       SubmissionInterval#DAILY} submissions or first day of the week for {@link
+	 *                       SubmissionInterval#WEEKLY} submissions).
 	 * @throws InvalidWorkedHourTypeException Thrown if the {@link WorkedHourType} used was ANY, or if the {@link
 	 *                                        Person} submitting is not a Manager, and used PROJECT_MANAGEMENT.
 	 */

@@ -88,6 +88,8 @@ public class ProjectHourLog implements Serializable {
 	 * Registers new {@link WorkedHours} submitted by a {@link Person}.
 	 *
 	 * @param newWorkedHours The new {@link WorkedHours} to add for the {@link Project}.
+	 * @throws InvalidSubmissionException Thrown if the new hours for submission conflict with already-submitted hours
+	 *                                    in the {@link ProjectHourLog}.
 	 */
 	public void registerHours( WorkedHours newWorkedHours ) throws InvalidSubmissionException {
 		LoggingTool.print( "ProjectHourLog: Registering new Hours: " + newWorkedHours.toString() + "." );

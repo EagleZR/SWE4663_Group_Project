@@ -16,7 +16,7 @@ public class TEST_RequirementPane extends Application {
 				Priority.CRITICAL, Status.ACCEPTED_CURRENT, false, false );
 		Config config = new Config();
 		RequirementPane pane = new RequirementPane( requirement,
-				new RequirementsListPane( new Project(), config, primaryStage ), config, primaryStage );
+				new RequirementsListPane( new Project(), primaryStage, config ), primaryStage, config );
 
 		Scene scene = new Scene( pane );
 		primaryStage.setScene( scene );

@@ -23,6 +23,7 @@ public class HourLogPane extends Pane implements ProjectPane {
 	 * Constructs a new {@link HourLogPane} using the given {@link Project}.
 	 *
 	 * @param project The project currently being viewed/edited.
+	 * @param stage   The stage over which pop-ups will be displayed.
 	 * @param config  This defines some of the physical properties and behavior of this pane.
 	 */
 	public HourLogPane( Project project, Stage stage, Config config ) {

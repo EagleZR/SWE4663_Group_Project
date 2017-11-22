@@ -178,8 +178,20 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 			FileChooser chooser = new FileChooser();
 			chooser.setTitle( "Please select where to save the file." );
 			chooser.setInitialDirectory( this.config.savesDirectory );
-			chooser.setSelectedExtensionFilter( new FileChooser.ExtensionFilter( "Project Save File", ".save" ) );
-			chooser.setInitialFileName( this.config.previousSave.getName() );
+			if ( !this.config.savesDirectory.exists() ) {
+				if ( this.config.savesDirectory.mkdirs() ) {
+					LoggingTool.print( "ProjectManagementPane: The saves directory did not exist, and was created." );
+				} else {
+					LoggingTool
+							.print( "ProjectManagementPane: The saves directory did not exist, and could not be created." );
+					ErrorPopupSystem.displayMessage( "There was an error opening the saves directory." );
+					return;
+				}
+			}
+			chooser.getExtensionFilters().add( new FileChooser.ExtensionFilter( "Project Save File",
+					"*." + this.config.saveFileExtension ) );
+			chooser.setInitialFileName(
+					"save" ); // LATER Add a number afterwards and increase if a file already exists with that name?
 
 			Stage fileChooserStage = new Stage();
 			fileChooserStage.initModality( Modality.APPLICATION_MODAL );
@@ -191,8 +203,9 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 
 			if ( chosenFile != null ) {
 				if ( chosenFile.getName().length() < 5 || !chosenFile.getName()
-						.substring( chosenFile.getName().length() - 6 ).equals( ".save" ) ) {
-					chosenFile = new File( chosenFile.getPath() + ".save" );
+						.substring( chosenFile.getName().length() - 6 )
+						.equals( "." + this.config.saveFileExtension ) ) {
+					chosenFile = new File( chosenFile.getPath() + "." + this.config.saveFileExtension );
 				}
 				this.config.previousSave = chosenFile;
 

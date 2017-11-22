@@ -108,10 +108,15 @@ public class Person implements Serializable {
 	 *
 	 * @param duration       The duration of the new hours to report.
 	 * @param workedHourType The type of work that was done for those hours.
+	 * @param reportingDate  The date which marks the beginning of this reporting period (i.e. current day for {@link
+	 *                       SubmissionInterval#DAILY} submissions or first day of the week for {@link
+	 *                       SubmissionInterval#WEEKLY} submissions).
 	 * @throws PersonNotOnTeamException       Thrown if this person is not on a {@link Team}.
 	 * @throws InvalidWorkedHourTypeException Thrown if an invalid {@link WorkedHourType} is used. <p>Normally thrown if
 	 *                                        {@link WorkedHourType}{@code .ANY} is used by anyone, or if {@link
 	 *                                        WorkedHourType}{@code .PROJECT_MANAGEMENT} is used by a non-Manager.</p>
+	 * @throws InvalidSubmissionException     Thrown if the new hours for submission conflict with already-submitted
+	 *                                        hours in the {@link ProjectHourLog}.
 	 */
 	public void reportHours( double duration, WorkedHourType workedHourType, LocalDate reportingDate )
 			throws PersonNotOnTeamException, InvalidWorkedHourTypeException, InvalidSubmissionException {

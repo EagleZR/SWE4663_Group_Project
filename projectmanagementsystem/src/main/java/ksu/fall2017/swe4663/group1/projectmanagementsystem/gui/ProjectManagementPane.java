@@ -1,5 +1,6 @@
 package ksu.fall2017.swe4663.group1.projectmanagementsystem.gui;
 
+import eaglezr.javafx.stages.PopupStage;
 import eaglezr.support.errorsystem.ErrorPopupSystem;
 import eaglezr.support.logs.LoggingTool;
 import javafx.application.Platform;
@@ -37,7 +38,7 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 	private GeneralPane generalPane;
 	private HourLogPane hourLogPane;
 	private RequirementsPane requirementsPane;
-	private Label statusLabel;
+	private Label statusLabel; // LATER Remove this?
 
 	/**
 	 * Constructs a {@link ProjectManagementPane}, which consists of a {@link GeneralPane}, a {@link HourLogPane}, and a
@@ -252,7 +253,7 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 				this.config.previousSave = chosenFile;
 
 				try {
-					// Load into new project to ensure successful load before converting class variable
+					// Load into new project to ensure successful load before discarding the old one
 					Project project = Project.load( this.config.previousSave );
 					this.project = project;
 					loadNewProject( this.project );
@@ -301,8 +302,11 @@ public class ProjectManagementPane extends BorderPane implements ProjectPane {
 		} );
 		MenuItem about = new MenuItem( "About" );
 		about.setOnAction( e -> {
-			LoggingTool.print( "ProjectManagementPane: About button pressed." );
-			// TODO Display the about stage
+			AboutPane aboutPane = new AboutPane( this.config );
+			Scene scene = new Scene( aboutPane, 500, 400 );
+			PopupStage popupStage = new PopupStage( scene, this.primaryStage );
+			popupStage.setTitle( "About" );
+			popupStage.show();
 		} );
 		help.getItems().addAll( helpItem, about );
 

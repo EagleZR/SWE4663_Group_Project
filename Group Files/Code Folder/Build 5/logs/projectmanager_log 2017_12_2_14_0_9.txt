@@ -1,0 +1,106 @@
+Sat Dec 02 14:00:09 EST 2017: Main: Initializing Project Manager.
+Sat Dec 02 14:00:09 EST 2017: Main: Loading settings.
+Sat Dec 02 14:00:09 EST 2017: Main: Configuration file found. Reading configuration.
+Sat Dec 02 14:00:09 EST 2017: Creating new Config.
+Sat Dec 02 14:00:09 EST 2017: Config: Reading configuration from file: E:\Users\Mark Zeagler\Documents\GitHub\SWE4663_Group_Project\projectmanagementsystem\out\artifacts\projectmanagementsystem\data\config.ini.
+Sat Dec 02 14:00:09 EST 2017: Config: Setting previous save as: E:\Users\Mark Zeagler\Documents\GitHub\SWE4663_Group_Project\projectmanagementsystem\out\artifacts\projectmanagementsystem\saves\save.save.
+Sat Dec 02 14:00:09 EST 2017: Config Setting saves directory as saves.
+Sat Dec 02 14:00:09 EST 2017: Config: Setting window width as: 500.
+Sat Dec 02 14:00:09 EST 2017: Config: Setting window height as 600.
+Sat Dec 02 14:00:09 EST 2017: Config: Setting buffer as 10.
+Sat Dec 02 14:00:09 EST 2017: Main: Loading previous save.
+Sat Dec 02 14:00:09 EST 2017: Project: Loading project from: E:\Users\Mark Zeagler\Documents\GitHub\SWE4663_Group_Project\projectmanagementsystem\out\artifacts\projectmanagementsystem\saves\save.save.
+Sat Dec 02 14:00:09 EST 2017: Main: Previous save not found. Creating new project.
+Sat Dec 02 14:00:09 EST 2017: Constructing new Project.
+Sat Dec 02 14:00:09 EST 2017: Constructing new Team.
+Sat Dec 02 14:00:09 EST 2017: Team: Notifying distro of change.
+Sat Dec 02 14:00:09 EST 2017: Main: Initializing ErrorPopupSystem.
+Sat Dec 02 14:00:09 EST 2017: Main: Creating ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: ProjectManagementPane: Creating MenuBar.
+Sat Dec 02 14:00:09 EST 2017: ProjectManagementPane: Creating tabs in ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: ProjectManagementPane: Creating Button tab for GeneralPane in ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: ProjectManagementPane: Creating Button tab for RequirementPane in ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: ProjectManagementPane: Creating Button tab for HourLogPane in ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: ProjectManagementPane: Creating GeneralPane in ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new GeneralPane.
+Sat Dec 02 14:00:09 EST 2017: GeneralPane: Creating DescriptionPane in GeneralPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new DescriptionPane.
+Sat Dec 02 14:00:09 EST 2017: DescriptionPane: Creating new title label in DescriptionPane.
+Sat Dec 02 14:00:09 EST 2017: DescriptionPane: Creating new TextArea in DescriptionPane.
+Sat Dec 02 14:00:09 EST 2017: DescriptionPane: Creating update Button in DescriptionPane.
+Sat Dec 02 14:00:09 EST 2017: DescriptionPane: Creating reset button in DescriptionPane.
+Sat Dec 02 14:00:09 EST 2017: DescriptionPane: Creating status label in DescriptionPane.
+Sat Dec 02 14:00:09 EST 2017: GeneralPane: Creating TeamMembersPane in GeneralPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing a new TeamMembersPane.
+Sat Dec 02 14:00:09 EST 2017: Team: Adding class ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.TeamMembersPane to distro.
+Sat Dec 02 14:00:09 EST 2017: TeamMembersPane: Creating title label in TeamMembersPane.
+Sat Dec 02 14:00:09 EST 2017: TeamMembersPane: Creating the "Add Member" Button in the TeamMembersPane.
+Sat Dec 02 14:00:09 EST 2017: TeamMembersPane: Creating PersonButtonScrollPane in TeamMembersPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing a new PersonButtonScrollPane.
+Sat Dec 02 14:00:09 EST 2017: GeneralPane: Creating ManagerPane in GeneralPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Creating new ManagerPane.
+Sat Dec 02 14:00:09 EST 2017: Team: Adding class ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.ManagerPane to distro.
+Sat Dec 02 14:00:09 EST 2017: Constructing new PersonNotOnTeamException.
+Sat Dec 02 14:00:09 EST 2017: No manager was found. Setting an empty person as the manager in the ManagerPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new Person with name: .
+Sat Dec 02 14:00:09 EST 2017: Person:  has been promoted.
+Sat Dec 02 14:00:09 EST 2017: ManagerPane: Creating title label in ManagerPane.
+Sat Dec 02 14:00:09 EST 2017: ManagerPane: Creating PersonButtonScrollPane in ManagerPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing a new PersonButtonScrollPane.
+Sat Dec 02 14:00:09 EST 2017: ManagerPane: Updating ManagerPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new PersonNotOnTeamException.
+Sat Dec 02 14:00:09 EST 2017: ManagerPane: Unable to update manager.
+Sat Dec 02 14:00:09 EST 2017: GeneralPane: Creating RisksPane in GeneralPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new RisksPane.
+Sat Dec 02 14:00:09 EST 2017: ProjectManagementPane: Creating RequirementPane in ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new RequirementFilter.
+Sat Dec 02 14:00:09 EST 2017: RequirementsListPane: Loaded new project.
+Sat Dec 02 14:00:09 EST 2017: ProjectManagementPane: Creating HourLogPane in ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new HourLogPane.
+Sat Dec 02 14:00:09 EST 2017: HourLogPane: Creating new SelectPersonPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new SelectPersonPane.
+Sat Dec 02 14:00:09 EST 2017: Team: Adding class ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.hourlog.SelectPersonPane to distro.
+Sat Dec 02 14:00:09 EST 2017: Constructing a new PersonButtonScrollPane.
+Sat Dec 02 14:00:09 EST 2017: SelectPersonPane: Adding title label.
+Sat Dec 02 14:00:09 EST 2017: SelectPersonPane: Adding PersonButtonScrollPane.
+Sat Dec 02 14:00:09 EST 2017: HourLogPane: Creating new WorkedHoursSubmissionPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new WorkedHoursSubmissionPane.
+Sat Dec 02 14:00:09 EST 2017: WorkedHoursSubmissionPane: Creating ScrollPane.
+Sat Dec 02 14:00:09 EST 2017: HourLogPane: Creating new HourLogDisplayPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new HourLogDisplayPane.
+Sat Dec 02 14:00:09 EST 2017: HourLogDisplayPane: Creating new Label.
+Sat Dec 02 14:00:09 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new HourTypeDisplayPane for Requirements Analysis.
+Sat Dec 02 14:00:09 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new HourTypeDisplayPane for Designing.
+Sat Dec 02 14:00:09 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new HourTypeDisplayPane for Coding.
+Sat Dec 02 14:00:09 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new HourTypeDisplayPane for Testing.
+Sat Dec 02 14:00:09 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new FramedPane.
+Sat Dec 02 14:00:09 EST 2017: Constructing new HourTypeDisplayPane for Project Management.
+Sat Dec 02 14:00:09 EST 2017: SelectPersonPane: Setting new action for execution upon PersonButton selection.
+Sat Dec 02 14:00:09 EST 2017: ProjectManagementPane: Setting GeneralPane as content in ProjectManagementPane.
+Sat Dec 02 14:00:09 EST 2017: Main: Displaying Project Management System window.
+Sat Dec 02 14:00:13 EST 2017: ProjectManagementPane: Load button pressed.
+Sat Dec 02 14:00:15 EST 2017: Project: Loading project from: E:\Users\Mark Zeagler\Documents\GitHub\SWE4663_Group_Project\projectmanagementsystem\out\artifacts\projectmanagementsystem\saves\save.save.
+Sat Dec 02 14:00:15 EST 2017: Pop-up displayed: That file does not exist
+Sat Dec 02 14:00:15 EST 2017: ProjectManagementPane: The specified file does not exist.
+Sat Dec 02 14:00:25 EST 2017: Config: Begin closing.
+Sat Dec 02 14:00:25 EST 2017: Config: Writing settings to file.
+Sat Dec 02 14:00:25 EST 2017: Config: Finished writing settings. Will close.
+Sat Dec 02 14:00:25 EST 2017: Program is exiting.

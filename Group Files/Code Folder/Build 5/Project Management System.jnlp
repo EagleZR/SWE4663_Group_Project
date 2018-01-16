@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Project Management System.jnlp">
+  <information>
+    <title>Project Management System</title>
+    <vendor>Kennesaw State University Fall 2017 SWE 4663 Group 1</vendor>
+    <description>projectmanagementsystem</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Project Management System.jar" size="155639" download="eager" />
+    <jar href="errorpopupsystem-1.0.jar" size="2938" download="eager" />
+    <jar href="loggingtool-1.0.jar" size="4847" download="eager" />
+    <jar href="popupstage-1.0.jar" size="929" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="ksu.fall2017.swe4663.group1.projectmanagementsystem.Main"  name="projectmanagementsystem" />
+  <update check="background"/>
+</jnlp>

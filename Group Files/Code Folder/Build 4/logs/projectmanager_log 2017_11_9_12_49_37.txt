@@ -1,0 +1,145 @@
+Thu Nov 09 12:49:37 EST 2017: Main: Initializing Project Manager.
+Thu Nov 09 12:49:37 EST 2017: Main: Loading settings.
+Thu Nov 09 12:49:37 EST 2017: Main: Configuration file found. Reading configuration.
+Thu Nov 09 12:49:37 EST 2017: Creating new Config.
+Thu Nov 09 12:49:37 EST 2017: Config: Reading configuration from file: E:\Users\Mark Zeagler\Documents\GitHub\SWE4663_Group_Project\projectmanagementsystem\out\artifacts\projectmanagementsystem\data\config.ini.
+Thu Nov 09 12:49:37 EST 2017: Config: Setting previous save as: E:\Users\Mark Zeagler\Documents\GitHub\SWE4663_Group_Project\projectmanagementsystem\out\artifacts\projectmanagementsystem\saves\save.save.
+Thu Nov 09 12:49:37 EST 2017: Config Setting saves directory as saves.
+Thu Nov 09 12:49:37 EST 2017: Config: Setting window width as: 500.
+Thu Nov 09 12:49:37 EST 2017: Config: Setting window height as 600.
+Thu Nov 09 12:49:37 EST 2017: Config: Setting buffer as 10.
+Thu Nov 09 12:49:37 EST 2017: Main: Loading previous save.
+Thu Nov 09 12:49:37 EST 2017: Project: Loading project from: E:\Users\Mark Zeagler\Documents\GitHub\SWE4663_Group_Project\projectmanagementsystem\out\artifacts\projectmanagementsystem\saves\save.save.
+Thu Nov 09 12:49:37 EST 2017: Main: Previous save file found and loaded.
+Thu Nov 09 12:49:37 EST 2017: Main: Initializing ErrorPopupSystem.
+Thu Nov 09 12:49:37 EST 2017: Main: Creating ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: ProjectManagementPane: Creating MenuBar.
+Thu Nov 09 12:49:37 EST 2017: ProjectManagementPane: Creating tabs in ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: ProjectManagementPane: Creating Button tab for GeneralPane in ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: ProjectManagementPane: Creating Button tab for RequirementPane in ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: ProjectManagementPane: Creating Button tab for HourLogPane in ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: ProjectManagementPane: Creating GeneralPane in ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new GeneralPane.
+Thu Nov 09 12:49:37 EST 2017: GeneralPane: Creating DescriptionPane in GeneralPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new DescriptionPane.
+Thu Nov 09 12:49:37 EST 2017: DescriptionPane: Creating new title label in DescriptionPane.
+Thu Nov 09 12:49:37 EST 2017: DescriptionPane: Creating new TextArea in DescriptionPane.
+Thu Nov 09 12:49:37 EST 2017: DescriptionPane: Creating update Button in DescriptionPane.
+Thu Nov 09 12:49:37 EST 2017: DescriptionPane: Creating reset button in DescriptionPane.
+Thu Nov 09 12:49:37 EST 2017: DescriptionPane: Creating status label in DescriptionPane.
+Thu Nov 09 12:49:37 EST 2017: GeneralPane: Creating TeamMembersPane in GeneralPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing a new TeamMembersPane.
+Thu Nov 09 12:49:37 EST 2017: Team: Adding class ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.TeamMembersPane to distro.
+Thu Nov 09 12:49:37 EST 2017: Team: Distro was uninitialized. Initializing.
+Thu Nov 09 12:49:37 EST 2017: TeamMembersPane: Creating title label in TeamMembersPane.
+Thu Nov 09 12:49:37 EST 2017: TeamMembersPane: Creating the "Add Member" Button in the TeamMembersPane.
+Thu Nov 09 12:49:37 EST 2017: TeamMembersPane: Creating PersonButtonScrollPane in TeamMembersPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing a new PersonButtonScrollPane.
+Thu Nov 09 12:49:37 EST 2017: TeamMembersPane: Adding Mark to the TeamMembersPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Mark.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Mark
+Thu Nov 09 12:49:37 EST 2017: TeamMembersPane: Adding Sharmell to the TeamMembersPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Sharmell.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Sharmell
+Thu Nov 09 12:49:37 EST 2017: TeamMembersPane: Adding Lauren to the TeamMembersPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Lauren.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Lauren
+Thu Nov 09 12:49:37 EST 2017: TeamMembersPane: Adding Nygel to the TeamMembersPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Nygel.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Nygel
+Thu Nov 09 12:49:37 EST 2017: TeamMembersPane: Adding Bilash to the TeamMembersPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Bilash.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Bilash
+Thu Nov 09 12:49:37 EST 2017: GeneralPane: Creating ManagerPane in GeneralPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Creating new ManagerPane.
+Thu Nov 09 12:49:37 EST 2017: Team: Adding class ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.general.ManagerPane to distro.
+Thu Nov 09 12:49:37 EST 2017: Setting ksu.fall2017.swe4663.group1.projectmanagementsystem.team.Person@2f6eb226 as the manager in the ManagerPane.
+Thu Nov 09 12:49:37 EST 2017: ManagerPane: Creating title label in ManagerPane.
+Thu Nov 09 12:49:37 EST 2017: ManagerPane: Creating PersonButtonScrollPane in ManagerPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing a new PersonButtonScrollPane.
+Thu Nov 09 12:49:37 EST 2017: ManagerPane: Adding person: Mark.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Mark.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Mark
+Thu Nov 09 12:49:37 EST 2017: ManagerPane: Adding person: Sharmell.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Sharmell.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Sharmell
+Thu Nov 09 12:49:37 EST 2017: ManagerPane: Adding person: Lauren.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Lauren.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Lauren
+Thu Nov 09 12:49:37 EST 2017: ManagerPane: Adding person: Nygel.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Nygel.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Nygel
+Thu Nov 09 12:49:37 EST 2017: ManagerPane: Adding person: Bilash.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Bilash.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Bilash
+Thu Nov 09 12:49:37 EST 2017: ManagerPane: Updating ManagerPane.
+Thu Nov 09 12:49:37 EST 2017: GeneralPane: Creating RisksPane in GeneralPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new RisksPane.
+Thu Nov 09 12:49:37 EST 2017: ProjectManagementPane: Creating RequirementPane in ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new RequirementPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new RequirementPane.
+Thu Nov 09 12:49:37 EST 2017: ProjectManagementPane: Creating HourLogPane in ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new HourLogPane.
+Thu Nov 09 12:49:37 EST 2017: HourLogPane: Creating new SelectPersonPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new SelectPersonPane.
+Thu Nov 09 12:49:37 EST 2017: Team: Adding class ksu.fall2017.swe4663.group1.projectmanagementsystem.gui.hourlog.SelectPersonPane to distro.
+Thu Nov 09 12:49:37 EST 2017: Constructing a new PersonButtonScrollPane.
+Thu Nov 09 12:49:37 EST 2017: SelectPersonPane: Adding person: Mark.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Mark.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Mark
+Thu Nov 09 12:49:37 EST 2017: SelectPersonPane: Adding person: Sharmell.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Sharmell.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Sharmell
+Thu Nov 09 12:49:37 EST 2017: SelectPersonPane: Adding person: Lauren.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Lauren.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Lauren
+Thu Nov 09 12:49:37 EST 2017: SelectPersonPane: Adding person: Nygel.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Nygel.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Nygel
+Thu Nov 09 12:49:37 EST 2017: SelectPersonPane: Adding person: Bilash.
+Thu Nov 09 12:49:37 EST 2017: Constructing new PersonButton for Person named Bilash.
+Thu Nov 09 12:49:37 EST 2017: PersonButtonScrollPane: Adding Button with text: Bilash
+Thu Nov 09 12:49:37 EST 2017: SelectPersonPane: Adding title label.
+Thu Nov 09 12:49:37 EST 2017: SelectPersonPane: Adding PersonButtonScrollPane.
+Thu Nov 09 12:49:37 EST 2017: HourLogPane: Creating new WorkedHoursSubmissionPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new WorkedHoursSubmissionPane.
+Thu Nov 09 12:49:37 EST 2017: WorkedHoursSubmissionPane: Creating ScrollPane.
+Thu Nov 09 12:49:37 EST 2017: WorkedHoursSubmissionPane: Creating content Pane.
+Thu Nov 09 12:49:37 EST 2017: HourLogPane: Creating new HourLogDisplayPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new HourLogDisplayPane.
+Thu Nov 09 12:49:37 EST 2017: HourLogDisplayPane: Creating new Label.
+Thu Nov 09 12:49:37 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new HourTypeDisplayPane for Requirements Analysis.
+Thu Nov 09 12:49:37 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new HourTypeDisplayPane for Designing.
+Thu Nov 09 12:49:37 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new HourTypeDisplayPane for Coding.
+Thu Nov 09 12:49:37 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new HourTypeDisplayPane for Testing.
+Thu Nov 09 12:49:37 EST 2017: HourLogDisplayPane: Creating new HourTypeDisplayPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new FramedPane.
+Thu Nov 09 12:49:37 EST 2017: Constructing new HourTypeDisplayPane for Project Management.
+Thu Nov 09 12:49:37 EST 2017: ProjectManagementPane: Setting GeneralPane as content in ProjectManagementPane.
+Thu Nov 09 12:49:37 EST 2017: Main: Displaying Project Management System window.
+Thu Nov 09 12:49:41 EST 2017: ProjectManagementPane: Setting RequirementPane as content in ProjectManagementPane.
+Thu Nov 09 12:49:42 EST 2017: ProjectManagementPane: Setting HourLogPane as content in ProjectManagementPane.
+Thu Nov 09 12:49:45 EST 2017: ProjectManagementPane: Setting GeneralPane as content in ProjectManagementPane.
+Thu Nov 09 12:49:51 EST 2017: Config: Begin closing.
+Thu Nov 09 12:49:51 EST 2017: Config: Writing settings to file.
+Thu Nov 09 12:49:51 EST 2017: Config: Finished writing settings. Will close.
+Thu Nov 09 12:49:51 EST 2017: Program is exiting.
